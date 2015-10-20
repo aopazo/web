@@ -516,13 +516,6 @@
 	if($activaPago == "si" && false){
 		$varCorreo = $_SESSION['correo'];
 		
-		// $receiver_id = '10380';		// prueba
-		// $secret = 'e89388ae5d57251a3e4f038b4a3d310e9c018541';	// prueba
-		$receiver_id = '8575';	// producción health co
-		$secret = '133b96a3bf3138cbe5e3ca42ef3bcc0a69925030';	// producción health co
-		$receiver_id = '38815';	// producción atmepus sa
-		$secret = '86ac3a8055609c91c3b2fe0decdcd416aba837cc';	// producción atmepus sa
-
 		if($varPlan == "12000"){
 			$subject = 'Plan Premium Anual';
 			$body = 'Suscripcion Plan Premium Anual a Atempus';
