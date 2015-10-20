@@ -1,0 +1,39 @@
+DirectoryIndex inicio.php
+
+ErrorDocument 400 /respuesta.php?message=400
+ErrorDocument 401 /respuesta.php?message=401
+ErrorDocument 403 /respuesta.php?message=403
+ErrorDocument 404 /respuesta.php?message=404
+ErrorDocument 500 /respuesta.php?message=500
+
+<Files .htaccess>
+order allow,deny
+deny from all
+</Files>
+
+RewriteEngine On    # Turn on the rewriting engine
+RewriteCond %{HTTP_HOST} !^www\.
+RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
+
+RewriteRule		^inicio/?$					inicio.php	[NC,L]
+RewriteRule		^modelo/?$					modelo.php	[NC,L]
+RewriteRule		^que_gano_yo/?$				que_gano_yo.php	[NC,L]
+RewriteRule		^recomendaciones/?$			recomendaciones.php	[NC,L]
+RewriteRule		^planes/?$					planes.php	[NC,L]
+RewriteRule		^suscripcion/?$				suscripcion.php	[NC,L]
+RewriteRule		^respuesta/?$				respuesta.php	[NC,L]
+RewriteRule		^mi_cuenta/?$				micuenta.php	[NC,L]
+RewriteRule		^politica_de_privacidad/?$	politica_de_privacidad.php	[NC,L]
+RewriteRule		^preguntas_frecuentes/?$	preguntas_frecuentes.php	[NC,L]
+RewriteRule		^terminos_y_condiciones/?$	terminos_y_condiciones.php	[NC,L]
+RewriteRule		^mapa_del_sitio/?$			mapa_del_sitio.php	[NC,L]
+RewriteRule		^confirma_tu_correo/?$		confirmaTuCorreo.php	[NC,L]
+RewriteRule		^cambiar_mi_contrasena/?$	cambiarMiContrasena.php	[NC,L]
+
+RewriteRule		^usuario/?$					usuario.php	[NC,L]
+RewriteRule		^cuenta/?$					cuenta.php	[NC,L]
+RewriteRule		^contactanos/?$				contactanos.php	[NC,L]
+RewriteRule		^footer/?$					footer.php	[NC,L]
+RewriteRule		^header/?$					header.php	[NC,L]
+RewriteRule		^login-processor/?$			login-processor.php	[NC,L]
+RewriteRule		^form-processor/?$			form-processor.php	[NC,L]
