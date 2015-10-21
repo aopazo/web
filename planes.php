@@ -1,4 +1,4 @@
-<?php 
+﻿<?php 
 	// Inialize session
 	session_start();
 	
@@ -130,8 +130,7 @@
 								</div>
 							</div>
 							<div class="col-md-4">
-								<div class="plan most-popular">
-									<div class="plan-ribbon-wrapper"><div class="plan-ribbon"><i class="fa fa-star" style="color:orange"></i> <i class="fa fa-star" style="color:orange"></i> <i class="fa fa-star" style="color:orange"></i></div></div>
+								<div class="plan">
 									<h3>Premium Anual<span>$12.000</span></h3>
 									<form name="formPlan12000" id="formPlan12000" action="registro" method="post">
 										<input type="hidden" value="12000" name="plan" />
@@ -145,7 +144,8 @@
 								</div>
 							</div>
 							<div class="col-md-4">
-								<div class="plan">
+								<div class="plan most-popular">
+									<div class="plan-ribbon-wrapper"><div class="plan-ribbon"><i class="fa fa-star" style="color:orange"></i> <i class="fa fa-star" style="color:orange"></i> <i class="fa fa-star" style="color:orange"></i></div></div>
 									<h3>Premium Bianual<span>$20.400</span></h3>
 									<form name="formPlan20400" id="formPlan20400" action="registro" method="post">
 										<input type="hidden" value="20400" name="plan" />
