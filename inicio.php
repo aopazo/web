@@ -1,4 +1,4 @@
-<?php 
+﻿<?php 
 	// Inialize session
 	session_start();
 
@@ -257,7 +257,7 @@
 							</div>
 							<div class="col-md-5">
 								<div class="get-started">
-									<a href="planes.html" class="btn btn-lg btn-primary">¡Escoje tu plan ahora!</a>
+									<a href="planes" class="btn btn-lg btn-primary">¡Escoje tu plan ahora!</a>
 									<div class="learn-more">o <a href="queganoyo.html">revisa nuestros resultados</a></div>
 								</div>
 							</div>
