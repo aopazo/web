@@ -298,20 +298,20 @@
 							<span class="cloud"></span>
 							<div class="col-md-2 col-md-offset-1">
 								<div class="process-image" data-appear-animation="bounceIn">
-									<a href="planes.html"><img alt="Regístrate" width="145" height="145" src="custom/img_custom/planperspectiva.png" alt="" /></a>
-									<a href="planes.html"><strong>Escoge tu plan</strong></a>
+									<a href="planes"><img alt="Regístrate" width="145" height="145" src="custom/img_custom/planperspectiva.png" alt="" /></a>
+									<a href="planes"><strong>Escoge tu plan</strong></a>
 								</div>
 							</div>
 							<div class="col-md-2">
 								<div class="process-image" data-appear-animation="bounceIn" data-appear-animation-delay="200">
-									<a href="planes.html"><img alt="Regístrate" width="145" height="145" src="custom/img_custom/registro.png" alt="" /></a>
-									<a href="planes.html"><strong>regístrate</strong></a>
+									<a href="planes"><img alt="Regístrate" width="145" height="145" src="custom/img_custom/registro.png" alt="" /></a>
+									<a href="planes"><strong>regístrate</strong></a>
 								</div>
 							</div>
 							<div class="col-md-2">
 								<div class="process-image" data-appear-animation="bounceIn" data-appear-animation-delay="400">
-									<a href="planes.html"><img alt="Recomendaciones" width="145" height="145" src="custom/img_custom/recomendacionesdesenfocado.png" alt="" /></a>
-									<a href="planes.html"><strong>sigue las recomendaciones</strong></a>
+									<a href="planes"><img alt="Recomendaciones" width="145" height="145" src="custom/img_custom/recomendacionesdesenfocado.png" alt="" /></a>
+									<a href="planes"><strong>sigue las recomendaciones</strong></a>
 								</div>
 							</div>
 							<div class="col-md-4 col-md-offset-1">
