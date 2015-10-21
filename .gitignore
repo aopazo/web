@@ -5,3 +5,7 @@ script-alerta.php
 script-boletas.php
 script-expira.php
 script-*
+
+# XAMPP - APACHE #
+##################
+dev_errors
