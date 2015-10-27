@@ -5,3 +5,6 @@ script-alerta.php
 script-boletas.php
 script-expira.php
 script-*
+/nbproject/private/
+*.log
+/mc.php

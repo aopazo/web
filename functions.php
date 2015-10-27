@@ -1,5 +1,7 @@
 <?php
 
+$timestamp = new DateTime();
+
 function safe($key) {
 	require_once("connection.php");
 	$rKey = mysql_real_escape_string($key);
@@ -21,7 +23,22 @@ function encrypt($pass) {
 	return crypt($pass, $salt);
 	}
 
-	// echo phpinfo();
+function iniciarSesion($userdata){
+	if($userdata['nombres']==null || $userdata['nombres']=="")	$_SESSION['username'] = $userdata['correo'];
+														else	$_SESSION['username'] = $userdata['nombres'];
+	$_SESSION['id'] = $userdata['id'];
+	$_SESSION['rut'] = $userdata['rut'];
+	$_SESSION['plan'] = $userdata['tipo_plan'];
+	$_SESSION['correo'] = $userdata['correo'];
+	$_SESSION['REMOTE_ADDR'] = $_SERVER['REMOTE_ADDR'];
+	$_SESSION['HTTP_USER_AGENT'] = $_SERVER['HTTP_USER_AGENT'];
+	if($userdata['correo_validado'] == "1") $_SESSION['correo_validado'] = true; else $_SESSION['correo_validado'] = false;
+	if($userdata['mailchimp_suscrito'] == "1") $_SESSION['mailchimp_suscrito']= true; else $_SESSION['mailchimp_suscrito'] = false;
+	if($userdata['tipo_usuario'] == "9") $_SESSION['expirado'] = true; else $_SESSION['expirado'] = false;
+	(strpos($_SERVER["HTTP_REFERER"], "?action=inits") !== false) ? $url_destino = substr($_SERVER["HTTP_REFERER"], 0, -13) : $url_destino = $_SERVER["HTTP_REFERER"];
+	}
+
+// echo phpinfo();
 // echo $e = encrypt("qwe");
 // echo "<br />";
 // echo crypt("qwe", $e);
@@ -40,26 +57,34 @@ function enviaCorreo($de, $deNombre, $para, $paraNombre, $asunto, $mensaje){
 	if ($para != "alejandro.opazo@atempus.cl"){
 		$mail->AddBCC('alejandro.opazo@atempus.cl', 'Ale');
 	}
-	$mail->AltBody    = "Para ver este mensaje, por favor use un cliente de correo que pueda mostrar mensajes HTML"; // optional, comment out and test
+	$mail->AltBody = "Para ver este mensaje, por favor use un cliente de correo que pueda mostrar mensajes HTML"; // optional, comment out and test
 	$mail->Subject = $asunto;
 	$mail->MsgHTML($mensaje);
 	$mail->IsHTML(true);
 	if(!$mail->Send()) {
-		error_log(print_r("connection:: Correo no se pudo enviar: ".$mail->ErrorInfo, TRUE), 0);
+		error_log("\nfunctions:: Correo: ".$asunto." no se pudo enviar a: ".$para.", codigo de error: " .$mail->ErrorInfo, 3, "error.log");
 		} else {
-		error_log(print_r("connection:: Correo enviado a: ".$para, TRUE), 0);
+		error_log("\nfunctions:: Correo: ".$asunto." enviado a: ".$para, 3, "transactions.log");
 		}
 	}
 
-function enviaValidaCorreo($email, $userName, $plan){
-	$mailMessageText = "Estimado usuario,<br /><br />Te enviamos este correo pues te estás suscribiendo al ";
-	if($plan=="Gratis") $mailMessageText .= "plan Básico y a";
-	if($plan=="12000")  $mailMessageText .= "plan Premium Anual y a";
-	if($plan=="24000")  $mailMessageText .= "plan Premium BiAnual y a";
-	$mailMessageText .=	" las notificaciones que ofrece Atempus.<br /><br />Para terminar tu suscripción, debes realizar estos simples pasos:<br /><br />1. Confirmar tu correo ingresando al siguiente enlace http://www.atempus.cl/confirma_tu_correo?token=".$userName." (también puedes copiarlo y pegarlo en tu navegador)<br />2. Aceptar la suscripción a nuestras notificaciones (que te llegarán luego que confirmes tu correo).";
-	$mailMessageText .= "<br /><br />Atentamente,<br />Equipo Atempus.";
-	enviaCorreo("contacto@atempus.cl", "Equipo Atempus", $email, "Estimado usuario", "", $mailMessageText);
-	}
+function enviar_bienvenida_mailchimp($row){
+    require_once('inc/Mailchimp.php');
+    try {
+        $MailChimp = new Mailchimp($apikey); // v2.0.6
+    } catch (Mailchimp_Error $e) {
+        error_log("\n".$timestamp->format('Y-m-d H:i:s')." confirmatucorreo:: problemas al crear mailchimp wrapper: ".$e, 3, "error.log");
+    }
+    
+    $merge_vars = array('EMAIL'=>$row['correo'], 'FNAME'=>$row['nombres'], 'LNAME'=>$row['apellidos'], 'DESFC'=>'0', 'ACTIVO'=>'SI'); // usuario queda activo pero con desfase hasta que se confirme su pago
+    $returned_value_array = $MailChimp->lists->subscribe($listId, array( 'email' => $row['correo'] ), $merge_vars);
+
+    if (empty($returned_value_array['leid'])) {
+        error_log("\n".$timestamp->format('Y-m-d H:i:s')." confirmatucorreo:: problemas al dar de alta el correo ".$correo.". Valores retornados: email: ".$returned_value_array['email'].", euid: ".$returned_value_array['euid'].", leid empty", 3, "error.log");
+    } else {
+        error_log("\n".$timestamp->format('Y-m-d H:i:s')." confirmatucorreo:: correo dado de alta en MC. Valores retornados: email: ".$returned_value_array['email'].", euid: ".$returned_value_array['euid'].", leid ".$returned_value_array['leid'], 3, "transactions.log");
+    }
+}
 
 function toChileanMonth($numeroMes) {
 	switch($numeroMes) {

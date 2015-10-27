@@ -11,6 +11,18 @@
 	$_SESSION['correo_validado'] = $userdata['correo_validado'];
 	$_SESSION['mailchimp_suscrito'] = $userdata['mailchimp_suscrito'];
 	echo "<br />update -> cv:".$_SESSION['correo_validado']."ms:".$_SESSION['mailchimp_suscrito'];
+//	echo "<br /> -> c:".$_SESSION['correo'];
+//	echo "<br /> -> c:".$_SESSION['username'];
+
+    $message = filter_input(INPUT_POST, 'message', FILTER_SANITIZE_STRING);
+    if($message == "correoValidadoAnteriormente") {
+        echo "<script languaje=’javascript’>alert('Tu correo ya ha sido validado, no es necesario validarlo nuevamente.')</script>"; 
+        $message = "";
+    }
+    if($message == "correoValidado") {
+        echo "<script languaje=’javascript’>alert('Gracias por confiar en nosotros.\n\nTu correo ha sido validado y tu sesi\u00f3n ha sido iniciada.\n\nPara culminar el proceso de suscripci\u00f3n s\u00f3lo falta que aceptes tu suscripci\u00f3n a la lista de correos para recibir las alertas de Atempus.'</script>"; 
+        $message = "";
+    }
 	
 	// $popup = "";
 	// if (isset($_GET['popup'])) $popup = $_GET['popup'];
@@ -164,7 +176,7 @@
 											</div>
 										</form>	
 
-										<div class="modal fade" id="ModalCambioClave" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+										<div class="modal fade" id="ModalCambioClave" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
 											<div class="modal-dialog">
 												<div class="modal-content">
 													<div class="modal-header">
@@ -293,8 +305,23 @@
 													</div>
 												</div>
 											</div>
-										</form>	
-										
+										</form>
+
+   								<div class="modal fade" id="ModalGenerico" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+												<h4 class="modal-title" id="myModalTitle"></h4>
+											</div>
+											<div id="myModalBody" class="modal-body"></div>
+											<div class="modal-footer">
+												<a href="#" id="myModalFooter" type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-thumbs-up"></i> Entendido</a>
+											</div>
+										</div>
+									</div>
+								</div>
+
 									</div>
 								</div>
 							</div>
@@ -380,16 +407,19 @@
 					success: function(result) {
 						alert(result);
 						if(result=="datosVacios"){
-							$('#ModalCambioClaveMensaje').html('Datos Vacios');
-							$('#ModalCambioClave').modal({show: 'true'});
+                            $('#myModalTitle').html('Cambio de Dirección');
+                            $('#myModalBody').html('Tu dirección no parece completa. Por favor, llena todos los campos.');
+							$('#ModalGenerico').modal({show: 'true'});
 						}
 						else if(result=="direccionActualizadaOK"){
-							$('#ModalCambioClaveMensaje').html('Tu direcci&oacute;n ha sido actualizada correctamente');
-							$('#ModalCambioClave').modal({show: 'true'});
+                            $('#myModalTitle').html('Cambio de Dirección');
+                            $('#myModalBody').html('Tu direcci&oacute;n ha sido actualizada correctamente');
+							$('#ModalGenerico').modal({show: 'true'});
 						}
 						else if(result=="direccionActualizadaNOK"){
-							$('#ModalCambioClaveMensaje').html('No hemos podido actualizar tu direcci&oacute;n. Int&eacute;ntalo m&aacute;s tarde.');
-							$('#ModalCambioClave').modal({show: 'true'});
+                            $('#myModalTitle').html('Cambio de Dirección');
+                            $('#myModalBody').html('No hemos podido actualizar tu direcci&oacute;n. Int&eacute;ntalo m&aacute;s tarde.');
+							$('#ModalGenerico').modal({show: 'true'});
 						}
 					}
 				});

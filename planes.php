@@ -4,6 +4,7 @@
 	
 	require_once("functions.php");
 	// implementar despliegue de errores
+	$errorMessage = "";
 	if(isset($_POST['errorMessage'])) { $displayErrors = "block"; $errorMessage = safe($_POST['errorMessage']); echo "TEST: ".$errorMessage;}
 	else $displayErrors = "none";
 
@@ -91,7 +92,7 @@
 						<div class="row">
 							<div class="col-md-12">
 								<ul class="breadcrumb">
-									<li><a href="inicio.html">Inicio</a></li>
+									<li><a href="inicio">Inicio</a></li>
 									<li class="active">Planes</li>
 								</ul>
 							</div>

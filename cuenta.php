@@ -62,7 +62,7 @@
 			<header id="header">
 				<div id="header-logo" class="container">
 					<div class="logo">
-						<a href="inicio.html">
+						<a href="inicio">
 							<img alt="Atempus" width="180" height="90" data-sticky-width="90" data-sticky-height="45" src="custom/img_custom/logo-ae-1.png">
 						</a>
 					</div>
@@ -85,7 +85,7 @@
 						<div class="row">
 							<div class="col-md-12">
 								<ul class="breadcrumb">
-									<li><a href="inicio.html">Inicio</a></li>
+									<li><a href="inicio">Inicio</a></li>
 									<li class="active">Mi Cuenta</li>
 								</ul>
 							</div>
@@ -107,9 +107,9 @@
 								<h4 class="mb-none">Datos de tu cuenta</h4>
 								<br>
 								<p><b>Plan actual:</b> Anual Premium 
-								 <a href="planes.html" type="button" class="btn btn-borders btn-default btn-xs"><i class="fa fa-repeat"></i> renueva tu plan</a>
-								 <a href="planes.html" type="button" class="btn btn-borders btn-default btn-xs"><i class="fa fa-thumb-tack"></i> escoje un plan</a>
-								 <a href="planes.html" type="button" class="btn btn-borders btn-default btn-xs"><i class="fa fa-rocket"></i> mejora tu plan</a></p>
+								 <a href="planes" type="button" class="btn btn-borders btn-default btn-xs"><i class="fa fa-repeat"></i> renueva tu plan</a>
+								 <a href="planes" type="button" class="btn btn-borders btn-default btn-xs"><i class="fa fa-thumb-tack"></i> escoje un plan</a>
+								 <a href="planes" type="button" class="btn btn-borders btn-default btn-xs"><i class="fa fa-rocket"></i> mejora tu plan</a></p>
 								<br>
 								
 								<h4 class="mb-none">Información histórica</h4>

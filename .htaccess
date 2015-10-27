@@ -11,6 +11,11 @@ order allow,deny
 deny from all
 </Files>
 
+<FilesMatch "\.log$">
+order allow,deny
+deny from all
+</FilesMatch>
+
 RewriteEngine On    # Turn on the rewriting engine
 RewriteCond %{HTTP_HOST} !^www\.
 RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
@@ -30,7 +35,9 @@ RewriteRule		^mapa_del_sitio/?$			mapa_del_sitio.php	[NC,L]
 RewriteRule		^confirma_tu_correo/?$		confirmaTuCorreo.php	[NC,L]
 RewriteRule		^cambiar_mi_contrasena/?$	cambiarMiContrasena.php	[NC,L]
 
+RewriteRule		^ingreso/?$					ingreso.php	[NC,L]
 RewriteRule		^usuario/?$					usuario.php	[NC,L]
+RewriteRule		^registro/?$				registro.php	[NC,L]
 RewriteRule		^cuenta/?$					cuenta.php	[NC,L]
 RewriteRule		^contactanos/?$				contactanos.php	[NC,L]
 RewriteRule		^footer/?$					footer.php	[NC,L]

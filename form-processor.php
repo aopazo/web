@@ -6,6 +6,7 @@
 	require_once("functions.php");
 	require_once("getFormData.php");
 
+	$timestamp = new DateTime();
 	$getFecha = getdate();
 	$current_date = "$getFecha[year]-$getFecha[mon]-$getFecha[mday]";
 	$activaPago = "";
@@ -22,8 +23,8 @@
 		if (empty($plan)) {
 			$action = "planes";
 			$errorMessage = "Vaya! Algo ha ocurrido.\\nNo recordamos que plan quieres contratar.\\nPor favor int&eacute;ntalo de nuevo\n";
-			error_log(print_r("form-processor: Se intento registrar errorMessage y varCorreo: ".$errorMessage.", ".$correo, TRUE), 0); 	// dejamos un mensaje en log de errores
-		}
+			error_log("\n".$timestamp->format('Y-m-d H:i:s')." form-processor::usuario:: Se intento registrar errorMessage y varCorreo: ".$errorMessage.", ".$correo, 3, "error.log"); 	// dejamos un mensaje en log de errores
+			}
 
 		if ($correo==null || $correo=="")					$error_consistencia .= "- Debes ingresar tu Correo.\\n";
 		if (!filter_var ($correo, FILTER_VALIDATE_EMAIL) || strlen($correo)<6)	$error_consistencia .= "- Correo inv\\u00e1lido.\\n";
@@ -61,26 +62,33 @@
 				}
 				$sql_insert_newuser = "INSERT INTO $table (correo, contrasena, fecha_incorporacion, md52confirm, fecha_inicio_plan_actual, fecha_fin_plan_actual, tipo_plan, planes_anteriores, contratos, tipo_usuario, correo_validado, mailchimp_suscrito) VALUES (\"$correo\", \"" . encrypt($contrasena) . "\", \"$current_date\", \"$varMd5\", \"$current_date\", \"$varFechaFin\", \"$plan\", \"\", \"". $contrato ."\", \"0\", \"false\", \"false\")";
 				if (mysql_query($sql_insert_newuser)) {
-					// iniciamos sesion
-					$_SESSION['username'] = $correo;
-					$_SESSION['plan'] = $plan;
-					$_SESSION['correo'] = $correo;
-					$_SESSION['correo_validado'] = false;
-					$_SESSION['mailchimp_suscrito'] = false;
-					$_SESSION['pago_recibido'] = false;
-					$_SESSION['REMOTE_ADDR'] = $_SERVER['REMOTE_ADDR'];
-					$_SESSION['HTTP_USER_AGENT'] = $_SERVER['HTTP_USER_AGENT'];
-					// correo no encontrado en bd, correctamente ingresado, redirigir a inicio éxito
+					// correo no encontrado en bd, correctamente ingresado, redirigir a inicio &eacute;xito
 					// $errorMessage = "OK";
 					if ($plan!="Gratis")	$activaPago = "si";
 					// confirmamos el correo
+					
+					$de = "contacto@atempus.cl";
+					$deNombre = "Equipo Atempus";
+					$para = $correo;
+					$paraNombre = "";
+					$asunto = "Suscripci&oacute;n Atempus";
+					
+										$mensaje = "Estimado usuario,<br /><br />Te enviamos este correo pues te est&aacute;s suscribiendo al ";
+					if($plan=="Gratis") $mensaje .= "plan B&aacute;sico y a";
+					if($plan=="12000")  $mensaje .= "plan Premium Anual y a";
+					if($plan=="24000")  $mensaje .= "plan Premium BiAnual y a";
+										$mensaje .=	" las notificaciones que ofrece Atempus.<br /><br />Para terminar tu suscripci&oacute;n, debes realizar estos simples pasos:<br /><br />1. Confirmar tu correo ingresando al siguiente enlace http://www.atempus.cl/confirma_tu_correo?token=".$varMd5." (tambi&eacute;n puedes copiarlo y pegarlo en tu navegador)<br />2. Aceptar la suscripci&oacute;n a nuestras notificaciones (que te llegar&aacute;n luego que confirmes tu correo).";
+										$mensaje .= "<br /><br />Atentamente,<br />Equipo Atempus.";
+
 					// if($test); else
-						// enviaValidaCorreo($correo, $varMd5, $plan);
+					enviaCorreo($de, $deNombre, $para, $paraNombre, $asunto, $mensaje);
+
+					$_SESSION['correo_validado'] = 0;
 					$section = "validarActive";
 					} else {
 						// correo no encontrado en bd, error en el ingreso, redirigir a inicio fracaso
 						$errorMessage = "Hubo un problema al crear tu cuenta.<br />Intentalo de nuevo mas tarde, por favor.";
-						error_log(print_r("form-processor: ".$correo." intento registrarse. Error al ejecutar insert en BD, plan pago. SQL_USR: ".$sql_insert_newuser, TRUE), 0);
+						error_log("\n".$timestamp->format('Y-m-d H:i:s')." form-processor::usuario:: ".$correo." intento registrarse. Error al ejecutar insert en BD, plan pago. SQL_USR: ".$sql_insert_newuser, 3, "error.log");
 						}
 			} else {
 				$section = "usuarioActive";
@@ -128,7 +136,7 @@
 			} else{
 				$section = "facturacionActive";
 				$errorMessage = "Se ha producido un error al actualizar tus datos. Int\u00e9ntalo de nuevo por favor.";
-				error_log(print_r("form-processor: ".$sql." error al actualizar los datos", TRUE), 0);
+				error_log("\n".$timestamp->format('Y-m-d H:i:s')." form-processor: ".$sql." error al actualizar los datos", 3, "error.log");
 				}
 			// }xml_error_string
 		}
@@ -149,20 +157,19 @@
 			$userdata = mysql_fetch_array($contra_query);
 			if(crypt($contrasena_antes, $userdata['contrasena']) == $userdata['contrasena']){
 				$sql = "UPDATE $table SET contrasena = '".encrypt($contrasena)."' WHERE correo = '".$_SESSION['correo']."'";
-				$query_result = mysql_query($sql);
-				if(mysql_query($sql)) {
-					error_log("form-processor:actualizarContrasena: datos actualizados para sql: ".$sql." query_result: ".$query_result." contra ".$contrasena, 3, "form.logs");
+				if($query_result = mysql_query($sql)) {
+					error_log("\n".$timestamp->format('Y-m-d H:i:s')." form-processor::actualizarContrasena:: datos actualizados para sql: ".$sql." query_result: ".$query_result." contra ".$contrasena, 3, "debug.log");
 					echo "contrasenaActualizadaOK";
 				} else {
-				error_log("form-processor:actualizarContrasena: error al actualizar los datos \n  sql: ".$sql." query_result: ".$query_result, 3, "error.logs");
+				error_log("\n".$timestamp->format('Y-m-d H:i:s')." form-processor::actualizarContrasena:: error al actualizar los datos \n  sql: ".$sql." query_result: ".$query_result, 3, "error.log");
 				echo "contrasenaActualizadaNOK";
 				}
 			} else {
-				error_log("\nform-processor:actualizarContrasena: contrasena actual no coincide con registros: ".$contrasena_antes. " y userdata contrasena: ".$userdata['contrasena'].$_SESSION['correo'].$result, 3, "form.logs");
+				error_log("\n".$timestamp->format('Y-m-d H:i:s')." form-processor::actualizarContrasena:: contrasena actual no coincide con registros: ".$contrasena_antes. " y userdata contrasena: ".$userdata['contrasena'].$_SESSION['correo'].$result, 3, "error.log");
 				echo "contrasenaActualNOK";
 			}
 		} else{
-			error_log("\nform-processor:actualizarContrasena: usuario con sesion iniciada no pudo cambiar clave, no se encontro correo - SQL: ".$contra_sql, 3, "error.logs");
+			error_log("\n".$timestamp->format('Y-m-d H:i:s')." form-processor::actualizarContrasena:: usuario con sesion iniciada no pudo cambiar clave, no se encontro correo - SQL: ".$contra_sql, 3, "error.log");
 		}
 		exit (0);
 	}
@@ -170,7 +177,7 @@
 	else if($section == "actualizarDireccion") {
 		ob_end_clean();
 		$error_consistencia = "";
-		error_log("hora".$direccion.$comuna.$ciudad.$region, 3, "form.logs");
+		error_log("hora".$direccion.$comuna.$ciudad.$region, 3, "debug.log");
 
 		if($direccion == null || $direccion == "")	$error_consistencia .= "- Debes ingresar tu Direcci\\u00f3n. \\n";
 		if($comuna == null || $comuna == "")		$error_consistencia .= "- Debes ingresar tu Comuna. \\n";
@@ -182,10 +189,10 @@
 		} else {
 			$sql = "UPDATE $table SET direccion = '".$direccion."', comuna = '".$comuna."', ciudad = '".$ciudad."', region = '".$region."' WHERE correo = '".$_SESSION['correo']."'";
 			if(mysql_query($sql)) {
-				error_log("form-processor:actualizarDireccion: direeccion actualizada -> sql: ".$sql, 3, "form.logs");
+				error_log("\n".$timestamp->format('Y-m-d H:i:s')." form-processor::actualizarDireccion:: direeccion actualizada -> sql: ".$sql, 3, "transactions.log");
 				echo "direccionActualizadaOK";
 			} else {
-				error_log("form-processor:actualizarDireccion: error al actualizar la direccion \n  sql: ".$sql, 3, "error.logs");
+				error_log("\n".$timestamp->format('Y-m-d H:i:s')." form-processor::actualizarDireccion:: error al actualizar la direccion \n  sql: ".$sql, 3, "error.logs");
 				echo "direccionActualizadaNOK";
 			}
 		}
@@ -201,7 +208,7 @@
 
 
 
-//// desde aca están las funciones/metodos del sitio antiguo (de las cuales algunas se usan)
+//// desde aca est&aacute;n las funciones/metodos del sitio antiguo (de las cuales algunas se usan)
 
 	else if($section == "ingresar"){
 		
@@ -269,7 +276,7 @@
 				}
 				$sql_usr = "INSERT INTO $table (nombres, apellidos, rut, direccion, comuna, ciudad, region, telefono, correo, contrasena, fecha_incorporacion, md52confirm, fecha_inicio_plan_actual, fecha_fin_plan_actual, tipo_plan, planes_anteriores, contratos, tipo_usuario) VALUES (\"$varNombres\", \"$varApellidos\", \"$varRut\", \"$varDireccion\", \"$varComuna\", \"$varCiudad\", \"$varRegion\", \"$varTelefono\", \"$varCorreo\", \"" . encrypt($varContrasena) . "\", \"$varFecha\", \"$varMd5\", \"$varFecha\", \"$varFechaFin\", \"$varPlan\", \"\", \"". $contrato ."\",\"0\")";
 				if(mysql_query($sql_usr)){
-					// correo no encontrado en bd, correctamente ingresado, redirigir a inicio éxito
+					// correo no encontrado en bd, correctamente ingresado, redirigir a inicio &eacute;xito
 					$errorMessage = "OK";
 					if ($varPlan!="Gratis")	$activaPago = "si";
 					// confirmamos el correo
@@ -295,7 +302,7 @@
 		require_once("connection.php");
 		$result = mysql_query("SELECT tipo_plan,contrasena,planes_anteriores,fecha_inicio_plan_actual,contratos FROM $table WHERE correo = '$varCorreo'");
 
-		// quiere actualizar contraseña?
+		// quiere actualizar contrase&ntilde;a?
 		if($varContrasenaAntes == "********" && $varContrasena == "********" && $varContrasenaDos == "********"); else $queactualizar .= "C";
 		// quiere actualizar tipo de plan? ya no se puede desde mi cuenta
 		// if($varPlan!=$row['tipo_plan']) $queactualizar .= "P";
@@ -341,10 +348,10 @@
 					error_log(print_r("form-processor: ".$sql." error al actualizar los datos", TRUE), 0);
 				}
 			}
-			// actualizar contraseña
+			// actualizar contrase&ntilde;a
 			else if($queactualizar=="C"){
-				// conseguir vieja contraseña (encriptada)
-				// comparar vieja contraseña con nueva, si es así actualizar nueva, sino, reclamar y devolver a micuenta.php
+				// conseguir vieja contrase&ntilde;a (encriptada)
+				// comparar vieja contrase&ntilde;a con nueva, si es as&iacute; actualizar nueva, sino, reclamar y devolver a micuenta.php
 				if(crypt($varContrasenaAntes, $row['contrasena']) == $row['contrasena']){
 					$sql = "UPDATE $table SET nombres = '".$varNombres."', apellidos = '".$varApellidos."', rut = '".$varRut."', direccion = '".$varDireccion."', comuna = '".$varComuna."', ciudad = '".$varCiudad."', region = '".$varRegion."', telefono = '".$varTelefono."', contrasena = '".encrypt($varContrasena) ."' WHERE id = '".$_SESSION['id']."'";
 					if(mysql_query($sql))
@@ -358,7 +365,7 @@
 					$errorMessage = "Tu contrase\u00f1a anterior no coincide con nuestros registros. Int\u00e9ntalo de nuevo por favor.";
 				}
 			}
-			// nunca se debería entrar acá, pq planes sigue un curso aparte desde la pantalla planes
+			// nunca se deber&iacute;a entrar ac&aacute;, pq planes sigue un curso aparte desde la pantalla planes
 			// else if($queactualizar=="P"){
 				// $planes_anteriores = $row['planes_anteriores'] . "/" . $row['tipo_plan'] ."->". $row['fecha_inicio_plan_actual'];
 				// if($varPlan=="12000"){
@@ -430,7 +437,7 @@
 				// } else {
 					// ;
 				// }
-				// error_log(print_r("form-processor:: Usuario ".$varCorreo." ha mejorado su Plan Básico a ".$varPlan, TRUE), 0);
+				// error_log(print_r("form-processor:: Usuario ".$varCorreo." ha mejorado su Plan B&aacute;sico a ".$varPlan, TRUE), 0);
 			// }
 		}
 		// mysql_close($db);
@@ -484,7 +491,7 @@
 		}
 		else{
 			require_once("PHPMailer/class.phpmailer.php");
-			$mailText = "Nombre: ".$varNombres."\nTeléfono: ".$varTelefono."\nCorreo: ".$varCorreo."\nHa escrito: ".$varMensaje;
+			$mailText = "Nombre: ".$varNombres."\nTel&eacute;fono: ".$varTelefono."\nCorreo: ".$varCorreo."\nHa escrito: ".$varMensaje;
 			// sendmail
 			$mail = new PHPMailer();
 			$mail->SMTPAuth   = true;                  // enable SMTP authentication
@@ -493,7 +500,7 @@
 			$mail->SetFrom('noresponder@atempus.cl', 'Robot Atempus');
 			$mail->AddReplyTo('noresponder@atempus.cl', 'Robot Atempus');
 			$mail->AddAddress("contacto@atempus.cl", "");
-			$mail->Subject  = "Contacto desde usuario vía web";
+			$mail->Subject  = "Contacto desde usuario v&iacute;a web";
 			$mail->Body     = $mailText;
 			$mail->MsgHTML(str_replace("\n","<br />",$mail->Body));
 

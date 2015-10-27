@@ -3,8 +3,6 @@
 // Inialize session
 session_start();
 
-if(isset($_POST['errorMensaje'])) { echo $_POST['errorMensaje']; }
-
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -179,19 +177,17 @@ if(isset($_POST['errorMensaje'])) { echo $_POST['errorMensaje']; }
 										</div>										
 									</div>
 								</div>
-																								
-								<div class="modal fade" id="ModalRecuperarClave" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+
+								<div class="modal fade" id="ModalGenerico" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
 									<div class="modal-dialog">
 										<div class="modal-content">
 											<div class="modal-header">
 												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-												<h4 class="modal-title" id="myModalLabel">Recuparar contraseña</h4>
+												<h4 class="modal-title" id="myModalTitle"></h4>
 											</div>
-											<div class="modal-body">
-												Se te ha enviado un e-mail con un link para que crees una nueva contraseña.
-											</div>
+											<div id="myModalBody" class="modal-body"></div>
 											<div class="modal-footer">
-												<a href="#" id="pageModalRecuperoMailHeaderLogin" type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-thumbs-up"></i> Entendido</a>
+												<a href="#" id="myModalFooter" type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-thumbs-up"></i> Entendido</a>
 											</div>
 										</div>
 									</div>
@@ -246,18 +242,17 @@ if(isset($_POST['errorMensaje'])) { echo $_POST['errorMensaje']; }
 						contra: $("#contra").val(),
 					},
 					success: function(result) {
-						alert(result);
 						if(result=="datosVacios"){
-							$('#ModalCambioClaveMensaje').html('Datos Vacios');
-							$('#ModalCambioClave').modal({show: 'true'});
+							$('#myModalBody').html('Datos Vacios');
+							$('#ModalGenerico').modal({show: 'true'});
 						}
 						else if(result=="direccionActualizadaOK"){
-							$('#ModalCambioClaveMensaje').html('Tu direcci&oacute;n ha sido actualizada correctamente');
-							$('#ModalCambioClave').modal({show: 'true'});
+							$('#myModalBody').html('Tu direcci&oacute;n ha sido actualizada correctamente');
+							$('#ModalGenerico').modal({show: 'true'});
 						}
 						else if(result=="direccionActualizadaNOK"){
-							$('#ModalCambioClaveMensaje').html('No hemos podido actualizar tu direcci&oacute;n. Int&eacute;ntalo m&aacute;s tarde.');
-							$('#ModalCambioClave').modal({show: 'true'});
+							$('#myModalBody').html('No hemos podido actualizar tu direcci&oacute;n. Int&eacute;ntalo m&aacute;s tarde.');
+							$('#ModalGenerico').modal({show: 'true'});
 						}
 					}
 				});
@@ -266,3 +261,37 @@ if(isset($_POST['errorMensaje'])) { echo $_POST['errorMensaje']; }
 
         </body>
 </html>
+
+<?php
+
+	if(isset($_REQUEST['errorMessage'])) {
+		if($_REQUEST['errorMessage'] == "correoError") {
+			echo "<script languaje=’javascript’>"
+                    . "$('#myModalTitle').html('Ingreso');"
+                    . "$('#myModalBody').html('Nombre de usuario inv&aacute;lido. Int&eacute;ntalo de nuevo.');"
+                    . "$(document).ready(MostrarModal('#ModalGenerico'));"
+               . "</script>";
+			echo "<script languaje=’javascript’>alert('Nombre de usuario inv\u00e1lido')</script>";
+		}
+		if($_REQUEST['errorMessage'] == "contraError") {
+			echo "<script languaje=’javascript’>"
+                    . "$('#myModalTitle').html('Ingreso');"
+                    . "$('#myModalBody').html('Contrase&ntilde;a incorrecta. Int&eacute;ntalo de nuevo.');"
+                    . "$(document).ready(MostrarModal('#ModalGenerico'));"
+               . "</script>";
+		}
+		if($_REQUEST['errorMessage'] == "sessionStart") {
+			echo "<script languaje=’javascript’>alert('Bienvenido ".$_SESSION['username'].". Su sesi\u00f3n ha sido iniciada.')</script>";
+//			$_REQUEST['errorMessage'] = "";
+		}
+		if($_REQUEST['errorMessage'] == "tokenInvalido") {
+			echo "<script languaje=’javascript’>alert('Token Inv&aacute;lido.\nPor favor, reintenta copiar y pegar el link que te enviamos nuevamente.\nSi el problema persiste, env&iacute;anos un correo ;)')</script>";
+//			$_REQUEST['errorMessage'] = "";
+		}
+		if($_REQUEST['errorMessage'] == "tokenNoEncontrado") {
+			echo "<script languaje=’javascript’>alert('Token No Encontrado.\nPor favor, reintenta copiar y pegar el link que te enviamos nuevamente.')</script>";
+//			$_REQUEST['errorMessage'] = "";
+		}
+	}
+
+?>

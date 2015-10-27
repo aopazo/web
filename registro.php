@@ -10,6 +10,11 @@
 	// if(isset($_POST['section'])) { $section = safe($_POST['section']); }
 	// else { header('Location: inicio'); }
 	
+	$validarActive = "";
+	$suscripcionActive = "";
+	$facturacionActive = "";
+	$transferenciaActive = "";
+	
 	if(!empty($section)) { 
 		if      ($section=="usuarioActive")       $usuarioActive="active";
 		else if ($section=="validarActive")       $validarActive="active";
@@ -36,6 +41,7 @@
 		echo "<br />TEST:section: ".$section;
 		echo "<br />TEST:correo: ".$correo;
 		echo "<br />TEST:sessionusername: ".$_SESSION['username'];
+		echo "<br />TEST:sessioncorreovalidado: ".$_SESSION['correo_validado'];
 	}
 		
 ?>

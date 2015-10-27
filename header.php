@@ -1,7 +1,6 @@
 <?php
 
-// Inialize session
-session_start();
+	session_start();
 
 ?>
 
@@ -17,12 +16,12 @@ session_start();
 			<li>
 				<a href="planes">Planes</a>
 			</li>
-			<?php if (!isset($_SESSION['correo'])) : ?>
-			<li>
-				<a href="ingreso"><i class="fa fa-user"></i> Ingresar</a>
-			</li>
+			<?php if ( empty($_SESSION['correo']) ) : ?>
+                <li>
+                    <a href="ingreso"><i class="fa fa-user"></i> Ingresar</a>
+                </li>
 			<?php else : ?>
-				<?php if($_SESSION['correo_validado'] == true || $_SESSION['mailchimp_suscrito'] == true) : ?>
+				<?php if($_SESSION['correo_validado'] == 1 && $_SESSION['mailchimp_suscrito'] == 1) : ?>
 					<li>
 						<a href="recomendaciones">Recomendaciones</a>
 					</li>

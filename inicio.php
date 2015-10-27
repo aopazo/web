@@ -2,26 +2,39 @@
 	// Inialize session
 	session_start();
 
-	if(isset($_REQUEST['message'])) {
-		if($_REQUEST['message'] == "correoError") {
-			echo "<script languaje=’javascript’>alert('Nombre de usuario inv\u00e1lido')</script>"; 
-			$_REQUEST['message'] = "";
+	if(isset($_SESSION['correo'])){
+        $correo = $_SESSION['correo'];
+        $username = $_SESSION['correo'];
+    } else { $correo = ""; }
+	if(isset($_SESSION['username'])) $username = $_SESSION['username'];
+
+	if(isset($_REQUEST['errorMessage'])) {
+		if($_REQUEST['errorMessage'] == "correoError") {
+			echo "<script languaje=’javascript’>alert('Nombre de usuario inv\u00e1lido')</script>";
+//			$_REQUEST['errorMessage'] = "";
 		}
-		if($_REQUEST['message'] == "contraError") {
-			echo "<script languaje=’javascript’>alert('Contrase\u00f1a incorrecta')</script>"; 
-			$_REQUEST['message'] = "";
+		if($_REQUEST['errorMessage'] == "contraError") {
+			echo "<script languaje=’javascript’>alert('Contrase\u00f1a incorrecta')</script>";
+//			$_REQUEST['errorMessage'] = "";
 		}
-		if($_REQUEST['message'] == "sessionStart") {
-			echo "<script languaje=’javascript’>alert('Bienvenido ".$_SESSION['username'].". Su sesi\u00f3n ha sido iniciada.')</script>"; 
-			$_REQUEST['message'] = "";
+		if($_REQUEST['errorMessage'] == "sessionStart") {
+			echo "<script languaje=’javascript’>alert('Bienvenido ".$_SESSION['username'].". Su sesi\u00f3n ha sido iniciada.')</script>";
+//			$_REQUEST['errorMessage'] = "";
+		}
+		if($_REQUEST['errorMessage'] == "tokenInvalido") {
+			echo "<script languaje=’javascript’>alert('Token Inv&aacute;lido.\nPor favor, reintenta copiar y pegar el link que te enviamos nuevamente.\nSi el problema persiste, env&iacute;anos un correo ;)')</script>";
+//			$_REQUEST['errorMessage'] = "";
+		}
+		if($_REQUEST['errorMessage'] == "tokenNoEncontrado") {
+			echo "<script languaje=’javascript’>alert('Token No Encontrado.\nPor favor, reintenta copiar y pegar el link que te enviamos nuevamente.')</script>";
+//			$_REQUEST['errorMessage'] = "";
 		}
 	}
 	
+	$timestamp = new DateTime();
 	$test = true;
-	if ($test){
-		echo "<br />TEST:sessionUsername: ".$_SESSION['username'];
-		echo "<br />TEST:sessionCorreo: ".$_SESSION['correo'];
-
+	if ($test) {
+		error_log("\n".$timestamp->format('Y-m-d H:i:s')." inicio:: TEST:sessionUsername: ".$username.", TEST:sessionCorreo: ".$correo, 3, "debug.log");
 	}
 ?>
 
