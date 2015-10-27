@@ -5,6 +5,13 @@ script-alerta.php
 script-boletas.php
 script-expira.php
 script-*
-/nbproject/private/
 *.log
-/mc.php
+mc.php
+
+# NetBeans #
+############ :)
+/nbproject/private/
+
+# XAMPP - APACHE #
+##################
+dev_errors
