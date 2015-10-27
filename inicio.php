@@ -1,12 +1,12 @@
 ﻿<?php 
 	// Inialize session
 	session_start();
+    require_once 'connection.php';
 
-	if(isset($_SESSION['correo'])){
+    if($_SESSION['correo']){
         $correo = $_SESSION['correo'];
         $username = $_SESSION['correo'];
-    } else { $correo = ""; }
-	if(isset($_SESSION['username'])) $username = $_SESSION['username'];
+    } else { $correo = ""; $username = ""; }
 
 	if(isset($_REQUEST['errorMessage'])) {
 		if($_REQUEST['errorMessage'] == "correoError") {
@@ -32,7 +32,6 @@
 	}
 	
 	$timestamp = new DateTime();
-	$test = true;
 	if ($test) {
 		error_log("\n".$timestamp->format('Y-m-d H:i:s')." inicio:: TEST:sessionUsername: ".$username.", TEST:sessionCorreo: ".$correo, 3, "debug.log");
 	}
