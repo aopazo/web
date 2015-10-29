@@ -1,7 +1,11 @@
 <?php
 
-// Inialize session
-session_start();
+    // Inialize session
+    session_start();;
+
+    if($_SESSION['correo']){
+        header('Location: recomendaciones'); 
+    }
 
 ?>
 
