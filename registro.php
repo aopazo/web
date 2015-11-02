@@ -5,6 +5,7 @@
 	require_once("functions.php");
 	require_once("getFormData.php");
 
+        // TODO: Seria bueno sacar el flag de debug a connection, que es privado y local
 	$test = true;
 
 	// if(isset($_POST['section'])) { $section = safe($_POST['section']); }
@@ -37,11 +38,13 @@
 	if(isset($_POST['errorMessage'])) { echo $_POST['errorMessage']; }
 	
 	if($test){
-		echo "<br />TEST:plan: ".$plan;
-		echo "<br />TEST:section: ".$section;
-		echo "<br />TEST:correo: ".$correo;
-		echo "<br />TEST:sessionusername: ".$_SESSION['username'];
-		echo "<br />TEST:sessioncorreovalidado: ".$_SESSION['correo_validado'];
+            isset($_SESSION['username'])?:$_SESSION['username']="n/a";
+            isset($_SESSION['correo_validado'])?:$_SESSION['correo_validado']="n/a";
+            echo "<br />TEST:plan: ".$plan;
+            echo "<br />TEST:section: ".$section;
+            echo "<br />TEST:correo: ".$correo;
+            echo "<br />TEST:sessionusername: ".$_SESSION['username'];
+            echo "<br />TEST:sessioncorreovalidado: ".$_SESSION['correo_validado'];
 	}
 		
 ?>
