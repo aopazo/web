@@ -5,7 +5,11 @@
 	require_once("functions.php");
 	// implementar despliegue de errores
 	$errorMessage = "";
-	if(isset($_POST['errorMessage'])) { $displayErrors = "block"; $errorMessage = safe($_POST['errorMessage']); echo "TEST: ".$errorMessage;}
+	if(isset($_POST['errorMessage'])) {
+            $displayErrors = "block";
+            $errorMessage = safe($_POST['errorMessage']);
+            echo "TEST: ".$errorMessage;
+        }
 	else $displayErrors = "none";
 
 ?>
