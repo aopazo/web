@@ -119,7 +119,7 @@
 													<div class="form-group">
 														<div class="col-md-12">
 															<label>E-mail</label>
-															<input type="email" value="aopazo@gmail.com" data-msg-required="Ingresa tu e-mail." data-msg-email="Ingresa un e-mail valido." maxlength="100" class="form-control valid input-lg" name="correo" id="correo" required="" aria-required="true" aria-invalid="false">
+															<input type="email" value="jose.vives@atempus.cl" data-msg-required="Ingresa tu e-mail." data-msg-email="Ingresa un e-mail valido." maxlength="100" class="form-control valid input-lg" name="correo" id="correo" required="" aria-required="true" aria-invalid="false">
 														</div>
 													</div>
 												</div>

@@ -24,6 +24,7 @@
 		else if ($section=="transferenciaActive") $transferenciaActive="active";
 		}
 	else{
+                // Condicion de entrada, se muestra primero tab "Usuario"
 		$usuarioActive="active";
 	}
 
@@ -35,11 +36,11 @@
 		// $transferenciaActive="active";
 		}
 
-	if(isset($_POST['errorMessage'])) { echo $_POST['errorMessage']; }
+	if(isset($_POST['errorMessage'])) { echo "<br />".$_POST['errorMessage']; }
 	
 	if($test){
             isset($_SESSION['username'])?:$_SESSION['username']="n/a";
-            isset($_SESSION['correo_validado'])?:$_SESSION['correo_validado']="n/a";
+            isset($_SESSION['correo_validado'])?:$_SESSION['correo_validado']=FALSE;
             echo "<br />TEST:plan: ".$plan;
             echo "<br />TEST:section: ".$section;
             echo "<br />TEST:correo: ".$correo;
@@ -181,11 +182,11 @@
 													<div class="form-group">
 														<div class="col-md-6">
 															<label>E-mail (*)</label>
-															<input type="email" value="aopazo@gmail.com" data-msg-required="Ingresa tu e-mail." data-msg-email="Ingresa un e-mail valido." maxlength="100" class="form-control valid input-lg" name="correo" id="correo" required="" aria-required="true" aria-invalid="false">
+															<input type="email" value="jose.vives@atempus.cl" data-msg-required="Ingresa tu e-mail." data-msg-email="Ingresa un e-mail valido." maxlength="100" class="form-control valid input-lg" name="correo" id="correo" required="" aria-required="true" aria-invalid="false">
 														</div>
 														<div class="col-md-6">
 															<label>Repetir e-mail (*)</label>
-															<input type="email" value="aopazo@gmail.com" data-msg-required="Repite tu e-mail." data-msg-equalTo="No ingresaste el mismo e-mail." maxlength="100" class="form-control valid input-lg" name="correo_repetir" id="correo_repetir" required="" aria-required="true" aria-invalid="false">
+															<input type="email" value="jose.vives@atempus.cl" data-msg-required="Repite tu e-mail." data-msg-equalTo="No ingresaste el mismo e-mail." maxlength="100" class="form-control valid input-lg" name="correo_repetir" id="correo_repetir" required="" aria-required="true" aria-invalid="false">
 														</div>
 													</div>
 												</div>
@@ -381,6 +382,22 @@
 									</div>
 
 								</div>
+                                                            <!-- agregando manejo de errores -->
+                                                            <div class="modal fade" id="ModalGenerico" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+												<h4 class="modal-title" id="myModalTitle"></h4>
+											</div>
+											<div id="myModalBody" class="modal-body"></div>
+											<div class="modal-footer">
+												<a href="#" id="myModalFooter" type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-thumbs-up"></i> Entendido</a>
+											</div>
+										</div>
+									</div>
+								</div>
+                                                            <!-- fin manejo de errores -->
 							</div>
 
 						</div>
@@ -446,3 +463,35 @@
 	</body>
 </html>
 
+<?php
+ // Mas manejo de errores
+	if(isset($_POST['errorMessage'])) {
+		echo "<script languaje=’javascript’>"
+                    . "$('#myModalTitle').html('Error');"
+                    . "$('#myModalBody').html('".$_POST['errorMessage']."');"
+                    . "$(document).ready(MostrarModal('#ModalGenerico'));"
+                    . "</script>";
+		/*
+                        if($_REQUEST['errorMessage'] == "contraError") {
+			echo "<script languaje=’javascript’>"
+                    . "$('#myModalTitle').html('Ingreso');"
+                    . "$('#myModalBody').html('Contrase&ntilde;a incorrecta. Int&eacute;ntalo de nuevo.');"
+                    . "$(document).ready(MostrarModal('#ModalGenerico'));"
+               . "</script>";
+		}
+		if($_REQUEST['errorMessage'] == "sessionStart") {
+			echo "<script languaje=’javascript’>alert('Bienvenido ".$_SESSION['username'].". Su sesi\u00f3n ha sido iniciada.')</script>";
+//			$_REQUEST['errorMessage'] = "";
+		}
+		if($_REQUEST['errorMessage'] == "tokenInvalido") {
+			echo "<script languaje=’javascript’>alert('Token Inv&aacute;lido.\nPor favor, reintenta copiar y pegar el link que te enviamos nuevamente.\nSi el problema persiste, env&iacute;anos un correo ;)')</script>";
+//			$_REQUEST['errorMessage'] = "";
+		}
+		if($_REQUEST['errorMessage'] == "tokenNoEncontrado") {
+			echo "<script languaje=’javascript’>alert('Token No Encontrado.\nPor favor, reintenta copiar y pegar el link que te enviamos nuevamente.')</script>";
+//			$_REQUEST['errorMessage'] = "";
+		}
+                 */
+	}
+
+?>
