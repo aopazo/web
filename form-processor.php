@@ -5,6 +5,7 @@
 	require_once("connection.php");
 	require_once("functions.php");
 	require_once("getFormData.php");
+        // require_once ("TDAs.php"); // Para el refactor de clases
 
 	$timestamp = new DateTime();
 	$getFecha = getdate();
@@ -12,6 +13,8 @@
 	$activaPago = "";
 	$action = "inicio";
 	$errorMessage = "";
+        
+        // TODO: sacar test hacia connection
 	$test = true;
 
 	if ($section == "usuario") {
@@ -34,6 +37,7 @@
 		if ($contrasena != $contrasena_repetir)				$error_consistencia .= "- Tus contrase\\u00f1as no coinciden.\\n";
 		if (strlen($contrasena) < 3)						$error_consistencia .= "- Tu contrase\\u00f1a debe tener al menos 6 caracteres\\n";
 
+                // TODO: Activar captcha
 		// if ($captcha == null || $captcha == "")			$error_consistencia .= "- Debes ingresar la palabra del captcha.\\n";
 		//validamos el captcha
 
@@ -43,9 +47,11 @@
 			$section = "usuarioActive";
 			$errorMessage = "Encontramos los siguientes errores en tu formulario:\\n".$error_consistencia;
 		} else {
-			// if($test); else 
-				$result = mysql_query("SELECT * FROM $table WHERE correo = '$correo'");
+                    // Se confirma que no existe el correo
+			$result = mysql_query("SELECT * FROM $table WHERE correo = '$correo'");
 			if (mysql_num_rows($result) == 0) {
+                            // Se crea el usuario.
+                            // TODO: Yo haria un gran refactor para sacar la logica de usuario y su modelo fuera de un procesador de formularios
 				$varMd5 = md5(substr(str_shuffle('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789') , 0 , 8));
 				$contrato = "";
 				if ($plan=="Gratis") {
@@ -63,33 +69,37 @@
 				$sql_insert_newuser = "INSERT INTO $table (correo, contrasena, fecha_incorporacion, md52confirm, fecha_inicio_plan_actual, fecha_fin_plan_actual, tipo_plan, planes_anteriores, contratos, tipo_usuario, correo_validado, mailchimp_suscrito) VALUES (\"$correo\", \"" . encrypt($contrasena) . "\", \"$current_date\", \"$varMd5\", \"$current_date\", \"$varFechaFin\", \"$plan\", \"\", \"". $contrato ."\", \"0\", \"false\", \"false\")";
 				if (mysql_query($sql_insert_newuser)) {
 					// correo no encontrado en bd, correctamente ingresado, redirigir a inicio &eacute;xito
-					// $errorMessage = "OK";
-					if ($plan!="Gratis")	$activaPago = "si";
+					if ($plan!="Gratis")
+                                            $activaPago = "si";
 					// confirmamos el correo
 					
+                                        
+                                        // TODO: Sacar creacion de correo de aca
+                                        // enviaBienvenida($plan, $correo, $varMD5);
 					$de = "contacto@atempus.cl";
 					$deNombre = "Equipo Atempus";
 					$para = $correo;
 					$paraNombre = "";
 					$asunto = "Suscripci&oacute;n Atempus";
 					
-										$mensaje = "Estimado usuario,<br /><br />Te enviamos este correo pues te est&aacute;s suscribiendo al ";
+					$mensaje = "Estimado usuario,<br /><br />Te enviamos este correo pues te est&aacute;s suscribiendo al ";
 					if($plan=="Gratis") $mensaje .= "plan B&aacute;sico y a";
 					if($plan=="12000")  $mensaje .= "plan Premium Anual y a";
 					if($plan=="24000")  $mensaje .= "plan Premium BiAnual y a";
-										$mensaje .=	" las notificaciones que ofrece Atempus.<br /><br />Para terminar tu suscripci&oacute;n, debes realizar estos simples pasos:<br /><br />1. Confirmar tu correo ingresando al siguiente enlace http://www.atempus.cl/confirma_tu_correo?token=".$varMd5." (tambi&eacute;n puedes copiarlo y pegarlo en tu navegador)<br />2. Aceptar la suscripci&oacute;n a nuestras notificaciones (que te llegar&aacute;n luego que confirmes tu correo).";
-										$mensaje .= "<br /><br />Atentamente,<br />Equipo Atempus.";
+					$mensaje .=	" las notificaciones que ofrece Atempus.<br /><br />Para terminar tu suscripci&oacute;n, debes realizar estos simples pasos:<br /><br />1. Confirmar tu correo ingresando al siguiente enlace http://www.atempus.cl/confirma_tu_correo?token=".$varMd5." (tambi&eacute;n puedes copiarlo y pegarlo en tu navegador)<br />2. Aceptar la suscripci&oacute;n a nuestras notificaciones (que te llegar&aacute;n luego que confirmes tu correo).";
+					$mensaje .= "<br /><br />Atentamente,<br />Equipo Atempus.";
 
 					// if($test); else
 					enviaCorreo($de, $deNombre, $para, $paraNombre, $asunto, $mensaje);
 
 					$_SESSION['correo_validado'] = 0;
 					$section = "validarActive";
-					} else {
-						// correo no encontrado en bd, error en el ingreso, redirigir a inicio fracaso
-						$errorMessage = "Hubo un problema al crear tu cuenta.<br />Intentalo de nuevo mas tarde, por favor.";
-						error_log("\n".$timestamp->format('Y-m-d H:i:s')." form-processor::usuario:: ".$correo." intento registrarse. Error al ejecutar insert en BD, plan pago. SQL_USR: ".$sql_insert_newuser, 3, "error.log");
-						}
+				}
+                                else {
+                                        // correo no encontrado en bd, error en el ingreso, redirigir a inicio fracaso
+                                        $errorMessage = "Hubo un problema al crear tu cuenta.<br />Intentalo de nuevo mas tarde, por favor.";
+                                        error_log("\n".$timestamp->format('Y-m-d H:i:s')." form-processor::usuario:: ".$correo." intento registrarse. Error al ejecutar insert en BD, plan pago. SQL_USR: ".$sql_insert_newuser, 3, "error.log");
+                                        }
 			} else {
 				$section = "usuarioActive";
 				$errorMessage = "Este correo ya existe en nuestra base de datos, intenta ingresar con el.";
@@ -147,8 +157,6 @@
 	else if($section == "usuario, validacion, suscripcion, facturacion, transferencia"){
 
 	}
-
-
 	else if($section == "actualizarContrasena") {
 		ob_end_clean();
 		$contra_sql = "SELECT contrasena FROM $table WHERE correo = '".$_SESSION['correo']."'";
@@ -173,7 +181,6 @@
 		}
 		exit (0);
 	}
-
 	else if($section == "actualizarDireccion") {
 		ob_end_clean();
 		$error_consistencia = "";
