@@ -1,14 +1,12 @@
 <?php
 
-$timestamp = new DateTime();
-
 function safe($key) {
 	require_once("connection.php");
 	$rKey = mysql_real_escape_string($key);
 	$rKey = str_replace("\n","",$rKey);
 	$rKey = str_replace("\r","",$rKey);
 	$rKey = str_replace("'","",$rKey);
-    $rKey = str_replace('"','',$rKey);
+        $rKey = str_replace('"','',$rKey);
 	return $rKey;
 	}
 
@@ -24,24 +22,36 @@ function encrypt($pass) {
 	}
 
 function iniciarSesion($userdata){
-	if($userdata['nombres']==null || $userdata['nombres']=="")	$_SESSION['username'] = $userdata['correo'];
-														else	$_SESSION['username'] = $userdata['nombres'];
+	if($userdata['nombres']==null || $userdata['nombres']=="")
+        {
+            $_SESSION['username'] = $userdata['correo'];
+        } else {
+            $_SESSION['username'] = $userdata['nombres'];
+        }
 	$_SESSION['id'] = $userdata['id'];
 	$_SESSION['rut'] = $userdata['rut'];
 	$_SESSION['plan'] = $userdata['tipo_plan'];
 	$_SESSION['correo'] = $userdata['correo'];
 	$_SESSION['REMOTE_ADDR'] = $_SERVER['REMOTE_ADDR'];
 	$_SESSION['HTTP_USER_AGENT'] = $_SERVER['HTTP_USER_AGENT'];
-	if($userdata['correo_validado'] == "1") $_SESSION['correo_validado'] = true; else $_SESSION['correo_validado'] = false;
-	if($userdata['mailchimp_suscrito'] == "1") $_SESSION['mailchimp_suscrito']= true; else $_SESSION['mailchimp_suscrito'] = false;
-	if($userdata['tipo_usuario'] == "9") $_SESSION['expirado'] = true; else $_SESSION['expirado'] = false;
+	if($userdata['correo_validado'] == "1") {
+            $_SESSION['correo_validado'] = true;
+        } else {
+            $_SESSION['correo_validado'] = false;
+        }
+	if($userdata['mailchimp_suscrito'] == "1") {
+            $_SESSION['mailchimp_suscrito']= true;
+        } else {
+            $_SESSION['mailchimp_suscrito'] = false;
+        }
+	if($userdata['tipo_usuario'] == "9") {
+            $_SESSION['expirado'] = true;
+        }
+        else {
+            $_SESSION['expirado'] = false;
+        }
 	(strpos($_SERVER["HTTP_REFERER"], "?action=inits") !== false) ? $url_destino = substr($_SERVER["HTTP_REFERER"], 0, -13) : $url_destino = $_SERVER["HTTP_REFERER"];
 	}
-
-// echo phpinfo();
-// echo $e = encrypt("qwe");
-// echo "<br />";
-// echo crypt("qwe", $e);
 
 function enviaCorreo($de, $deNombre, $para, $paraNombre, $asunto, $mensaje){
 	require("PHPMailer/class.phpmailer.php");
@@ -51,7 +61,6 @@ function enviaCorreo($de, $deNombre, $para, $paraNombre, $asunto, $mensaje){
 	$mail->Host     = "smtp.gmail.com";		// SMTP server
 	$mail->SetFrom($de, $deNombre);
 	$mail->AddReplyTo($de, $deNombre);		// 'contacto@atempus.cl', 'Equipo Atempus'
-
 	$mail->AddAddress($para, $paraNombre);
 	$mail->AddBCC('jose.vaisman@atempus.cl', 'Jose');
 	if ($para != "alejandro.opazo@atempus.cl"){
@@ -70,6 +79,8 @@ function enviaCorreo($de, $deNombre, $para, $paraNombre, $asunto, $mensaje){
 
 function enviar_bienvenida_mailchimp($row){
     require_once('inc/Mailchimp.php');
+    require_once ("inc/config.inc.php");
+    $timestamp = new DateTime();
     try {
         $MailChimp = new Mailchimp($apikey); // v2.0.6
     } catch (Mailchimp_Error $e) {
