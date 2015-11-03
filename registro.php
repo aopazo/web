@@ -466,11 +466,13 @@
 <?php
  // Mas manejo de errores
 	if(isset($_POST['errorMessage'])) {
+            if ($_POST['errorMessage'] != "") {
 		echo "<script languaje=’javascript’>"
                     . "$('#myModalTitle').html('Error');"
                     . "$('#myModalBody').html('".$_POST['errorMessage']."');"
                     . "$(document).ready(MostrarModal('#ModalGenerico'));"
                     . "</script>";
+            }
 		/*
                         if($_REQUEST['errorMessage'] == "contraError") {
 			echo "<script languaje=’javascript’>"
