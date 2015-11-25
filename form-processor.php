@@ -68,32 +68,14 @@
 				}
 				$sql_insert_newuser = "INSERT INTO $table (correo, contrasena, fecha_incorporacion, md52confirm, fecha_inicio_plan_actual, fecha_fin_plan_actual, tipo_plan, planes_anteriores, contratos, tipo_usuario, correo_validado, mailchimp_suscrito) VALUES (\"$correo\", \"" . encrypt($contrasena) . "\", \"$current_date\", \"$varMd5\", \"$current_date\", \"$varFechaFin\", \"$plan\", \"\", \"". $contrato ."\", \"0\", \"false\", \"false\")";
 				if (mysql_query($sql_insert_newuser)) {
-					// correo no encontrado en bd, correctamente ingresado, redirigir a inicio &eacute;xito
-					if ($plan!="Gratis")
-                                            $activaPago = "si";
-					// confirmamos el correo
-					
-                                        
-                                        // TODO: Sacar creacion de correo de aca
-                                        // enviaBienvenida($plan, $correo, $varMD5);
-					$de = "contacto@atempus.cl";
-					$deNombre = "Equipo Atempus";
-					$para = $correo;
-					$paraNombre = "";
-					$asunto = "Suscripci&oacute;n Atempus";
-					
-					$mensaje = "Estimado usuario,<br /><br />Te enviamos este correo pues te est&aacute;s suscribiendo al ";
-					if($plan=="Gratis") $mensaje .= "plan B&aacute;sico y a";
-					if($plan=="12000")  $mensaje .= "plan Premium Anual y a";
-					if($plan=="24000")  $mensaje .= "plan Premium BiAnual y a";
-					$mensaje .=	" las notificaciones que ofrece Atempus.<br /><br />Para terminar tu suscripci&oacute;n, debes realizar estos simples pasos:<br /><br />1. Confirmar tu correo ingresando al siguiente enlace http://www.atempus.cl/confirma_tu_correo?token=".$varMd5." (tambi&eacute;n puedes copiarlo y pegarlo en tu navegador)<br />2. Aceptar la suscripci&oacute;n a nuestras notificaciones (que te llegar&aacute;n luego que confirmes tu correo).";
-					$mensaje .= "<br /><br />Atentamente,<br />Equipo Atempus.";
-
-					// if($test); else
-					enviaCorreo($de, $deNombre, $para, $paraNombre, $asunto, $mensaje);
-
-					$_SESSION['correo_validado'] = 0;
-					$section = "validarActive";
+                                    // correo no encontrado en bd, correctamente ingresado, redirigir a inicio &eacute;xito
+                                    // Pasando el codigo a functions...
+                                    if ($plan!="Gratis") {
+                                        $activaPago = "si";
+                                    }
+                                    enviaCorreoVerificacion();
+                                    $_SESSION['correo_validado'] = 0;
+                                    $section = "validarActive";
 				}
                                 else {
                                         // correo no encontrado en bd, error en el ingreso, redirigir a inicio fracaso

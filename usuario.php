@@ -4,7 +4,8 @@
 	require_once("connection.php");
 	require_once("functions.php");
 
-	$result = mysql_query("SELECT * FROM $table WHERE correo = '".$_SESSION['correo']."'");
+        $correo = $_SESSION['correo'];
+	$result = mysql_query("SELECT * FROM $table WHERE correo = '".$correo."'");
 	// if sale mal la consulta :(
 	$userdata = mysql_fetch_array($result);
 	echo "cv:".$_SESSION['correo_validado']."ms:".$_SESSION['mailchimp_suscrito'];
@@ -145,14 +146,14 @@
 											<?php if ($_SESSION['correo_validado']) : ?>
 												<span class="label label-success">E-mail validado </span>
 											<?php else : ?>
-												<span class="label label-danger">E-mail no validado </span><button type="button" class="btn btn-borders btn-default btn-xs" data-toggle="modal" data-target="#ModalEnvioMailValidacion"><i class="fa fa-send"></i> reenviar e-mail de validaci&oacute;n</button>
+												<span class="label label-danger">E-mail no validado </span><button type="button" id="buttonReenviarValidacion" class="btn btn-borders btn-default btn-xs" data-toggle="modal" data-target="#ModalEnvioMailValidacion"><i class="fa fa-send"></i> reenviar e-mail de validaci&oacute;n</button>
 											<?php endif ; ?>
 										</p>
 										<p id="suscripcion"><b>Suscripci&oacute;n e-mail:</b>
 											<?php if ($_SESSION['mailchimp_suscrito']) : ?>
 												<span class="label label-success">E-mail suscrito </span>
 											<?php else : ?>
-												<span class="label label-danger">E-mail no suscrito </span> <button type="button" class="btn btn-borders btn-default btn-xs" data-toggle="modal" data-target="#ModalEnvioMailSuscripcion"><i class="fa fa-send"></i> reenviar e-mail de suscripci&oacute;n</button>
+												<span class="label label-danger">E-mail no suscrito </span> <button type="button" id="buttonReenviarSuscripcion" class="btn btn-borders btn-default btn-xs" data-toggle="modal" data-target="#ModalEnvioMailSuscripcion"><i class="fa fa-send"></i> reenviar e-mail de suscripci&oacute;n</button>
 											<?php endif ; ?>
 										</p>
 										<p><b>Contrase&ntilde;a:</b> ******** <button id="editarclave" type="button" class="btn btn-borders btn-default btn-xs"><i class="fa fa-pencil"></i> editar</button></p>
@@ -364,6 +365,7 @@
 		<!-- Theme Custom -->
 		<script src="custom/js/custom.js"></script>
 		
+                <!-- Boton para guardar cambios de CLAVE -->
 		<script>
 			$('#buttonGuardarCambioClave').click(function(e){
 				$.ajax({
@@ -392,6 +394,7 @@
 			});
 		</script>
 
+                <!-- Boton para guardar cambios de DIRECCION -->
 		<script>
 			$('#buttonGuardarCambioDireccion').click(function(e){
 				$.ajax({
@@ -426,5 +429,30 @@
 			});
 		</script>
 		
+                <!-- Boton para REENVIAR MAILCHIMP -->
+                <script>
+			$('#buttonReenviarSuscripcion').click(function(e){
+                            var ajaxurl = 'api/envio_correo.php';
+                            data = {'correo': '<?php echo $correo ?>',
+                                    'action': 'suscripcion'};
+                            $.post(ajaxurl, data, function (response) {
+                                //TODO: Seria bueno tomar el response y mostrarlo en el modal de alguna manera
+                                //alert(response);
+                            });
+                        });
+		</script>
+                
+                <!-- Boton para REENVIAR VERIFICACION -->
+                <script>
+			$('#buttonReenviarValidacion').click(function(e){
+                            var ajaxurl = 'api/envio_correo.php';
+                            data = {'correo': '<?php echo $correo ?>',
+                                    'action': 'validacion'};
+                            $.post(ajaxurl, data, function (response) {
+                                //TODO: Seria bueno tomar el response y mostrarlo en el modal de alguna manera
+                                //alert(response);
+                            });
+                        });
+		</script>
 	</body>
 </html>

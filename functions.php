@@ -127,4 +127,27 @@ function toChileanMonth($numeroMes) {
 	return "No es mes";
 }
 
+
+function enviaCorreoValidacion($plan, $correo, $md5){
+    $de = "contacto@atempus.cl";
+    $deNombre = "Equipo Atempus";
+    $para = $correo;
+    $paraNombre = "";
+    $asunto = "Suscripci&oacute;n Atempus";
+
+    $mensaje = "Estimado usuario,<br /><br />Te enviamos este correo pues te est&aacute;s suscribiendo al ";
+    if($plan=="Gratis") {
+        $mensaje .= "plan B&aacute;sico y a";
+    }
+    if($plan=="12000")  {
+        $mensaje .= "plan Premium Anual y a";
+    }
+    if($plan=="24000")  {
+        $mensaje .= "plan Premium BiAnual y a";
+    }
+    $mensaje .=	" las notificaciones que ofrece Atempus.<br /><br />Para terminar tu suscripci&oacute;n, debes realizar estos simples pasos:<br /><br />1. Confirmar tu correo ingresando al siguiente enlace http://www.atempus.cl/confirma_tu_correo?token=".$md5." (tambi&eacute;n puedes copiarlo y pegarlo en tu navegador)<br />2. Aceptar la suscripci&oacute;n a nuestras notificaciones (que te llegar&aacute;n luego que confirmes tu correo).";
+    $mensaje .= "<br /><br />Atentamente,<br />Equipo Atempus.";
+
+    enviaCorreo($de, $deNombre, $para, $paraNombre, $asunto, $mensaje);
+}
 ?>
