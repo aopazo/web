@@ -6,7 +6,6 @@ $usuario_session = $_SESSION['correo'];
 if (isset($_POST['correo'])) {
     $usuario_post = $_POST['correo'];
     if ($usuario_post == $usuario_session) {
-        echo "Los usuarios son iguales";
         if (isset($_POST['action'])) {
             switch ($_POST['action']) {
                 case 'validacion':
@@ -26,7 +25,6 @@ else { // No hay username en el post, algo anda mal
 }
 
 function reenviaValidacion($correo) {
-    echo "Reenviando Validacion a ".$correo;
     $dao = new UsuarioDAO($correo);
     $plan = $dao->getTipoPlan();
     $md5 = $dao->getMd52confirm();
@@ -35,6 +33,10 @@ function reenviaValidacion($correo) {
 
 function reenviaSuscripcion($correo) {
     echo "Reenviando Suscripcion a ".$correo;
+    $dao = new UsuarioDAO($correo);
+    $nombres = $dao->getNombres();
+    $apellidos = $dao->getApellidos();
+    enviar_bienvenida_mailchimp($correo, $nombres, $apellidos);
 }
 ?>
 

@@ -29,8 +29,9 @@ if(isset($token)) {
                     $message = "correoValidado";
 
                     // si correo fue actualizado en BD entonces mando bienvenida para MC
-                    if($row['mailchimp_suscrito'] == 0)
-                        enviar_bienvenida_mailchimp($row);
+                    if($row['mailchimp_suscrito'] == 0) {
+                        enviar_bienvenida_mailchimp($row['correo'], $row['nombres'], $row['apellidos']);
+                    }
 
                 } else {
                     error_log("\n".$timestamp->format('Y-m-d H:i:s')." confirmatucorreo:: problemas al dar de alta el correo ".$correo." en BD", 3, "error.log");

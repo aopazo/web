@@ -77,7 +77,7 @@ function enviaCorreo($de, $deNombre, $para, $paraNombre, $asunto, $mensaje){
 		}
 	}
 
-function enviar_bienvenida_mailchimp($row){
+function enviar_bienvenida_mailchimp($correo, $nombres, $apellidos){
     require_once('inc/Mailchimp.php');
     require_once ("inc/config.inc.php");
     $timestamp = new DateTime();
@@ -87,8 +87,8 @@ function enviar_bienvenida_mailchimp($row){
         error_log("\n".$timestamp->format('Y-m-d H:i:s')." confirmatucorreo:: problemas al crear mailchimp wrapper: ".$e, 3, "error.log");
     }
     
-    $merge_vars = array('EMAIL'=>$row['correo'], 'FNAME'=>$row['nombres'], 'LNAME'=>$row['apellidos'], 'DESFC'=>'0', 'ACTIVO'=>'SI'); // usuario queda activo pero con desfase hasta que se confirme su pago
-    $returned_value_array = $MailChimp->lists->subscribe($listId, array( 'email' => $row['correo'] ), $merge_vars);
+    $merge_vars = array('EMAIL'=>$correo, 'FNAME'=>$nombres, 'LNAME'=>$apellidos, 'DESFC'=>'0', 'ACTIVO'=>'SI'); // usuario queda activo pero con desfase hasta que se confirme su pago
+    $returned_value_array = $MailChimp->lists->subscribe($listId, array( 'email' => $correo ), $merge_vars);
 
     if (empty($returned_value_array['leid'])) {
         error_log("\n".$timestamp->format('Y-m-d H:i:s')." confirmatucorreo:: problemas al dar de alta el correo ".$correo.". Valores retornados: email: ".$returned_value_array['email'].", euid: ".$returned_value_array['euid'].", leid empty", 3, "error.log");

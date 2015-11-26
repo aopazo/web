@@ -95,4 +95,18 @@ class UsuarioDAO {
         }
         return $this->_tipo_plan;
     }
+    
+    function getNombres() {
+        if (!$this->existe) {
+            exit("Trying to read a value on an unexisting user: _tipo_plan");
+        }
+        return $this->_nombres;
+    }
+    
+    function getApellidos() {
+        if (!$this->existe) {
+            exit("Trying to read a value on an unexisting user: _tipo_plan");
+        }
+        return $this->_apellidos;
+    }
 }
