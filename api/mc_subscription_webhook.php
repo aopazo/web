@@ -55,6 +55,13 @@ function subscribe($data){
 }
 function unsubscribe($data){
     wh_log($data['email'] . ' just unsubscribed!');
+    $dao = new UsuarioDAO($data['email']);
+    if (!$dao->existe) {
+        wh_log($data['email'] . ' no existe en nuestra base de datos!!!');
+    }
+    else {
+        $dao->setMailchimpSuscrito(0);
+    }
 }
 function cleaned($data){
     wh_log($data['email'] . ' was cleaned from your list!');
