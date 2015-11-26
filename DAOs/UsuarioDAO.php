@@ -82,6 +82,7 @@ class UsuarioDAO {
         }
     }
     
+    // GETTERS 
     function getMd52confirm() {
         if (!$this->existe) {
             exit("Trying to read a value on an unexisting user: _md52confirm");
@@ -98,15 +99,65 @@ class UsuarioDAO {
     
     function getNombres() {
         if (!$this->existe) {
-            exit("Trying to read a value on an unexisting user: _tipo_plan");
+            exit("Trying to read a value on an unexisting user: _nombres");
         }
         return $this->_nombres;
     }
     
     function getApellidos() {
         if (!$this->existe) {
-            exit("Trying to read a value on an unexisting user: _tipo_plan");
+            exit("Trying to read a value on an unexisting user: _apellidos");
         }
         return $this->_apellidos;
+    }
+    
+    
+    // SETTERS
+    function setMailchimpSuscrito($suscrito) {
+        if (!$this->existe) {
+            exit("Trying to set a value on an unexisting user: _mailchimp_suscrito");
+        }
+        $this->_mailchimp_suscrito = $suscrito;
+        triggerUpdate();
+    }
+    
+    
+    
+    
+    // Update de la tabla
+    function triggerUpdate() {
+        global $table;
+        $query = "UPDATE $table SET ";
+        
+        $query .= "id='".$this->_id."',";
+        $query .= "nombres='".$this->_nombres."',";
+        $query .= "apellidos='".$this->_apellidos."',";
+        $query .= "rut='".$this->_rut."',";
+        $query .= "direccion='".$this->_direccion."',";
+        $query .= "comuna='".$this->_comuna."',";
+        $query .= "ciudad='".$this->_ciudad."',";
+        $query .= "region='".$this->_region."',";
+        $query .= "telefono='".$this->_telefono."',";
+        $query .= "contrasena='".$this->_contrasena."',";
+        $query .= "fecha_incorporacion='".$this->_fecha_incorporacion."',";
+        $query .= "md52confirm='".$this->_md52confirm."',";
+        $query .= "fecha_fin_plan_actual='".$this->_fecha_fin_plan_actual."',";
+        $query .= "tipo_plan='".$this->_tipo_plan."',";
+        $query .= "planes_anteriores='".$this->_planes_anteriores."',";
+        $query .= "contratos='".$this->_contratos."',";
+        $query .= "tipo_usuario='".$this->_tipo_usuario."',";
+        $query .= "correo_validado='".$this->_correo_validado."',";
+        $query .= "mailchimp_suscrito='".$this->_mailchimp_suscrito."',";
+        $query .= "nnttuu='".$this->_nnttuu."',";
+        $query .= "comentarios='".$this->_comentarios."',";
+        $query .= "vp='".$this->_vp."' ";
+        
+        $query .= "WHERE correo = '".$this->_correo."'";
+        
+        if(mysql_query($sql)){
+            // Exitoso
+            return;
+        }
+        error_log("\n".$timestamp->format('Y-m-d H:i:s')." UsuarioDAO: ".$sql." error al actualizar los datos", 3, "error.log");
     }
 }
