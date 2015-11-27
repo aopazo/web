@@ -118,7 +118,7 @@ class UsuarioDAO {
             exit("Trying to set a value on an unexisting user: _mailchimp_suscrito");
         }
         $this->_mailchimp_suscrito = $suscrito;
-        triggerUpdate();
+        $this->triggerUpdate();
     }
     
     
@@ -154,10 +154,11 @@ class UsuarioDAO {
         
         $query .= "WHERE correo = '".$this->_correo."'";
         
-        if(mysql_query($sql)){
+        if(mysql_query($query)){
             // Exitoso
             return;
         }
-        error_log("\n".$timestamp->format('Y-m-d H:i:s')." UsuarioDAO: ".$sql." error al actualizar los datos", 3, "error.log");
+        $timestamp = new DateTime();
+        error_log("\n".$timestamp->format('Y-m-d H:i:s')." UsuarioDAO: ".$query." error al actualizar los datos", 3, "error.log");
     }
 }
