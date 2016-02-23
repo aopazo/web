@@ -124,7 +124,7 @@
 								<div class="plan">
 									<h3>Básico<span>Gratis</span></h3>
 									<form name="formPlanGratis" id="formPlanGratis" action="registro.php" method="post">
-										<input type="hidden" value="gratis" name="plan" />
+										<input type="hidden" value="Gratis" name="plan" />
 										<input type="submit" class="btn btn-lg btn-primary" value="Suscríbete gratis">
 									</form>
 									<ul>
