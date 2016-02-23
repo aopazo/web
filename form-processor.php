@@ -50,8 +50,8 @@
                     // Se confirma que no existe el correo
 			$result = mysql_query("SELECT * FROM $table WHERE correo = '$correo'");
 			if (mysql_num_rows($result) == 0) {
-                            // Se crea el usuario.
-                            // TODO: Yo haria un gran refactor para sacar la logica de usuario y su modelo fuera de un procesador de formularios
+                // Se crea el usuario.
+                // TODO: Yo haria un gran refactor para sacar la logica de usuario y su modelo fuera de un procesador de formularios
 				$varMd5 = md5(substr(str_shuffle('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789') , 0 , 8));
 				$contrato = "";
 				if ($plan=="Gratis") {
@@ -73,7 +73,8 @@
                                     if ($plan!="Gratis") {
                                         $activaPago = "si";
                                     }
-                                    enviaCorreoVerificacion($plan, $correo, $varMd5);
+                                    // TODO re activar correo
+//                                    enviaCorreoVerificacion($plan, $correo, $varMd5);
                                     $_SESSION['correo_validado'] = 0;
                                     $section = "validarActive";
 				}
