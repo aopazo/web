@@ -182,11 +182,11 @@
 													<div class="form-group">
 														<div class="col-md-6">
 															<label>E-mail (*)</label>
-															<input type="email" value="aopazo@gmail.com" data-msg-required="Ingresa tu e-mail." data-msg-email="Ingresa un e-mail valido." maxlength="100" class="form-control valid input-lg" name="correo" id="correo" required="" aria-required="true" aria-invalid="false">
+															<input type="email" value="jose.vaisman+pruebaXX@atempus.cl" data-msg-required="Ingresa tu e-mail." data-msg-email="Ingresa un e-mail valido." maxlength="100" class="form-control valid input-lg" name="correo" id="correo" required="" aria-required="true" aria-invalid="false">
 														</div>
 														<div class="col-md-6">
 															<label>Repetir e-mail (*)</label>
-															<input type="email" value="aopazo@gmail.com" data-msg-required="Repite tu e-mail." data-msg-equalTo="No ingresaste el mismo e-mail." maxlength="100" class="form-control valid input-lg" name="correo_repetir" id="correo_repetir" required="" aria-required="true" aria-invalid="false">
+															<input type="email" value="jose.vaisman+pruebaXX@atempus.cl" data-msg-required="Repite tu e-mail." data-msg-equalTo="No ingresaste el mismo e-mail." maxlength="100" class="form-control valid input-lg" name="correo_repetir" id="correo_repetir" required="" aria-required="true" aria-invalid="false">
 														</div>
 													</div>
 												</div>
@@ -194,11 +194,11 @@
 													<div class="form-group">
 														<div class="col-md-6">
 															<label>Contrase&ntilde;a (*)</label>
-															<input type="password" value="qwe" data-msg-required="Ingresa tu contrase&ntilde;a." maxlength="20" class="form-control valid input-lg" name="contrasena" id="contrasena" required="" aria-required="true" aria-invalid="false">
+															<input type="password" value="1234" data-msg-required="Ingresa tu contrase&ntilde;a." maxlength="20" class="form-control valid input-lg" name="contrasena" id="contrasena" required="" aria-required="true" aria-invalid="false">
 														</div>
 														<div class="col-md-6">
 															<label>Repetir Contrase&ntilde;a (*)</label>
-															<input type="password" value="qwe" data-msg-required="Repite tu contrase&ntilde;a." data-msg-equalTo="No ingresaste la misma contrase&ntilde;a." maxlength="20" class="form-control valid input-lg" name="contrasena_repetir" id="contrasena_repetir" required="" aria-required="true" aria-invalid="false">
+															<input type="password" value="1234" data-msg-required="Repite tu contrase&ntilde;a." data-msg-equalTo="No ingresaste la misma contrase&ntilde;a." maxlength="20" class="form-control valid input-lg" name="contrasena_repetir" id="contrasena_repetir" required="" aria-required="true" aria-invalid="false">
 														</div>
 													</div>
 												</div>
