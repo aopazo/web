@@ -22,7 +22,7 @@
 		<link rel="stylesheet" href="vendor/owlcarousel/owl.theme.default.min.css" media="screen">
 		<link rel="stylesheet" href="vendor/magnific-popup/magnific-popup.css" media="screen">
 
-		<!-- Theme CSS -->
+		<!-- Theme CSS  -->
 		<link rel="stylesheet" href="custom/css/theme.css">
 		<link rel="stylesheet" href="custom/css/theme-elements.css">
 		<link rel="stylesheet" href="css/theme-blog.css">
