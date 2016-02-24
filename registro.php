@@ -163,7 +163,7 @@
 									<li class="disable">
 										<a href="#validar" aria-expanded="false"><i class="fa fa-check-square-o"></i> Validaci&oacute;n<span></span></a>
 									</li>
-									<?php if($plan != "gratis") : ?>
+									<?php if($plan != "Gratis") : ?>
 										<li class="disable">
 											<a href="#facturacion" aria-expanded="false"><i class="fa fa-file-text-o"></i> Datos para facturaci&oacute;n<span></span></a>
 										</li>
@@ -182,11 +182,11 @@
 													<div class="form-group">
 														<div class="col-md-6">
 															<label>E-mail (*)</label>
-															<input type="email" value="jose.vives@atempus.cl" data-msg-required="Ingresa tu e-mail." data-msg-email="Ingresa un e-mail valido." maxlength="100" class="form-control valid input-lg" name="correo" id="correo" required="" aria-required="true" aria-invalid="false">
+															<input type="email" value="aopazo@gmail.com" data-msg-required="Ingresa tu e-mail." data-msg-email="Ingresa un e-mail valido." maxlength="100" class="form-control valid input-lg" name="correo" id="correo" required="" aria-required="true" aria-invalid="false">
 														</div>
 														<div class="col-md-6">
 															<label>Repetir e-mail (*)</label>
-															<input type="email" value="jose.vives@atempus.cl" data-msg-required="Repite tu e-mail." data-msg-equalTo="No ingresaste el mismo e-mail." maxlength="100" class="form-control valid input-lg" name="correo_repetir" id="correo_repetir" required="" aria-required="true" aria-invalid="false">
+															<input type="email" value="aopazo@gmail.com" data-msg-required="Repite tu e-mail." data-msg-equalTo="No ingresaste el mismo e-mail." maxlength="100" class="form-control valid input-lg" name="correo_repetir" id="correo_repetir" required="" aria-required="true" aria-invalid="false">
 														</div>
 													</div>
 												</div>
@@ -229,13 +229,13 @@
 																<label class="checkbox-inline">
 																	<input type="checkbox" name="checkboxes" id="inlineCheckbox1" value="option1" checked> Acepto los <a href="terminos_y_condiciones" target="_blank">T&eacute;rminos y Condiciones</a>, la <a href="politica_de_privacidad" target="_blank">Pol&iacute;tica de Privacidad</a> y los t&eacute;rminos expresados en el <a href="http://www.atempus.cl/contratos/
 																	<?php
-																		if($plan=="gratis") echo "Contrato3MGratisHCo.pdf"; 
+																		if($plan=="Gratis") echo "Contrato3MGratisHCo.pdf"; 
 																		if($plan=="12000") echo "Contrato1Y12000HCo.pdf"; 
 																		if($plan=="20400") echo "Contrato2Y20400HCo.pdf"; 
 																	?>"
 																	target="_blank">Contrato</a> asociado al <b>
 																	<?php
-																		if($plan=="gratis") echo "Plan Basico"; 
+																		if($plan=="Gratis") echo "Plan Basico"; 
 																		if($plan=="12000") echo "Plan Premium Anual"; 
 																		if($plan=="20400") echo "Plan Premium Bianual"; 
 																	?>
@@ -279,7 +279,7 @@
 												<div class="col-md-8">
 												</div>
 												<div class="col-md-4">
-													<?php if($plan != "gratis") : ?>
+													<?php if($plan != "Gratis") : ?>
 														<button onclick="JavaScript:ActiveTab('#validar','#facturacion')" onsubmit="return ActiveTab('#validar','#facturacion')" value="Siguiente" class="btn btn-primary pull-right push-bottom tologged" data-loading-text="Actualizando...">Siguiente <i class="fa fa-arrow-right"></i></button>
 													<?php else : ?>
 														<a href="ingreso" class="btn btn-primary pull-right push-bottom tologged">Ingresa ahora <i class="fa fa-sign-in"></i></a>
