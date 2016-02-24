@@ -132,7 +132,7 @@
 											-->
 											<p class="lead">
 												Hace <span id="historia">4</span> años tenías ahorrado en torno a <span id="ahorro-inicial"></span>.
-												Con un Plan Premium tendrías ahorrado al rededor de <span id="proyeccion-n"></span> en vez de <span id="ahorro-final-afp">$8.000.000</span>.
+												Con nuestro Plan Premium tendrías ahorrado al rededor de <span id="proyeccion-n"></span> en vez de <span id="ahorro-final-afp">$8.000.000</span>.
 											</p>
 										</div>
 										<div class="col-md-6">
