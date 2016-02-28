@@ -73,8 +73,8 @@
                                     if ($plan!="Gratis") {
                                         $activaPago = "si";
                                     }
-                                    // TODO re activar correo
-//                                    enviaCorreoVerificacion($plan, $correo, $varMd5);
+                                    
+                                    enviaCorreoValidacion($plan, $correo, $varMd5);
                                     $_SESSION['correo_validado'] = 0;
                                     $section = "validarActive";
 				}
