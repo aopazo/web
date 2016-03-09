@@ -1,5 +1,5 @@
 
-$('#ahorro, #cotizacion').keypress(function(event) {
+$('#ahorro').keypress(function(event) {
   // Backspace, tab, enter, end, home, left, right
   // We don't support the del key in Opera because del == . == 46.
   var controlKeys = [8, 9, 13, 35, 36, 37, 39];
@@ -137,8 +137,14 @@ window.onload = function() {
 			//var historia = parseFloat($('#historia').val());
 			var historia = parseFloat($('#historia').text());
 			
-			var graficosimulacion = new Chart(ctxn).Line(DatosGrafico(historia, bdDatos), OpcionesGrafico(historia, false));
-			var graficoextrapolacion = new Chart(ctxE).Line(DatosGraficoExtrapolacion(graficosimulacion, bdDatos), OpcionesGrafico(CalculoHistoriaExtrapolacion(), true));
+                        var datos_DatosGrafico = DatosGrafico(historia, bdDatos);
+                        var datos_DatosGraficoExtrapolacion = DatosGraficoExtrapolacion(graficosimulacion, bdDatos);
+                        
+                        var datos_OpcionesGraficoHistoria = OpcionesGrafico(historia, false);
+                        var datos_OpcionesGraficoExtrapolacion = OpcionesGrafico(CalculoHistoriaExtrapolacion(), true);
+                        
+			var graficosimulacion = new Chart(ctxn).Line(datos_DatosGrafico, datos_OpcionesGraficoHistoria);
+			var graficoextrapolacion = new Chart(ctxE).Line(datos_DatosGraficoExtrapolacion, datos_OpcionesGraficoExtrapolacion);
 			
 			var graficos = [graficosimulacion, graficoextrapolacion];		
 			
@@ -156,14 +162,13 @@ window.onload = function() {
 				graficos = ActualizarGraficoExtrapolacion(graficos, bdDatos);
 			});
 
-			$('#ahorro, #cotizacion').change(function() {
+			$('#ahorro').change(function() {
 				if (parseInt($(this).val()) > parseInt($(this).data("max"))) {
 						$(this).val($(this).data("max"));
 					};
 				if (parseInt($(this).val()) < parseInt($(this).data("min")) || !$(this).val()) {
 						$(this).val($(this).data("min"));
 					};
-				$('#cotizacion-actual').html('$'+FormatoNumero($('#cotizacion').val(), 0));
 				graficos = ActualizarGraficos(bdDatos, graficos);
 			});
 
@@ -180,15 +185,16 @@ function ActualizarHistoria(bdDatos, graficos){
 	}
 	graficos[0].destroy();
 	var ctxn = document.getElementById("simulacion-n").getContext("2d");
-	graficos[0] = new Chart(ctxn).Line(DatosGrafico(historia, bdDatos), OpcionesGrafico(historia, false));
+        var datosOpcionesGrafico = OpcionesGrafico(historia, false);
+	graficos[0] = new Chart(ctxn).Line(DatosGrafico(historia, bdDatos), datosOpcionesGrafico);
 	
 	graficos = ActualizarGraficos(bdDatos, graficos);
 	return graficos;
 }	
 
 function ActualizarGraficos(bdDatos, graficos){
-	var ahorrofinal = parseFloat($('#ahorro').val());
-	var cotizacion = parseFloat($('#cotizacion').val());
+	var ahorroinicial = parseFloat($('#ahorro').val());
+	
 	//var historia = parseFloat($('#historia').val());
 	var historia = parseFloat($('#historia').text());
 	var afp = $('#afp option:selected').text();
@@ -196,30 +202,32 @@ function ActualizarGraficos(bdDatos, graficos){
 		
 	var seriefondo = ColaArreglo(1+12*historia, bdDatos[afp][fondo]);
 	var serieatempus = ColaArreglo(1+12*historia, bdDatos[afp]['ATEMPUS2']);
+	var serieatempusGratis = ColaArreglo(1+12*historia, bdDatos[afp]['ATEMPUS6']);
 	
 	var numeroDeDatos = seriefondo.length;
-	var factor = ahorrofinal/seriefondo[numeroDeDatos - 1];
 	
 	graficos[0].datasets[0].label = "Fondo " + fondo;
-	graficos[0].datasets[0].points[numeroDeDatos-1].value = ahorrofinal;
-	
-	for (var i = numeroDeDatos - 2; i >= 0; i--){
-			graficos[0].datasets[0].points[i].value = ((graficos[0].datasets[0].points[i+1].value)*(seriefondo[i]/seriefondo[i+1]))-cotizacion;	
-		}
-	
-	var ahorroinicial = graficos[0].datasets[0].points[0].value;
+	graficos[0].datasets[0].points[0].value = ahorroinicial;
 	graficos[0].datasets[1].points[0].value = ahorroinicial;
-		
-	for (var j = 1; j <= numeroDeDatos - 1; j++){
-			graficos[0].datasets[1].points[j].value = (graficos[0].datasets[1].points[j-1].value+cotizacion)*(serieatempus[j]/serieatempus[j-1]);	
-		}
 	
-	graficos[0].update();
+	for (var i = 1; i <= numeroDeDatos - 1; i++){
+			graficos[0].datasets[0].points[i].value = (graficos[0].datasets[0].points[i-1].value)*(seriefondo[i]/seriefondo[i-1]);	
+			graficos[0].datasets[1].points[i].value = (graficos[0].datasets[1].points[i-1].value)*(serieatempus[i]/serieatempus[i-1]);	
+		}
+        
+        var ahorrofinalAFP = ahorroinicial*seriefondo[numeroDeDatos - 1]/seriefondo[0];
+	var ahorrofinalAtempus = ahorroinicial*serieatempus[numeroDeDatos - 1]/serieatempus[0];
+	var ahorrofinalAtempusGratis = ahorroinicial*serieatempusGratis[numeroDeDatos - 1]/serieatempusGratis[0];
+	
+        graficos[0].update();
 	$('#leyenda-n').html(graficos[0].generateLegend());
 	$('#leyenda-afp-n').html(afp);
-	$('#proyeccion-n').html('<destacar class="appear-animation flash">$'+FormatoNumero(graficos[0].datasets[1].points[numeroDeDatos - 1].value, 0)+'</destacar>');
+	$('#proyeccion-n').html('<destacar class="appear-animation flash">$'+FormatoNumero(ahorrofinalAtempus, 0)+'</destacar>');
 	$('#ahorro-inicial').html('$'+FormatoNumero(ahorroinicial, 0));
-	$('#ahorro-final-afp').html('$'+FormatoNumero(ahorrofinal, 0));
+	$('#ahorro-final-afp').html('<destacarAFP class="appear-animation flash">$'+FormatoNumero(ahorrofinalAFP, 0)+'</destacarAFP>');
+	//$('#ahorro-final-afp').html('$'+FormatoNumero(ahorrofinalAFP, 0));
+	$('#ahorro-final-atempus').html('$'+FormatoNumero(ahorrofinalAtempus, 0));
+	$('#ahorro-final-atempusGratis').html('$'+FormatoNumero(ahorrofinalAtempusGratis, 0));
 	$('#chartjs-tooltip-n').css({ opacity : "0" });
 	
 	graficos = ActualizarDatosGraficoExtrapolacion(graficos, bdDatos);
@@ -242,8 +250,7 @@ function DatosExtrapolacion(graficosimulacion, bdDatos){
 	var fecha = fechas[fechas.length-1];
 	
 	var ahorrofinal = parseFloat($('#ahorro').val());
-	var cotizacion = parseFloat($('#cotizacion').val());
-	//var historia = parseFloat($('#historia').val());
+        
 	var historia = parseFloat($('#historia').text());
 	var afp = $('#afp option:selected').text();
 	var fondo = $('#fondo option:selected').text();
@@ -277,8 +284,8 @@ function DatosExtrapolacion(graficosimulacion, bdDatos){
 	for (var j = 1; j <= historiaproyectada; j++){
 			labels[labels.length] = parseFloat(labels[labels.length-1])+1;
 			labelsTooltip[labelsTooltip.length] = 'Año ' + labels[labels.length-1];
-			datosConAtempus[datosConAtempus.length] = datosConAtempus[datosConAtempus.length-1]*factorConAtempus + cotizacion*factorCotizacionConAtempus;
-			datosSinAtempus[datosSinAtempus.length] = datosSinAtempus[datosSinAtempus.length-1]*factorSinAtempus + cotizacion*factorCotizacionSinAtempus;
+			datosConAtempus[datosConAtempus.length] = datosConAtempus[datosConAtempus.length-1]*factorConAtempus;
+			datosSinAtempus[datosSinAtempus.length] = datosSinAtempus[datosSinAtempus.length-1]*factorSinAtempus;
 		};
 		
 	return {
@@ -324,7 +331,8 @@ function DatosGraficoExtrapolacion(graficosimulacion, bdDatos){
 function ActualizarGraficoExtrapolacion(graficos, bdDatos){	
 	graficos[1].destroy();
 	var ctxE = document.getElementById("extrapolacion-n").getContext("2d");
-	graficos[1] = new Chart(ctxE).Line(DatosGraficoExtrapolacion(graficos[0], bdDatos), OpcionesGrafico(CalculoHistoriaExtrapolacion(), true));	
+        var datosOpcionesGrafico = OpcionesGrafico(CalculoHistoriaExtrapolacion(), true);
+	graficos[1] = new Chart(ctxE).Line(DatosGraficoExtrapolacion(graficos[0], bdDatos), datosOpcionesGrafico);	
 	
 	var numeroDeDatos = graficos[1].datasets[1].points.length;
 	var beneficio = graficos[1].datasets[1].points[numeroDeDatos - 1].value / graficos[1].datasets[0].points[numeroDeDatos - 1].value - 1;
