@@ -5,12 +5,13 @@
 	require_once("functions.php");
 	require_once("getFormData.php");
 
-        // TODO: Seria bueno sacar el flag de debug a connection, que es privado y local
+    $userdata = getDatosUsuario($_SESSION['correo']);
+    // TODO: Seria bueno sacar el flag de debug a connection, que es privado y local
 	$test = true;
 
 	// if(isset($_POST['section'])) { $section = safe($_POST['section']); }
 	// else { header('Location: inicio'); }
-	
+
 	$validarActive = "";
 	$suscripcionActive = "";
 	$facturacionActive = "";
@@ -36,16 +37,22 @@
 		// $transferenciaActive="active";
 		}
 
+	if(isset($_POST['renovacion'])) {
+        if($_POST['renovacion']=="enproceso") $_SESSION['vp']="enproceso";
+    }
 	if(isset($_POST['errorMessage'])) { echo "<br />".$_POST['errorMessage']; }
 	
 	if($test){
+            echo "requestplan".$_REQUEST['plan'];
             isset($_SESSION['username'])?:$_SESSION['username']="n/a";
             isset($_SESSION['correo_validado'])?:$_SESSION['correo_validado']=FALSE;
             echo "<br />TEST:plan: ".$plan;
-            echo "<br />TEST:section: ".$section;
-            echo "<br />TEST:correo: ".$correo;
-            echo "<br />TEST:sessionusername: ".$_SESSION['username'];
+//            echo "<br />TEST:varplan: ".$varPlan;
+//            echo "<br />TEST:section: ".$section;
+//            echo "<br />TEST:correo: ".$correo;
+//            echo "<br />TEST:sessionusername: ".$_SESSION['username'];
             echo "<br />TEST:sessioncorreovalidado: ".$_SESSION['correo_validado'];
+            echo "<br />TEST:sessionVP: ".$_SESSION['VP'];
 	}
 		
 ?>
@@ -163,14 +170,12 @@
 									<li class="disable">
 										<a href="#validar" aria-expanded="false"><i class="fa fa-check-square-o"></i> Validaci&oacute;n<span></span></a>
 									</li>
-									<?php if($plan != "Gratis") : ?>
-										<li class="disable">
-											<a href="#facturacion" aria-expanded="false"><i class="fa fa-file-text-o"></i> Datos para facturaci&oacute;n<span></span></a>
-										</li>
-										<li class="disable">
-											<a href="#transferencia" aria-expanded="false"><i class="fa fa-exchange"></i> Transferencia<span></span></a>
-										</li>
-									<?php endif; ?>
+                                    <li class="disable">
+                                        <a href="#facturacion" aria-expanded="false"><i class="fa fa-file-text-o"></i> Datos para facturaci&oacute;n<span></span></a>
+                                    </li>
+                                    <li class="disable">
+                                        <a href="#transferencia" aria-expanded="false"><i class="fa fa-exchange"></i> Transferencia<span></span></a>
+                                    </li>
 								</ul>
 								<div class="tab-content"> 
 									<div id="registro" class="tab-pane <?php echo $usuarioActive; ?>">
@@ -280,7 +285,7 @@
 												</div>
 												<div class="col-md-4">
 													<?php if($plan != "Gratis") : ?>
-														<button onclick="JavaScript:ActiveTab('#validar','#facturacion')" onsubmit="return ActiveTab('#validar','#facturacion')" value="Siguiente" class="btn btn-primary pull-right push-bottom tologged" data-loading-text="Actualizando...">Siguiente <i class="fa fa-arrow-right"></i></button>
+														<button onclick="JavaScript:ActiveTab('#facturacion')" onsubmit="return ActiveTab('#facturacion')" value="Siguiente" class="btn btn-primary pull-right push-bottom tologged" data-loading-text="Actualizando...">Siguiente <i class="fa fa-arrow-right"></i></button>
 													<?php else : ?>
 														<a href="ingreso" class="btn btn-primary pull-right push-bottom tologged">Ingresa ahora <i class="fa fa-sign-in"></i></a>
 													<?php endif; ?>
@@ -294,22 +299,21 @@
 
 									<div id="facturacion" class="tab-pane <?php echo $facturacionActive; ?>">
 										<div class="box-content">
-											<h4>Datos para facturaci&oacute;n</h4>																					
-											<form id="formFacturacion" action="form-processor" method="post" novalidate="novalidate">
-											<!-- <form id="formRegistroFacturacion" action="JavaScript:ActiveTab('#facturacion','#transferencia')" novalidate="novalidate"> -->
+											<h4>Datos para facturaci&oacute;n</h4>
+                                            <form id="formFacturacion" action="form-processor" method="post" novalidate="novalidate">
 												<div class="row">
 													<div class="form-group">
 														<div class="col-md-4">
 															<label>Nombres</label>
-															<input type="text" value="<?php echo $nombres; ?>" data-msg-required="Ingresa tus nombres." maxlength="200" class="form-control input-lg" name="nombres" id="nombres" required="" aria-required="true" aria-invalid="false">
+															<input type="text" value="<?php echo $userdata['nombres']; ?>" data-msg-required="Ingresa tus nombres." maxlength="200" class="form-control input-lg" name="nombres" id="nombres" required="" aria-required="true" aria-invalid="false">
 														</div>
 														<div class="col-md-4">
 															<label>Apellidos</label>
-															<input type="text" value="<?php echo $apellidos; ?>" data-msg-required="Ingresa tus apellidos." maxlength="200" class="form-control input-lg" name="apellidos" id="apellidos" required="" aria-required="true" aria-invalid="false">
+															<input type="text" value="<?php echo $userdata['apellidos']; ?>" data-msg-required="Ingresa tus apellidos." maxlength="200" class="form-control input-lg" name="apellidos" id="apellidos" required="" aria-required="true" aria-invalid="false">
 														</div>
 														<div class="col-md-4">
 															<label>RUT</label>
-															<input type="rut" value="<?php echo $rut; ?>" data-msg-required="Ingresa tu RUT." data-msg-rut="Ingresa un RUT v&aacute;lido (ej: 12345XXX-X)." maxlength="20" class="form-control input-lg" name="rut" id="rut" required="" aria-required="true" aria-invalid="false" placeholder="ej: 12345XXX-X">
+															<input type="rut" value="<?php echo $userdata['rut']; ?>" data-msg-required="Ingresa tu RUT." data-msg-rut="Ingresa un RUT v&aacute;lido (ej: 12345XXX-X)." maxlength="20" class="form-control input-lg" name="rut" id="rut" required="" aria-required="true" aria-invalid="false" placeholder="ej: 12345XXX-X">
 														</div>
 													</div>
 												</div>
@@ -317,19 +321,19 @@
 													<div class="form-group">
 														<div class="col-md-3">
 															<label>Direcci&oacute;n</label>
-															<input type="text" value="<?php echo $direccion; ?>" data-msg-required="Ingresa tu direcci&oacute;n." maxlength="200" class="form-control input-lg" name="direccion" id="direccion" required="" aria-required="true" aria-invalid="false">
+															<input type="text" value="<?php echo $userdata['direccion']; ?>" data-msg-required="Ingresa tu direcci&oacute;n." maxlength="200" class="form-control input-lg" name="direccion" id="direccion" required="" aria-required="true" aria-invalid="false">
 														</div>
 														<div class="col-md-3">
 															<label>Comuna</label>
-															<input type="text" value="<?php echo $comuna; ?>" data-msg-required="Ingresa tu comuna." maxlength="200" class="form-control input-lg" name="comuna" id="comuna" required="" aria-required="true" aria-invalid="false">
+															<input type="text" value="<?php echo $userdata['comuna']; ?>" data-msg-required="Ingresa tu comuna." maxlength="200" class="form-control input-lg" name="comuna" id="comuna" required="" aria-required="true" aria-invalid="false">
 														</div>
 														<div class="col-md-3">
 															<label>Ciudad</label>
-															<input type="text" value="<?php echo $ciudad; ?>" data-msg-required="Ingresa tu ciudad." maxlength="200" class="form-control input-lg" name="ciudad" id="ciudad" required="" aria-required="true" aria-invalid="false">
+															<input type="text" value="<?php echo $userdata['ciudad']; ?>" data-msg-required="Ingresa tu ciudad." maxlength="200" class="form-control input-lg" name="ciudad" id="ciudad" required="" aria-required="true" aria-invalid="false">
 														</div>
 														<div class="col-md-3">
 															<label>Regi&oacute;n</label>
-															<input type="text" value="<?php echo $region; ?>" data-msg-required="Ingresa tu regi&oacute;n." maxlength="200" class="form-control input-lg" name="region" id="region" required="" aria-required="true" aria-invalid="false">
+															<input type="text" value="<?php echo $userdata['region']; ?>" data-msg-required="Ingresa tu regi&oacute;n." maxlength="200" class="form-control input-lg" name="region" id="region" required="" aria-required="true" aria-invalid="false">
 														</div>
 													</div>
 												</div>
@@ -343,6 +347,7 @@
 													</div>
 												</div>
 												<input type="hidden" name="section" value="facturacion" />
+												<input type="hidden" name="plan" value="<?php echo $plan; ?>" />
 											</form>
 										</div>
 									</div>
@@ -351,39 +356,57 @@
 										<div class="box-content">
 											<h4>Transferencia</h4>
 											<form id="formTransferencia" action="form-processor" method="post" novalidate="novalidate">
-												<?php $_SESSION['pago_recibido']=true; if ($_SESSION['pago_recibido'] === false) : ?>
-												<div class="row">
-													<div class="col-md-8">
-														<p>Presiona el bot&oacute;n y ser&aacute;s redirigido al portal de pago para realizar la transferencia.</p>
-													</div>
-													<div class="col-md-4">
-														<a href="http://www.khipu.cl"><img src="https://s3.amazonaws.com/static.khipu.com/buttons/200x50.png" border="0" alt="Khipu"></a> 
-													</div>
-												</div>
-												<div class="row">
-													<div class="col-md-8">
-														<p>Si ya realizaste la transferencia, inf&oacute;rmanos <a href="contacto">aqu&iacute;</a>.</p>
-													</div>
-												</div>
+												<?php if ($_SESSION['vp'] == "enproceso") : ?>
+                                                    <div class="row">
+                                                        <div class="col-md-8">
+                                                            <p>Presiona el bot&oacute;n y ser&aacute;s redirigido al portal de pago para realizar la transferencia.</p>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <button type="submit"><img src="./custom/img_custom/200x50.png" border="0" alt="Khipu"></button> 
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-8">
+                                                            <p>Si ya realizaste la transferencia, inf&oacute;rmanos <a href="contacto">aqu&iacute;</a>.</p>
+                                                        </div>
+                                                    </div>
+    												<input type="hidden" name="message" value="renovacion" />
+												<?php elseif ($_SESSION['vp'] == "pago-ok") : ?>
+                                                    <div class="row">
+                                                        <div class="col-md-8">
+                                                            <p>Felicitaciones. Hemos confirmado la transferencia y tu registro ha sido completado exitosamente. </p>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <a href="recomendaciones" class="btn btn-lg btn-primary pull-right">Ir a recomendaciones</a>
+                                                        </div>
+                                                    </div>
 												<?php else : ?>
-												<div class="row">
-													<div class="col-md-8">
-														<p>Felicitaciones. Hemos confirmado la transferencia y tu registro ha sido completado exitosamente. </p>
-													</div>
-													<div class="col-md-4">
-														<a href="recomendaciones" class="btn btn-lg btn-primary pull-right">Ir a recomendaciones</a>
-													</div>
-												</div>
+                                                    <div class="row">
+                                                        <div class="col-md-8">
+                                                            <p>Presiona el bot&oacute;n y ser&aacute;s redirigido al portal de pago para realizar la transferencia.</p>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <button type="submit"><img src="./custom/img_custom/200x50.png" border="0" alt="Khipu"></button> 
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-8">
+                                                            <p>Si ya realizaste la transferencia, inf&oacute;rmanos <a href="contacto">aqu&iacute;</a>.</p>
+                                                        </div>
+                                                    </div>
+    												<input type="hidden" name="message" value="suscripcion" />
 												<?php endif ; ?>
 												<hr>
 												<input type="hidden" name="section" value="transferencia" />
+												<input type="hidden" name="plan" value="<?php echo $plan; ?>" />
+												<input type="hidden" name="correo" value="<?php echo $_SESSION['correo']; ?>" />
 											</form>
 										</div>
 									</div>
 
 								</div>
-                                                            <!-- agregando manejo de errores -->
-                                                            <div class="modal fade" id="ModalGenerico" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                <!-- agregando manejo de errores -->
+                                <div class="modal fade" id="ModalGenerico" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
 									<div class="modal-dialog">
 										<div class="modal-content">
 											<div class="modal-header">
@@ -397,7 +420,7 @@
 										</div>
 									</div>
 								</div>
-                                                            <!-- fin manejo de errores -->
+                                <!-- fin manejo de errores -->
 							</div>
 
 						</div>
@@ -455,10 +478,19 @@
 		</script>
 -->
 
-	<?php if($validarActive=="active") echo '<script type="text/javascript">ActiveTab(\'#registro\',\'#validar\');</script>'; ?>
-	<?php if($suscripcionActive=="active") echo '<script type="text/javascript">ActiveTab(\'#validar\',\'#facturacion\');</script>'; ?>
-	<?php if($facturacionActive=="active") echo '<script type="text/javascript">ActiveTab(\'#suscripcion\',\'#facturacion\');</script>'; ?>
-	<?php if($transferenciaActive=="active") echo '<script type="text/javascript">ActiveTab(\'#facturacion\',\'#transferencia\');</script>'; ?>
+    <?php
+        if(isset($_SESSION['plan'])){
+            if($_SESSION['plan']=="Gratis"){
+                echo '<script type="text/javascript">ActiveTab(\'#facturacion\');</script>';
+            } else {
+                echo '<script type="text/javascript">ActiveTab(\'#transferencia\');</script>'; 
+            }
+        }
+    ?>
+ 	<?php if($validarActive=="active") echo '<script type="text/javascript">ActiveTab(\'#validar\');</script>'; ?>
+	<?php if($suscripcionActive=="active") echo '<script type="text/javascript">ActiveTab(\'#suscripcion\');</script>'; ?>
+	<?php if($facturacionActive=="active") echo '<script type="text/javascript">ActiveTab(\'#facturacion\');</script>'; ?>
+	<?php if($transferenciaActive=="active") echo '<script type="text/javascript">ActiveTab(\'#transferencia\');</script>'; ?>
 
 	</body>
 </html>
@@ -468,7 +500,7 @@
 	if(isset($_POST['errorMessage'])) {
             if ($_POST['errorMessage'] != "") {
 		echo "<script languaje=’javascript’>"
-                    . "$('#myModalTitle').html('Error');"
+                    . "$('#myModalTitle').html('Notificación');"
                     . "$('#myModalBody').html('".$_POST['errorMessage']."');"
                     . "$(document).ready(MostrarModal('#ModalGenerico'));"
                     . "</script>";

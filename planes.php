@@ -1,16 +1,17 @@
 ﻿<?php 
 	// Inialize session
 	session_start();
-	
-	require_once("functions.php");
+
+    require_once("functions.php");
 	// implementar despliegue de errores
 	$errorMessage = "";
-	if(isset($_POST['errorMessage'])) {
+	if(isset($_REQUEST['errorMessage'])) {
             $displayErrors = "block";
-            $errorMessage = safe($_POST['errorMessage']);
+            $errorMessage = safe($_REQUEST['errorMessage']);
             echo "TEST: ".$errorMessage;
         }
 	else $displayErrors = "none";
+    
 
 ?>
 
@@ -120,27 +121,33 @@
 					<div class="row">
 
 						<div class="pricing-table">
-							<div class="col-md-4">
-								<div class="plan">
-									<h3>Básico<span>Gratis</span></h3>
-									<form name="formPlanGratis" id="formPlanGratis" action="registro.php" method="post">
-										<input type="hidden" value="Gratis" name="plan" />
-										<input type="submit" class="btn btn-lg btn-primary" value="Suscríbete gratis">
-									</form>
-									<ul>
-										<li>Suscripción por <big><big><b>3</b></big></big> meses</li>
-										<li><big><big><b>4</b></big></big> días hábiles de desfase<br><span class="text-muted"><small>las alertas te llegarán con demora</small></span></li>
-										<li><big><big><b>Gratis</b></big></big></li>
-									</ul>
-								</div>
-							</div>
+                                <div class="col-md-4">
+                                    <div class="plan">
+                                        <h3>Básico<span>Gratis</span></h3>
+                                        <form name="formPlanGratis" id="formPlanGratis" action="registro" method="post">
+                                            <input type="hidden" value="Gratis" name="plan" />
+                                            <?php if(isset($_SESSION['plan'])) : ?>
+                                                <input type="submit" class="btn btn-lg btn-primary" value="Suscríbete gratis" disabled>
+                                            <?php else : ?>
+                                                <input type="hidden" value="enproceso" name="renovacion" />
+                                                <input type="submit" class="btn btn-lg btn-primary" value="Suscríbete gratis">
+                                            <?php endif; ?>
+                                        </form>
+                                        <ul>
+                                            <li>Suscripción por <big><big><b>3</b></big></big> meses</li>
+                                            <li><big><big><b>4</b></big></big> días hábiles de desfase<br><span class="text-muted"><small>las alertas te llegarán con demora</small></span></li>
+                                            <li><big><big><b>Gratis</b></big></big></li>
+                                        </ul>
+                                    </div>
+                                </div>
 							<div class="col-md-4">
 								<div class="plan">
 									<h3>Premium Anual<span>$12.000</span></h3>
 									<form name="formPlan12000" id="formPlan12000" action="registro" method="post">
 										<input type="hidden" value="12000" name="plan" />
-										<input type="submit" class="btn btn-lg btn-primary" value="Contratar">
-									</form>
+                                        <input type="hidden" value="enproceso" name="renovacion" />
+                                        <input type="submit" class="btn btn-lg btn-primary" value="Contratar">
+                                    </form>
 									<ul>
 										<li>Suscripción por <big><big><b>1</b></big></big> año</li>
 										<li><big><big><b>Sin</b></big></big> desfase</li>
@@ -154,7 +161,8 @@
 									<h3>Premium Bianual<span>$20.400</span></h3>
 									<form name="formPlan20400" id="formPlan20400" action="registro" method="post">
 										<input type="hidden" value="20400" name="plan" />
-										<input type="submit" class="btn btn-lg btn-primary" value="Contratar">
+                                        <input type="hidden" value="enproceso" name="renovacion" />
+                                        <input type="submit" class="btn btn-lg btn-primary" value="Contratar">
 									</form>
 									<ul>
 										<li>Suscripción por <big><big><b>2</b></big></big> años</li>
@@ -169,22 +177,23 @@
 
 				</div>
 
-				<div class="modal fade" id="errores" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: <?php echo $displayErrors; ?>;">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-								<h4 class="modal-title" id="myModalLabel">Oops</h4>
-							</div>
-							<div class="modal-body">
-								<?php echo $errorMessage; ?>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-thumbs-up"></i>Entendido</button>
-							</div>
-						</div>
-					</div>
-				</div>
+                <!-- agregando manejo de errores -->
+                <div class="modal fade" id="ModalGenerico" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h4 class="modal-title" id="myModalTitle"></h4>
+                            </div>
+                            <div id="myModalBody" class="modal-body"></div>
+                            <div class="modal-footer">
+                                <a href="#" id="myModalFooter" type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-thumbs-up"></i> Entendido</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- fin manejo de errores -->
+
 
 			<footer class="short" id="footer"></footer>
 		</div>
@@ -223,3 +232,16 @@
 		
 	</body>
 </html>
+<?php
+ // Mas manejo de errores
+	if(isset($_POST['errorMessage'])) {
+            if ($_POST['errorMessage'] != "") {
+		echo "<script languaje=’javascript’>"
+                    . "$('#myModalTitle').html('Notificación');"
+                    . "$('#myModalBody').html('".$_POST['errorMessage']."');"
+                    . "$(document).ready(MostrarModal('#ModalGenerico'));"
+                    . "</script>";
+            }
+	}
+
+?>

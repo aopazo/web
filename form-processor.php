@@ -66,7 +66,8 @@
 					$contrato = "Contrato2Y20400HCo.pdf/";
 					$varFechaFin = date('Y-m-d', strtotime($current_date. ' + 2 year'));
 				}
-				$sql_insert_newuser = "INSERT INTO $table (correo, contrasena, fecha_incorporacion, md52confirm, fecha_inicio_plan_actual, fecha_fin_plan_actual, tipo_plan, planes_anteriores, contratos, tipo_usuario, correo_validado, mailchimp_suscrito) VALUES (\"$correo\", \"" . encrypt($contrasena) . "\", \"$current_date\", \"$varMd5\", \"$current_date\", \"$varFechaFin\", \"$plan\", \"\", \"". $contrato ."\", \"0\", \"false\", \"false\")";
+                $planes_anteriores = $plan."/".$current_date."/".$current_date."/".$varFechaFin."/Vigente".$contrato."//";
+				$sql_insert_newuser = "INSERT INTO $table (correo, contrasena, fecha_incorporacion, md52confirm, fecha_inicio_plan_actual, fecha_fin_servicio, tipo_plan, planes_anteriores, contratos, tipo_usuario, correo_validado, mailchimp_suscrito) VALUES (\"$correo\", \"" . encrypt($contrasena) . "\", \"$current_date\", \"$varMd5\", \"$current_date\", \"$varFechaFin\", \"$plan\", \"". $planes_anteriores . "\", \"". $contrato ."\", \"0\", \"false\", \"false\")";
 				if (mysql_query($sql_insert_newuser)) {
                                     // correo no encontrado en bd, correctamente ingresado, redirigir a inicio &eacute;xito
                                     // Pasando el codigo a functions...
@@ -103,7 +104,7 @@
 		$action = "registro";
 		// conseguir datos del formulario
 
-		// validar consistencia
+        // validar consistencia
 		$error_consistencia = "";
 		if($nombres == null || $nombres == "")		$error_consistencia .= "- Debes ingresar tus Nombres. \\n";
 		if($apellidos == null || $apellidos == "")	$error_consistencia .= "- Debes ingresar tus Apellidos. \\n";
@@ -125,7 +126,7 @@
 			$sql = "UPDATE $table SET nombres = '".$nombres."', apellidos = '".$apellidos."', rut = '".$rut."', direccion = '".$direccion."', comuna = '".$comuna."', ciudad = '".$ciudad."', region = '".$region."' WHERE correo = '".$_SESSION['correo']."'";
 			if(mysql_query($sql)){
 				$section = "transferenciaActive";
-				$errorMessage = "Datos Actualizados Exit\u00f3samente";
+				$errorMessage = "Datos actualizados exit\u00f3samente";
 			} else{
 				$section = "facturacionActive";
 				$errorMessage = "Se ha producido un error al actualizar tus datos. Int\u00e9ntalo de nuevo por favor.";
@@ -134,9 +135,57 @@
 			// }xml_error_string
 		}
 	}
-	else if($section == "transferencia"){
 
+    // section = transferencia -> el usuario viene de registro y quiere pagar
+    // si message == suscripcion -> suscripcion nueva
+    // si message == renovacion -> renovacion
+	else if($section == "transferencia"){
+        require("connection.php");
+        $varCorreo = $_SESSION['correo'];
+        $varPlan = $plan;
+        
+        if($varPlan == "12000"){
+            $subject = 'Plan Premium Anual';
+            $body = 'Suscripción Plan Premium Anual';
+            $amount = '12000';
+            $transaction_id = 'PlanAnual';
+            }
+        if($varPlan == "20400"){
+            $subject = 'Plan Premium BiAnual';
+            $body = 'Suscripción Plan Premium BiAnual';
+            $amount = '20400';
+            $transaction_id = 'PlanBianual';
+            }
+
+        // vp = ValidacionPlan es para que nadie pueda llamar a notificacion-khipu y autohabilitarse su plan
+        $vp = substr(str_shuffle('./1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz') , 0 , 11);
+        $sql = "UPDATE $table SET vp = '".$vp."' WHERE correo = '".$varCorreo."'";
+        if(mysql_query($sql)){
+            error_log(print_r("form-processor:: ".$sql." vp actualizado", TRUE), 0);
+        } else{
+            error_log(print_r("form-processor:: ".$sql." error al actualizar vp", TRUE), 0);
+        }
+
+        $notify_url = $URL.'notificacion-khipu.php?datos=notificacion&message=IntentoDePago;Usuario:'.$varCorreo.';Plan:'.$varPlan.';varDatos:'.$varDatos;
+        $return_url = $URL.'notificacion-khipu.php?datos=renovado&message=pago-realizado&user='.$varCorreo.'&plan='.$varPlan.'&vp='.$vp.'&varDatos:'.$varDatos;
+		$cancel_url = $URL.'cuenta?errorMessage=Has cancelado tu pago.';
+        // guardar intento en logs
+        $expires_date = time() + 2*24*60*60; // dos dias a partir de ahora
+        $payer_correo = $varCorreo;
+        $bank_id='';
+        $picture_url = '';
+        $custom = '';
+        $action = 'https://khipu.com/api/1.3/createPaymentPage';
+        // creamos el hash
+		$concatenated = "receiver_id=$receiver_id&subject=$subject&body=$body&amount=$amount&payer_email=$payer_email&bank_id=$bank_id&expires_date=$expires_date&transaction_id=$transaction_id&custom=$custom&notify_url=$notify_url&return_url=$return_url&cancel_url=$cancel_url&picture_url=$picture_url";
+		$hash = hash_hmac('sha256', $concatenated , $secret);
+        if($test == "on"){
+            echo "<br />justo despues<br />".$concatenated."<br />";
+            echo "justo despues<br />".$secret."<br />";
+            echo "justo despues<br />".$hash."<br />";
+        }
 	}
+
 	else if($section == "usuario, validacion, suscripcion, facturacion, transferencia"){
 
 	}
@@ -169,17 +218,17 @@
 		$error_consistencia = "";
 		error_log("hora".$direccion.$comuna.$ciudad.$region, 3, "debug.log");
 
-		if($direccion == null || $direccion == "")	$error_consistencia .= "- Debes ingresar tu Direcci\\u00f3n. \\n";
-		if($comuna == null || $comuna == "")		$error_consistencia .= "- Debes ingresar tu Comuna. \\n";
-		if($ciudad == null || $ciudad == "")		$error_consistencia .= "- Debes ingresar tu Ciudad. \\n";
-		if($region == null || $region == "")		$error_consistencia .= "- Debes ingresar tu Regi\\u00f3n. \\n";
+        if($direccion == null || $direccion == ""){	$error_consistencia .= "- Debes ingresar tu Direcci\\u00f3n. \\n"; }
+        if($comuna == null || $comuna == ""){		$error_consistencia .= "- Debes ingresar tu Comuna. \\n"; }
+        if($ciudad == null || $ciudad == ""){		$error_consistencia .= "- Debes ingresar tu Ciudad. \\n"; }
+        if($region == null || $region == ""){		$error_consistencia .= "- Debes ingresar tu Regi\\u00f3n. \\n"; }
 
 		if (!empty($error_consistencia)) {
 			echo "datosVacios";
 		} else {
 			$sql = "UPDATE $table SET direccion = '".$direccion."', comuna = '".$comuna."', ciudad = '".$ciudad."', region = '".$region."' WHERE correo = '".$_SESSION['correo']."'";
 			if(mysql_query($sql)) {
-				error_log("\n".$timestamp->format('Y-m-d H:i:s')." form-processor::actualizarDireccion:: direeccion actualizada -> sql: ".$sql, 3, "transactions.log");
+				error_log("\n".$timestamp->format('Y-m-d H:i:s')." form-processor::actualizarDireccion:: direccion actualizada -> sql: ".$sql, 3, "transactions.log");
 				echo "direccionActualizadaOK";
 			} else {
 				error_log("\n".$timestamp->format('Y-m-d H:i:s')." form-processor::actualizarDireccion:: error al actualizar la direccion \n  sql: ".$sql, 3, "error.logs");
@@ -200,7 +249,7 @@
 
 //// desde aca est&aacute;n las funciones/metodos del sitio antiguo (de las cuales algunas se usan)
 
-	else if($section == "ingresar"){
+/*	else if($section == "ingresar"){
 		
 		if(empty($varPlan)){
 			$errorMessage = "Vaya! Algo ha ocurrido.\\nNo recordamos que plan quieres contratar.\\nPor favor int&eacute;ntalo de nuevo\n";
@@ -264,7 +313,7 @@
 					$contrato = "Contrato2Y20400HCo.pdf/";
 					$varFechaFin = date('Y-m-d', strtotime($varFecha. ' + 2 year'));
 				}
-				$sql_usr = "INSERT INTO $table (nombres, apellidos, rut, direccion, comuna, ciudad, region, telefono, correo, contrasena, fecha_incorporacion, md52confirm, fecha_inicio_plan_actual, fecha_fin_plan_actual, tipo_plan, planes_anteriores, contratos, tipo_usuario) VALUES (\"$varNombres\", \"$varApellidos\", \"$varRut\", \"$varDireccion\", \"$varComuna\", \"$varCiudad\", \"$varRegion\", \"$varTelefono\", \"$varCorreo\", \"" . encrypt($varContrasena) . "\", \"$varFecha\", \"$varMd5\", \"$varFecha\", \"$varFechaFin\", \"$varPlan\", \"\", \"". $contrato ."\",\"0\")";
+				$sql_usr = "INSERT INTO $table (nombres, apellidos, rut, direccion, comuna, ciudad, region, telefono, correo, contrasena, fecha_incorporacion, md52confirm, fecha_inicio_plan_actual, fecha_fin_servicio, tipo_plan, planes_anteriores, contratos, tipo_usuario) VALUES (\"$varNombres\", \"$varApellidos\", \"$varRut\", \"$varDireccion\", \"$varComuna\", \"$varCiudad\", \"$varRegion\", \"$varTelefono\", \"$varCorreo\", \"" . encrypt($varContrasena) . "\", \"$varFecha\", \"$varMd5\", \"$varFecha\", \"$varFechaFin\", \"$varPlan\", \"\", \"". $contrato ."\",\"0\")";
 				if(mysql_query($sql_usr)){
 					// correo no encontrado en bd, correctamente ingresado, redirigir a inicio &eacute;xito
 					$errorMessage = "OK";
@@ -332,7 +381,7 @@
 				$sql = "UPDATE $table SET nombres = '".$varNombres."', apellidos = '".$varApellidos."', rut = '".$varRut."', direccion = '".$varDireccion."', comuna = '".$varComuna."', ciudad = '".$varCiudad."', region = '".$varRegion."', telefono = '".$varTelefono."', correo = '".$varCorreo."' WHERE id = '".$_SESSION['id']."'";
 				// $query_result = mysql_query($sql);
 				if(mysql_query($sql))
-					$errorMessage = "Datos Actualizados Exit\u00f3samente";
+					$errorMessage = "Datos actualizados exit\u00f3samente";
 				else{
 					$errorMessage = "Se ha producido un error al actualizar tus datos. Int\u00e9ntalo de nuevo por favor.";
 					error_log(print_r("form-processor: ".$sql." error al actualizar los datos", TRUE), 0);
@@ -367,7 +416,7 @@
 					// $varFechaFin = date('Y-m-d', strtotime($varFecha. ' + 2 year'));
 				// }  
 				// $contratos_actualizado = $new_contrato.$row['contratos'];
-				// $sql = "UPDATE $table SET nombres = '".$varNombres."', apellidos = '".$varApellidos."', rut = '".$varRut."', direccion = '".$varDireccion."', comuna = '".$varComuna."', ciudad = '".$varCiudad."', region = '".$varRegion."', telefono = '".$varTelefono."', fecha_inicio_plan_actual= '".$varFecha."', fecha_fin_plan_actual = '".$varFechaFin."', tipo_plan = '".$varPlan."', planes_anteriores = '".$planes_anteriores."', contratos = '".$contratos_actualizado."', tipo_usuario = '2' WHERE id = '".$_SESSION['id']."'";
+				// $sql = "UPDATE $table SET nombres = '".$varNombres."', apellidos = '".$varApellidos."', rut = '".$varRut."', direccion = '".$varDireccion."', comuna = '".$varComuna."', ciudad = '".$varCiudad."', region = '".$varRegion."', telefono = '".$varTelefono."', fecha_inicio_plan_actual= '".$varFecha."', fecha_fin_servicio = '".$varFechaFin."', tipo_plan = '".$varPlan."', planes_anteriores = '".$planes_anteriores."', contratos = '".$contratos_actualizado."', tipo_usuario = '2' WHERE id = '".$_SESSION['id']."'";
 				// if(mysql_query($sql)){
 					// $action = "respuesta";
 					// $errorMessage = "P-Update";
@@ -390,7 +439,7 @@
 				// }
 				// $contratos_actualizado = $new_contrato."/".$row['contratos'];
 				// if(crypt($varContrasenaAntes, $row['contrasena']) == $row['contrasena']){
-					// $sql = "UPDATE $table SET nombres = '".$varNombres."', apellidos = '".$varApellidos."', rut = '".$varRut."', direccion = '".$varDireccion."', comuna = '".$varComuna."', ciudad = '".$varCiudad."', region = '".$varRegion."', telefono = '".$varTelefono."', contrasena = '".encrypt($varContrasena) ."', fecha_inicio_plan_actual= '".$varFecha."', fecha_fin_plan_actual = '".$varFechaFin."', tipo_plan = '".$varPlan."', planes_anteriores = '".$planes_anteriores."', contratos = '".$contratos_actualizado."',  tipo_usuario = '2' WHERE id = '".$_SESSION['id']."'";
+					// $sql = "UPDATE $table SET nombres = '".$varNombres."', apellidos = '".$varApellidos."', rut = '".$varRut."', direccion = '".$varDireccion."', comuna = '".$varComuna."', ciudad = '".$varCiudad."', region = '".$varRegion."', telefono = '".$varTelefono."', contrasena = '".encrypt($varContrasena) ."', fecha_inicio_plan_actual= '".$varFecha."', fecha_fin_servicio = '".$varFechaFin."', tipo_plan = '".$varPlan."', planes_anteriores = '".$planes_anteriores."', contratos = '".$contratos_actualizado."',  tipo_usuario = '2' WHERE id = '".$_SESSION['id']."'";
 					// if(mysql_query($sql)){
 						// $action = "respuesta";
 						// $errorMessage = "CP-Update";
@@ -550,7 +599,7 @@
 		$hash = hash_hmac('sha256', $concatenated , $secret);
 		error_log(print_r("Form-Processor::ActivaPago::User:".$varCorreo.";Plan:".$amount, TRUE), 0);
 	}
-
+*/
 	// mysql_close($db);
 ?>
 
@@ -571,7 +620,6 @@
 		<input type="hidden" name="bank_id" value="<?php echo $bank_id; ?>" />
 		<input type="hidden" name="picture_url" value="<?php echo $picture_url; ?>" />
 		<input type="hidden" name="hash" value="<?php echo $hash; ?>" />
-
 		<input type="hidden" name="plan" value="<?php echo $plan; ?>" />
 		<input type="hidden" name="section" value="<?php echo $section; ?>" />
 		<input type="hidden" name="nombres" value="<?php echo $nombres; ?>" />
@@ -583,7 +631,6 @@
 		<input type="hidden" name="region" value="<?php echo $region; ?>" />
 		<input type="hidden" name="correo" value="<?php echo $correo; ?>" />
 		<input type="hidden" name="errorMessage" value="<?php echo $errorMessage; ?>" />
-		<!--<input type="submit" />-->
 	</form>
 
 	<script language="JavaScript">

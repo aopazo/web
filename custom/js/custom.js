@@ -33,15 +33,31 @@ $(document).ready(function(){
 		})
 });		
 
-function ActiveTab(taborigen, tabdestino) {
+function ActiveTab(tabdestino) {
+        console.log("holi");
+        if (tabdestino == "#validar" || tabdestino == "#facturacion" || tabdestino == "#transferencia") {
+            $('#tabs a[href="#registro"]').css("color", "#00CD00").css("border-top-color", "#00CD00");
+            $('#tabs a[href="#registro"]').find('span').html('<i class="fa fa-check pull-right"></i>');
+                $('#tabs a[href="#registro"]').parent().addClass('disable');
+        }
+        if (tabdestino == "#facturacion" || tabdestino == "#transferencia") {
+            $('#tabs a[href="#validar"]').css("color", "#00CD00").css("border-top-color", "#00CD00");
+            $('#tabs a[href="#validar"]').find('span').html('<i class="fa fa-check pull-right"></i>');
+        }
+        if (tabdestino == "#transferencia") {
+            $('#tabs a[href="#facturacion"]').css("color", "#00CD00").css("border-top-color", "#00CD00");
+            $('#tabs a[href="#facturacion"]').find('span').html('<i class="fa fa-check pull-right"></i>');
+        }
 	$('#tabs a[href="' + tabdestino + '"]').attr('data-toggle', 'tab');
 	$('#tabs a[href="' + tabdestino + '"]').parent().removeClass('disable');
 	$('#tabs a[href="' + tabdestino + '"]').tab('show');
-	$('#tabs a[href="' + taborigen + '"]').css("color", "#00CD00").css("border-top-color", "#00CD00");
-	$('#tabs a[href="' + taborigen + '"]').find('span').html('<i class="fa fa-check pull-right"></i>');
+//	$('#tabs a[href="' + taborigen + '"]').css("color", "#00CD00").css("border-top-color", "#00CD00");
+//	$('#tabs a[href="' + taborigen + '"]').find('span').html('<i class="fa fa-check pull-right"></i>');
+        // actualiza el foco hacia el lugar a actualizar por el usuario en un móvil o tablet
 	if (!$('#tabs a[href="' + tabdestino + '"]').visible($('#header').height())) {
 		$('html, body').animate({ scrollTop: $('#tabs a[href="' + tabdestino + '"]').offset().top - $('#header').height() }, 500);
 	}
+        console.log("holi");
 }
 
 function ContactoEnviado(idmodal) {

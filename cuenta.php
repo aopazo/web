@@ -4,15 +4,35 @@
 	require_once("connection.php");
 	require_once("functions.php");
 
-        $correo = $_SESSION['correo'];
+    $correo = $_SESSION['correo'];
 	$result = mysql_query("SELECT * FROM $table WHERE correo = '".$correo."'");
 	// if sale mal la consulta :(
 	$userdata = mysql_fetch_array($result);
-        if ($userdata['tipo_plan']=="Expirado"){ $plan="Expirado"; $puede_renovar="FALSE"; }
-        if ($userdata['tipo_plan']=="Gratis"){ $plan="Gratis"; $puede_renovar="FALSE"; }
-        if ($userdata['tipo_plan']=="12000"){ $plan="Premium Anual"; $puede_renovar="TRUE"; }
-        if ($userdata['tipo_plan']=="20400"){ $plan="Premium BiAnual"; $puede_renovar="TRUE"; }
-        
+    if ($userdata['tipo_plan']=="Expirado"){ $plan="Expirado"; $puede_renovar="FALSE"; }
+    if ($userdata['tipo_plan']=="Gratis"){ $plan="Gratis"; $puede_renovar="FALSE"; }
+    if ($userdata['tipo_plan']=="12000"){ $plan="Premium Anual"; $puede_renovar="TRUE"; }
+    if ($userdata['tipo_plan']=="20400"){ $plan="Premium BiAnual"; $puede_renovar="TRUE"; }
+
+    $planes_anteriores = explode("//", $userdata['planes_anteriores']);
+    $sizeof_planes_anteriores = sizeof($planes_anteriores) - 1;
+echo $planes_anteriores[0].$sizeof_planes_anteriores;
+////        <td data-title="Plan">Anual Premium</td>
+//        <td data-title="Suscripción">05/08/2014</td>
+//        <td data-title="Inicio">05/08/2014</td>
+//        <td data-title="Vencimiento">05/08/2015</td>
+//        <td data-title="Estado">Vigente</td>
+//        <td data-title="Contrato"><a href="http://www.atempus.cl/contratos/Contrato1Y12000HCo.pdf" target="_blank" type="button" class="btn btn-borders btn-default btn-xs"><i class="fa fa-file-pdf-o" style="color:red"></i></a></td>
+
+    // implementar despliegue de errores
+	$errorMessage = "";
+	if(isset($_REQUEST['errorMessage'])) {
+            $displayErrors = "block";
+            $errorMessage = safe($_REQUEST['errorMessage']);
+            echo "<br />TEST: ".$errorMessage;
+        }
+	else $displayErrors = "none";
+
+    
 ?>
 
 <!DOCTYPE html>
@@ -121,10 +141,10 @@
                                     <?php if ($puede_renovar == "TRUE") : ?> <!-- debe ir directo a pagar el mismo plan que ya tiene -->
                                         <a href="planes" type="button" class="btn btn-borders btn-default btn-xs"><i class="fa fa-repeat"></i> renueva tu plan</a>
                                     <?php endif; ?>
-                                    <?php if ($plan == "Gratis" || $plan == "12000") : ?>
-                                        <a href="planes" type="button" class="btn btn-borders btn-default btn-xs"><i class="fa fa-rocket"></i> mejora tu plan</a></p>
+                                    <?php if ($plan == "12000") : ?>
+                                        <a href="planes" type="button" class="btn btn-borders btn-default btn-xs"><i class="fa fa-rocket"></i> mejora tu plan</a>
                                     <?php endif; ?>
-                                    <?php if ($plan == "Gratis" || $plan == "12000") : ?>
+                                    <?php if ($plan == "Gratis") : ?>
                                         <a href="planes" type="button" class="btn btn-borders btn-default btn-xs"><i class="fa fa-rocket"></i> contrata tu plan</a></p>
                                     <?php endif; ?>
                                 <br /><br />
@@ -144,41 +164,50 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td data-title="Plan">Anual Premium</td>
-                                                <td data-title="Suscripción">05/08/2014</td>
-                                                <td data-title="Inicio">05/08/2014</td>
-                                                <td data-title="Vencimiento">05/08/2015</td>
-                                                <td data-title="Estado">Vigente</td>
-                                                <td data-title="Contrato"><a href="http://www.atempus.cl/contratos/Contrato1Y12000HCo.pdf" target="_blank" type="button" class="btn btn-borders btn-default btn-xs"><i class="fa fa-file-pdf-o" style="color:red"></i></a></td>
-                                            </tr>
-                                            <tr>
-                                                <td data-title="Plan">Gratis</td>
-                                                <td data-title="Suscripción">16/06/2014</td>
-                                                <td data-title="Inicio">16/06/2014</td>
-                                                <td data-title="Vencimiento">16/09/2014</td>
-                                                <td data-title="Estado">Vencido</td>
-                                                <td data-title="Contrato"><a href="http://www.atempus.cl/contratos/Contrato3MGratisHCo.pdf" target="_blank" type="button" class="btn btn-borders btn-default btn-xs"><i class="fa fa-file-pdf-o" style="color:red"></i></a></td>
-                                            </tr>
-                                            <tr>
-                                                <td data-title="Plan">Anual Premium</td>
-                                                <td data-title="Suscripción">15/06/2013</td>
-                                                <td data-title="Inicio">15/06/2013</td>
-                                                <td data-title="Vencimiento">15/06/2014</td>
-                                                <td data-title="Estado">Vencido</td>
-                                                <td data-title="Contrato"><a href="http://www.atempus.cl/contratos/Contrato1Y12000HCo.pdf" target="_blank" type="button" class="btn btn-borders btn-default btn-xs"><i class="fa fa-file-pdf-o" style="color:red"></i></a></td>
-                                            </tr>
+<?php for ($i = 0; $i < $sizeof_planes_anteriores; $i++){
+        $row = explode("/", $planes_anteriores[$i]);
+        $tplan = $row[0];
+        $tsuscripcion = $row[1];
+        $tinicio = $row[2];
+        $tvencimiento = $row[3];
+        $testado = $row[4];
+        $tcontrato = $row[5];
+        echo "<tr>";
+            echo "<td data-title=\"Plan\">$tplan</td>";
+            echo "<td data-title=\"Suscripción\">$tsuscripcion</td>";
+            echo "<td data-title=\"Inicio\">$tinicio</td>";
+            echo "<td data-title=\"Vencimiento\">$tvencimiento</td>";
+            echo "<td data-title=\"Estado\">$testado</td>";
+            echo "<td data-title=\"Contrato\"><a href=\"http://www.atempus.cl/contratos/$tcontrato\" target=\"_blank\" type=\"button\" class=\"btn btn-borders btn-default btn-xs\"><i class=\"fa fa-file-pdf-o\" style=\"color:red\"></i></a></td>";
+        echo "</tr>";
+
+    }
+?>
                                         </tbody>
                                     </table>
                                 </div>								
                             </div>
                         </div>
                     </div>
-
-
-                </div>
-
+              </div>
             </div>
+
+            <!-- agregando manejo de errores -->
+            <div class="modal fade" id="ModalGenerico" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title" id="myModalTitle"></h4>
+                        </div>
+                        <div id="myModalBody" class="modal-body"></div>
+                        <div class="modal-footer">
+                            <a href="#" id="myModalFooter" type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-thumbs-up"></i> Entendido</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- fin manejo de errores -->
 
             <footer class="short" id="footer"></footer>
         </div>
@@ -216,3 +245,16 @@
 
     </body>
 </html>
+<?php
+ // Mas manejo de errores
+	if(isset($_REQUEST['errorMessage'])) {
+            if ($_REQUEST['errorMessage'] != "") {
+		echo "<script languaje=’javascript’>"
+                    . "$('#myModalTitle').html('Notificación');"
+                    . "$('#myModalBody').html('".$_REQUEST['errorMessage']."');"
+                    . "$(document).ready(MostrarModal('#ModalGenerico'));"
+                    . "</script>";
+            }
+	}
+
+?>

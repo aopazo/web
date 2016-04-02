@@ -1,6 +1,7 @@
 <?php
-// TODO: sacar test a connection
-        $test_getFormData = TRUE;
+
+    if(isset($_SESSION['plan'])) { $plan = $_SESSION['plan']; }
+	if(isset($_SESSION['correo'])) { $correo = $_SESSION['correo']; }
 
 	$datos = "";
 	$plan = "";
@@ -41,12 +42,6 @@
 	if(isset($_POST['errorMensaje'])) { $errorMensaje = safe($_POST['errorMensaje']); }
 	if(isset($_POST['captcha'])) { $captcha = safe($_POST['captcha']); }
 	if(isset($_POST['section'])) { $section = safe($_POST['section']); }
-
-	if ($test_getFormData) {
-            echo "GetFormData - Section: ".$section;
-        }
-
-	// if(isset($_SESSION['plan'])) { $plan = $_SESSION['plan']; }
-	// if(isset($_SESSION['correo'])) { $correo = $_SESSION['correo']; }
+	if(isset($_POST['action'])) { $section = safe($_POST['action']); }
 
 ?>

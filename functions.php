@@ -1,7 +1,7 @@
 <?php
 
 function safe($key) {
-	require_once("connection.php");
+    require_once("connection.php");
 	$rKey = mysql_real_escape_string($key);
 	$rKey = str_replace("\n","",$rKey);
 	$rKey = str_replace("\r","",$rKey);
@@ -21,6 +21,8 @@ function encrypt($pass) {
 	return crypt($pass, $salt);
 	}
 
+//echo encrypt("qwe");
+
 function iniciarSesion($userdata){
 	if($userdata['nombres']==null || $userdata['nombres']=="")
         {
@@ -32,6 +34,7 @@ function iniciarSesion($userdata){
 	$_SESSION['rut'] = $userdata['rut'];
 	$_SESSION['plan'] = $userdata['tipo_plan'];
 	$_SESSION['correo'] = $userdata['correo'];
+	$_SESSION['vp'] = $userdata['vp'];
 	$_SESSION['REMOTE_ADDR'] = $_SERVER['REMOTE_ADDR'];
 	$_SESSION['HTTP_USER_AGENT'] = $_SERVER['HTTP_USER_AGENT'];
 	if($userdata['correo_validado'] == "1") {
@@ -150,4 +153,62 @@ function enviaCorreoValidacion($plan, $correo, $md5){
 
     enviaCorreo($de, $deNombre, $para, $paraNombre, $asunto, $mensaje);
 }
+
+function actualizarDB($campos, $valores){
+   	require_once("connection.php");
+    $set = "";
+    for ($i = 0; $i <= count($campos); $i++) {
+        $set .= " ".$campos[$i]." = '".$valores[$i]."', ";
+    }
+    $sql = "UPDATE $table SET $set where id = ".$_SESSION['id'];
+    echo $sql."<br />";
+	// if(mysql_query($sql)){
+    // $action = "respuesta";
+    // $errorMessage = "P-Update";
+    // if($varPlan=="12000" || $varPlan=="20400") $activaPago = "si";
+    // }
+    // else{
+        // $errorMessage = "Se ha producido un error al actualizar tus datos. Int\u00e9ntalo de nuevo por favor.";
+        // error_log(print_r("form-processor: ".$sql." error al actualizar los datos", TRUE), 0);
+    // }
+    // }
+    // else if($queactualizar=="CP"){
+    // $planes_anteriores = $row['planes_anteriores'] . "/" . $row['tipo_plan'] ."->". $row['fecha_inicio_plan_actual'];
+    // if($varPlan=="12000"){
+        // $contrato = "Contrato1Y12000HCo.pdf/";
+        // $varFechaFin = date('Y-m-d', strtotime($varFecha. ' + 1 year'));
+    // }
+    // if($varPlan=="20400"){
+        // $contrato = "Contrato2Y20400HCo.pdf/";
+        // $varFechaFin = date('Y-m-d', strtotime($varFecha. ' + 2 year'));
+    // }
+    // $contratos_actualizado = $new_contrato."/".$row['contratos'];
+    // if(crypt($varContrasenaAntes, $row['contrasena']) == $row['contrasena']){
+        // $sql = "UPDATE $table SET nombres = '".$varNombres."', apellidos = '".$varApellidos."', rut = '".$varRut."', direccion = '".$varDireccion."', comuna = '".$varComuna."', ciudad = '".$varCiudad."', region = '".$varRegion."', telefono = '".$varTelefono."', contrasena = '".encrypt($varContrasena) ."', fecha_inicio_plan_actual= '".$varFecha."', fecha_fin_plan_actual = '".$varFechaFin."', tipo_plan = '".$varPlan."', planes_anteriores = '".$planes_anteriores."', contratos = '".$contratos_actualizado."',  tipo_usuario = '2' WHERE id = '".$_SESSION['id']."'";
+    // if(mysql_query($sql)){
+        // $action = "respuesta";
+        // $errorMessage = "CP-Update";
+        // if($varPlan=="12000" || $varPlan=="20400") $activaPago = "si";
+    // }
+    // else{
+        // $errorMessage = "Se ha producido un error al actualizar tus datos. Int\u00e9ntalo de nuevo por favor.";
+        // error_log(print_r("form-processor: ".$sql." error al actualizar los datos", TRUE), 0);
+    // }
+
+}
+
+$campos = array('nombres', 'apellidos', 'rut');
+$valores[0] = "ale";
+$valores[1] = "opazo";
+$valores[2] = "14";
+actualizarDB($campos, $valores);
+
+function getDatosUsuario($correo){
+	require("connection.php");
+	$result = mysql_query("SELECT * FROM $table WHERE correo = '".$correo."'");
+	// if sale mal la consulta :(
+	$userdata = mysql_fetch_array($result);
+    return $userdata;
+}
+
 ?>
