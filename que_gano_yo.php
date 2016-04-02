@@ -13,7 +13,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 		<!-- Web Fonts  -->
-		<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800%7CShadows+Into+Light" rel="stylesheet" type="text/css">
+		<link href="custom/fonts/googleFonts.ttf" rel="stylesheet" type="text/css">
 
 		<!-- Vendor CSS -->
 		<link rel="stylesheet" href="vendor/bootstrap/bootstrap.css">
@@ -109,7 +109,7 @@
 							<div class="row">
 								<div class="col-md-12">
 									<p class="lead">
-										Imaginemos que tienes $<input type="number" min="0" value="8000000" step="100000" style="width:125px" data-max="999999999" data-min="1" class="form-control form-control-inlinetext mb-md" name="ahorro" id="ahorro" required="" aria-required="true" aria-invalid="false">
+										Imaginemos que hace <span id="historia">4</span> años tenias $<input type="number" min="0" value="8000000" step="100000" style="width:125px" data-max="999999999" data-min="1" class="form-control form-control-inlinetext mb-md" name="ahorro" id="ahorro" required="" aria-required="true" aria-invalid="false">
 										ahorrados en el fondo
 										<select class="form-control form-control-inlinetext mb-md" id="fondo">
 											<option>A</option><option>B</option><option>C</option><option>D</option><option>E</option>
@@ -117,23 +117,21 @@
 										de
 										<select class="form-control form-control-inlinetext mb-md" id="afp">
 											<option>AFP Capital</option><option>AFP Cuprum</option><option>AFP Habitat</option><option>AFP Modelo</option><option>AFP Planvital</option><option>AFP Provida</option>
-										</select>
-										y cotizas mensualmente $<input type="number" min="0" value="50000" step="5000" style="width:90px" data-max="999999" data-min="0" class="form-control form-control-inlinetext mb-md" name="cotizacion" id="cotizacion" required="" aria-required="true" aria-invalid="false">.
+										</select>.
 									</p>
 									<div class="row">
 										<div class="col-md-6">
-										<!--
+									
 											<p class="lead">
-												<span id="texto-inicial">Si</span> hubieses contado con un Plan Premium hace 
-												<select class="form-control form-control-inlinetext mb-md" id="historia">
-													<option>2</option><option>3</option><option>4</option>
-												</select> años, tendrías ahorrado al rededor de <span id="proyeccion-n"></span>.
+												Ahora tendrías ahorrado:
+                                                                                                <ul>
+                                                                                                    <li>Con un Plan Premium <span id="proyeccion-n"></span></li>
+                                                                                                    <li>Con un Plan Básico <span id="ahorro-final-atempusGratis"></span> (*)</li>
+                                                                                                    <li>En tu actual fondo de AFP <span id="ahorro-final-afp"></span></li>
+                                                                                                </ul>
+                                                                                                (*) asumiendo un Plan Básico indefinido.
 											</p>
-											-->
-											<p class="lead">
-												Hace <span id="historia">4</span> años tenías ahorrado en torno a <span id="ahorro-inicial"></span>.
-												Con nuestro Plan Premium tendrías ahorrado al rededor de <span id="proyeccion-n"></span> en vez de <span id="ahorro-final-afp">$8.000.000</span>.
-											</p>
+                                                                                        
 										</div>
 										<div class="col-md-6">
 											<div class="text-center">
@@ -154,7 +152,7 @@
 									<div class="row">
 										<div class="col-md-6">
 											<p class="lead">
-												Ahora supongamos que tienes <select class="form-control form-control-inlinetext mb-md" id="edad">
+												Si tienes <select class="form-control form-control-inlinetext mb-md" id="edad">
 													<option>15</option><option>16</option><option>17</option><option>18</option><option>19</option>
 													<option>20</option><option>21</option><option>22</option><option>23</option><option>24</option>
 													<option>25</option><option>26</option><option>27</option><option>28</option><option>29</option>
@@ -166,12 +164,11 @@
 													<option>55</option><option>56</option><option>57</option><option>58</option><option>59</option>
 													<option>60</option><option>61</option><option>62</option><option>63</option><option>64</option>
 												</select>
-												años y que te vas a jubilar a los <select class="form-control form-control-inlinetext mb-md" id="edad-jubilacion">
+												años y te jubilas a los <select class="form-control form-control-inlinetext mb-md" id="edad-jubilacion">
 													<option>55</option><option>56</option><option>57</option><option>58</option><option>59</option>
 													<option selected>60</option><option>61</option><option>62</option><option>63</option><option>64</option>
 													<option>65</option>
-												</select>. Contratando ahora un Plan Premium tu jubilación se podrían ver incrementada en un <span id="proyeccion-jubilacion"></span>. 
-												Esto se podría dar si sigues cotizando <span id="cotizacion-actual">$50.000</span> mensuales y estas rentabilidades se repitiesen en el futuro.
+												</select>, contratando ahora un Plan Premium tu jubilación podría aumentar en un <span id="proyeccion-jubilacion"></span>.
 											</p>
 										</div>
 										<div class="col-md-6">

@@ -177,6 +177,12 @@ destacar {
   color: #309da1;
 }
 
+destacarAFP {
+  font-size: 100%;
+  font-weight: bold;
+  color: #df0e28;
+}
+
 .form-control-inlinetext {
   display: inline;
   width: initial;
