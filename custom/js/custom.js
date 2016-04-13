@@ -38,11 +38,13 @@ function ActiveTab(tabdestino) {
         if (tabdestino == "#validar" || tabdestino == "#facturacion" || tabdestino == "#transferencia") {
             $('#tabs a[href="#registro"]').css("color", "#00CD00").css("border-top-color", "#00CD00");
             $('#tabs a[href="#registro"]').find('span').html('<i class="fa fa-check pull-right"></i>');
-                $('#tabs a[href="#registro"]').parent().addClass('disable');
+            $('#tabs a[href="#registro"]').parent().addClass('disable');
         }
         if (tabdestino == "#facturacion" || tabdestino == "#transferencia") {
             $('#tabs a[href="#validar"]').css("color", "#00CD00").css("border-top-color", "#00CD00");
             $('#tabs a[href="#validar"]').find('span').html('<i class="fa fa-check pull-right"></i>');
+            $('#tabs a[href="#validar"]').parent().addClass('disable');
+            $('#tabs a[href="#registro"]').parent().addClass('disable');
         }
         if (tabdestino == "#transferencia") {
             $('#tabs a[href="#facturacion"]').css("color", "#00CD00").css("border-top-color", "#00CD00");
