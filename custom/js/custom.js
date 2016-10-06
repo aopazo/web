@@ -44,11 +44,11 @@ function ActiveTab(tabdestino) {
             $('#tabs a[href="#validar"]').css("color", "#00CD00").css("border-top-color", "#00CD00");
             $('#tabs a[href="#validar"]').find('span').html('<i class="fa fa-check pull-right"></i>');
             $('#tabs a[href="#validar"]').parent().addClass('disable');
-            $('#tabs a[href="#registro"]').parent().addClass('disable');
         }
         if (tabdestino == "#transferencia") {
             $('#tabs a[href="#facturacion"]').css("color", "#00CD00").css("border-top-color", "#00CD00");
             $('#tabs a[href="#facturacion"]').find('span').html('<i class="fa fa-check pull-right"></i>');
+            $('#tabs a[href="#facturacion"]').parent().addClass('disable');
         }
 	$('#tabs a[href="' + tabdestino + '"]').attr('data-toggle', 'tab');
 	$('#tabs a[href="' + tabdestino + '"]').parent().removeClass('disable');
@@ -59,7 +59,6 @@ function ActiveTab(tabdestino) {
 	if (!$('#tabs a[href="' + tabdestino + '"]').visible($('#header').height())) {
 		$('html, body').animate({ scrollTop: $('#tabs a[href="' + tabdestino + '"]').offset().top - $('#header').height() }, 500);
 	}
-        console.log("holi");
 }
 
 function ContactoEnviado(idmodal) {
@@ -181,7 +180,7 @@ $('#formcambioclave').validate({
 	}	
 });
 
-$('#formRegistroUsuario').validate({
+$('#formUsuario').validate({
 	rules: {
 		'captcha': {
 			captcha: true
@@ -189,11 +188,11 @@ $('#formRegistroUsuario').validate({
 		'checkboxes[]': {
 			required: true
 		},
-		password_repetir: {
-			equalTo: "#password"
+		contrasena_repetir: {
+			equalTo: "#contrasena"
 		},
-		email_repetir: {
-			equalTo: "#email"
+		correo_repetir: {
+			equalTo: "#correo"
 		}
 	}	
 });

@@ -1,12 +1,15 @@
 <?php
-
 	session_start();
-
 ?>
 
 <div class="container">
 	<nav class="nav-main mega-menu">
 		<ul class="nav nav-pills nav-main" id="mainMenu">
+			<?php if ( !empty($_SESSION['correo']) && $_SESSION['correo_validado'] == 0 ) : ?>
+			<li>
+				<a href="usuario" class="acorreo">Aún no validas tu correo</a>
+			</li>
+			<?php endif; ?>
 			<li>
 				<a href="inicio">Inicio</a>
 			</li>
@@ -21,7 +24,7 @@
                     <a href="ingreso"><i class="fa fa-user"></i> Ingresar</a>
                 </li>
 			<?php else : ?>
-				<?php if($_SESSION['correo_validado'] == 1 && $_SESSION['mailchimp_suscrito'] == 1) : ?>
+				<?php if($_SESSION['correo_validado'] == 1 || $_SESSION['mailchimp_suscrito'] == 1) : ?>
 					<li>
 						<a href="recomendaciones">Recomendaciones</a>
 					</li>

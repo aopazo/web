@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+<url>
+  <loc>http://www.atempus.cl/inicio</loc>
+  <changefreq>yearly</changefreq>
+  <lastmod>2016-07-02</lastmod>
+</url>
+<url>
+  <loc>http://www.atempus.cl/ingreso</loc>
+  <changefreq>yearly</changefreq>
+  <lastmod>2016-07-02</lastmod>
+</url>
+<url>
+  <loc>http://www.atempus.cl/que_gano_yo</loc>
+  <changefreq>yearly</changefreq>
+  <lastmod>2016-07-02</lastmod>
+</url>
+<url>
+  <loc>http://www.atempus.cl/recomendaciones</loc>
+  <changefreq>yearly</changefreq>
+  <lastmod>2016-07-02</lastmod>
+</url>
+<url>
+  <loc>http://www.atempus.cl/planes</loc>
+  <changefreq>yearly</changefreq>
+  <lastmod>2016-07-02</lastmod>
+</url>
+<url>
+  <loc>http://www.atempus.cl/politica_de_privacidad</loc>
+  <changefreq>yearly</changefreq>
+  <lastmod>2016-07-02</lastmod>
+</url>
+<url>
+  <loc>http://www.atempus.cl/terminos_y_condiciones</loc>
+  <changefreq>yearly</changefreq>
+  <lastmod>2016-07-02</lastmod>
+</url>
+<url>
+  <loc>http://www.atempus.cl/preguntas_frecuentes</loc>
+  <changefreq>yearly</changefreq>
+  <lastmod>2016-07-02</lastmod>
+</url>
+<url>
+  <loc>http://www.atempus.cl/mapa_del_sitio</loc>
+  <changefreq>yearly</changefreq>
+  <lastmod>2016-07-02</lastmod>
+</url>
+</urlset>

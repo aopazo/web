@@ -1,0 +1,1702 @@
+[26-Jun-2016 17:50:44 America/Santiago] Call to https://us7.api.mailchimp.com/2.0/lists/subscribe.json: {"id":"1a9463286c","email":{"email":"hellovaisman+pruebamailchimp@gmail.com"},"merge_vars":{"EMAIL":"hellovaisman+pruebamailchimp@gmail.com","FNAME":"","LNAME":"","DESFC":"0","ACTIVO":"SI"},"email_type":"html","double_optin":true,"update_existing":false,"replace_interests":true,"send_welcome":false,"apikey":"385ff1a9a0b2cf9d67bd02531f686d44-us7"}
+[26-Jun-2016 17:50:46 America/Santiago] * Hostname was NOT found in DNS cache
+*   Trying 96.17.29.26...
+* Connected to us7.api.mailchimp.com (96.17.29.26) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLSv1.0 / AES128-SHA
+* Server certificate:
+* 	 subject: C=US; ST=Georgia; L=Atlanta; O=The Rocket Science Group, LLC; OU=IT; CN=*.api.mailchimp.com
+* 	 start date: 2016-05-03 00:00:00 GMT
+* 	 expire date: 2017-05-03 23:59:59 GMT
+* 	 subjectAltName: us7.api.mailchimp.com matched
+* 	 issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust SSL CA - G3
+* 	 SSL certificate verify ok.
+> POST /2.0/lists/subscribe.json HTTP/1.1
+User-Agent: MailChimp-PHP/2.0.6
+Host: us7.api.mailchimp.com
+Accept: */*
+Content-Type: application/json
+Content-Length: 348
+
+* upload completely sent off: 348 out of 348 bytes
+< HTTP/1.1 500 Internal Server Error
+* Server nginx is not blacklisted
+< Server: nginx
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 145
+< X-MailChimp-API-Error-Code: 214
+< Date: Sun, 26 Jun 2016 21:50:43 GMT
+< Connection: close
+< Set-Cookie: _AVESTA_ENVIRONMENT=prod; path=/
+< 
+* Closing connection 0
+
+[26-Jun-2016 17:50:46 America/Santiago] Completed in 1,141.82ms
+[26-Jun-2016 17:50:46 America/Santiago] Got response: {"status":"error","code":214,"name":"List_AlreadySubscribed","error":"hellovaisman+pruebamailchimp@gmail.com is already subscribed to the list."}
+[26-Jun-2016 19:10:53 America/Santiago] Call to https://us7.api.mailchimp.com/2.0/lists/subscribe.json: {"id":"1a9463286c","email":{"email":"hellovaisman+pruebamailchimp@gmail.com"},"merge_vars":{"EMAIL":"hellovaisman+pruebamailchimp@gmail.com","FNAME":"","LNAME":"","DESFC":"0","ACTIVO":"SI"},"email_type":"html","double_optin":true,"update_existing":false,"replace_interests":true,"send_welcome":false,"apikey":"385ff1a9a0b2cf9d67bd02531f686d44-us7"}
+[26-Jun-2016 19:10:54 America/Santiago] * Hostname was NOT found in DNS cache
+*   Trying 96.17.29.26...
+* Connected to us7.api.mailchimp.com (96.17.29.26) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLSv1.0 / AES128-SHA
+* Server certificate:
+* 	 subject: C=US; ST=Georgia; L=Atlanta; O=The Rocket Science Group, LLC; OU=IT; CN=*.api.mailchimp.com
+* 	 start date: 2016-05-03 00:00:00 GMT
+* 	 expire date: 2017-05-03 23:59:59 GMT
+* 	 subjectAltName: us7.api.mailchimp.com matched
+* 	 issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust SSL CA - G3
+* 	 SSL certificate verify ok.
+> POST /2.0/lists/subscribe.json HTTP/1.1
+User-Agent: MailChimp-PHP/2.0.6
+Host: us7.api.mailchimp.com
+Accept: */*
+Content-Type: application/json
+Content-Length: 348
+
+* upload completely sent off: 348 out of 348 bytes
+< HTTP/1.1 500 Internal Server Error
+* Server nginx is not blacklisted
+< Server: nginx
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 145
+< X-MailChimp-API-Error-Code: 214
+< Date: Sun, 26 Jun 2016 23:10:51 GMT
+< Connection: close
+< Set-Cookie: _AVESTA_ENVIRONMENT=prod; path=/
+< 
+* Closing connection 0
+
+[26-Jun-2016 19:10:54 America/Santiago] Completed in 809.90ms
+[26-Jun-2016 19:10:54 America/Santiago] Got response: {"status":"error","code":214,"name":"List_AlreadySubscribed","error":"hellovaisman+pruebamailchimp@gmail.com is already subscribed to the list."}
+[26-Jun-2016 19:21:48 America/Santiago] Call to https://us7.api.mailchimp.com/2.0/lists/subscribe.json: {"id":"1a9463286c","email":{"email":"hellovaisman@gmail.com"},"merge_vars":{"EMAIL":"hellovaisman@gmail.com","FNAME":"Jose","LNAME":"Vaisman Romero","DESFC":"0","ACTIVO":"SI"},"email_type":"html","double_optin":true,"update_existing":false,"replace_interests":true,"send_welcome":false,"apikey":"385ff1a9a0b2cf9d67bd02531f686d44-us7"}
+[26-Jun-2016 19:21:49 America/Santiago] * Hostname was NOT found in DNS cache
+*   Trying 96.17.29.26...
+* Connected to us7.api.mailchimp.com (96.17.29.26) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLSv1.0 / AES128-SHA
+* Server certificate:
+* 	 subject: C=US; ST=Georgia; L=Atlanta; O=The Rocket Science Group, LLC; OU=IT; CN=*.api.mailchimp.com
+* 	 start date: 2016-05-03 00:00:00 GMT
+* 	 expire date: 2017-05-03 23:59:59 GMT
+* 	 subjectAltName: us7.api.mailchimp.com matched
+* 	 issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust SSL CA - G3
+* 	 SSL certificate verify ok.
+> POST /2.0/lists/subscribe.json HTTP/1.1
+User-Agent: MailChimp-PHP/2.0.6
+Host: us7.api.mailchimp.com
+Accept: */*
+Content-Type: application/json
+Content-Length: 334
+
+* upload completely sent off: 334 out of 334 bytes
+< HTTP/1.1 500 Internal Server Error
+* Server nginx is not blacklisted
+< Server: nginx
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 129
+< X-MailChimp-API-Error-Code: 214
+< Date: Sun, 26 Jun 2016 23:21:46 GMT
+< Connection: close
+< Set-Cookie: _AVESTA_ENVIRONMENT=prod; path=/
+< 
+* Closing connection 0
+
+[26-Jun-2016 19:21:49 America/Santiago] Completed in 1,124.99ms
+[26-Jun-2016 19:21:49 America/Santiago] Got response: {"status":"error","code":214,"name":"List_AlreadySubscribed","error":"hellovaisman@gmail.com is already subscribed to the list."}
+[26-Jun-2016 19:22:35 America/Santiago] Call to https://us7.api.mailchimp.com/2.0/lists/subscribe.json: {"id":"1a9463286c","email":{"email":"hellovaisman@gmail.com"},"merge_vars":{"EMAIL":"hellovaisman@gmail.com","FNAME":"Jose","LNAME":"Vaisman Romero","DESFC":"0","ACTIVO":"SI"},"email_type":"html","double_optin":true,"update_existing":false,"replace_interests":true,"send_welcome":false,"apikey":"385ff1a9a0b2cf9d67bd02531f686d44-us7"}
+[26-Jun-2016 19:22:36 America/Santiago] * Hostname was NOT found in DNS cache
+*   Trying 96.17.29.26...
+* Connected to us7.api.mailchimp.com (96.17.29.26) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLSv1.0 / AES128-SHA
+* Server certificate:
+* 	 subject: C=US; ST=Georgia; L=Atlanta; O=The Rocket Science Group, LLC; OU=IT; CN=*.api.mailchimp.com
+* 	 start date: 2016-05-03 00:00:00 GMT
+* 	 expire date: 2017-05-03 23:59:59 GMT
+* 	 subjectAltName: us7.api.mailchimp.com matched
+* 	 issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust SSL CA - G3
+* 	 SSL certificate verify ok.
+> POST /2.0/lists/subscribe.json HTTP/1.1
+User-Agent: MailChimp-PHP/2.0.6
+Host: us7.api.mailchimp.com
+Accept: */*
+Content-Type: application/json
+Content-Length: 334
+
+* upload completely sent off: 334 out of 334 bytes
+< HTTP/1.1 500 Internal Server Error
+* Server nginx is not blacklisted
+< Server: nginx
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 129
+< X-MailChimp-API-Error-Code: 214
+< Date: Sun, 26 Jun 2016 23:22:33 GMT
+< Connection: close
+< Set-Cookie: _AVESTA_ENVIRONMENT=prod; path=/
+< 
+* Closing connection 0
+
+[26-Jun-2016 19:22:36 America/Santiago] Completed in 746.43ms
+[26-Jun-2016 19:22:36 America/Santiago] Got response: {"status":"error","code":214,"name":"List_AlreadySubscribed","error":"hellovaisman@gmail.com is already subscribed to the list."}
+[26-Jun-2016 19:26:01 America/Santiago] Call to https://us7.api.mailchimp.com/2.0/lists/subscribe.json: {"id":"1a9463286c","email":{"email":"hellovaisman+prueba8@gmail.com"},"merge_vars":{"EMAIL":"hellovaisman+prueba8@gmail.com","FNAME":"","LNAME":"","DESFC":"0","ACTIVO":"SI"},"email_type":"html","double_optin":true,"update_existing":false,"replace_interests":true,"send_welcome":false,"apikey":"385ff1a9a0b2cf9d67bd02531f686d44-us7"}
+[26-Jun-2016 19:26:03 America/Santiago] * Hostname was NOT found in DNS cache
+*   Trying 96.17.29.26...
+* Connected to us7.api.mailchimp.com (96.17.29.26) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLSv1.0 / AES128-SHA
+* Server certificate:
+* 	 subject: C=US; ST=Georgia; L=Atlanta; O=The Rocket Science Group, LLC; OU=IT; CN=*.api.mailchimp.com
+* 	 start date: 2016-05-03 00:00:00 GMT
+* 	 expire date: 2017-05-03 23:59:59 GMT
+* 	 subjectAltName: us7.api.mailchimp.com matched
+* 	 issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust SSL CA - G3
+* 	 SSL certificate verify ok.
+> POST /2.0/lists/subscribe.json HTTP/1.1
+User-Agent: MailChimp-PHP/2.0.6
+Host: us7.api.mailchimp.com
+Accept: */*
+Content-Type: application/json
+Content-Length: 332
+
+* upload completely sent off: 332 out of 332 bytes
+< HTTP/1.1 200 OK
+* Server nginx is not blacklisted
+< Server: nginx
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 81
+< Vary: Accept-Encoding
+< Date: Sun, 26 Jun 2016 23:26:00 GMT
+< Connection: keep-alive
+< Set-Cookie: _AVESTA_ENVIRONMENT=prod; path=/
+< 
+* Connection #0 to host us7.api.mailchimp.com left intact
+
+[26-Jun-2016 19:26:03 America/Santiago] Completed in 1,327.64ms
+[26-Jun-2016 19:26:03 America/Santiago] Got response: {"email":"hellovaisman+prueba8@gmail.com","euid":"5cf6bad83a","leid":"150919425"}
+[02-Jul-2016 11:02:21 America/Santiago] Call to https://us7.api.mailchimp.com/2.0/lists/subscribe.json: {"id":"1a9463286c","email":{"email":"hellovaisman+pruebamailchimp2@gmail.com"},"merge_vars":{"EMAIL":"hellovaisman+pruebamailchimp2@gmail.com","FNAME":"","LNAME":"","DESFC":"0","ACTIVO":"SI"},"email_type":"html","double_optin":true,"update_existing":false,"replace_interests":true,"send_welcome":false,"apikey":"385ff1a9a0b2cf9d67bd02531f686d44-us7"}
+[02-Jul-2016 11:02:21 America/Santiago] * Hostname was NOT found in DNS cache
+*   Trying 96.17.29.26...
+* Connected to us7.api.mailchimp.com (96.17.29.26) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLSv1.0 / AES128-SHA
+* Server certificate:
+* 	 subject: C=US; ST=Georgia; L=Atlanta; O=The Rocket Science Group, LLC; OU=IT; CN=*.api.mailchimp.com
+* 	 start date: 2016-05-03 00:00:00 GMT
+* 	 expire date: 2017-05-03 23:59:59 GMT
+* 	 subjectAltName: us7.api.mailchimp.com matched
+* 	 issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust SSL CA - G3
+* 	 SSL certificate verify ok.
+> POST /2.0/lists/subscribe.json HTTP/1.1
+User-Agent: MailChimp-PHP/2.0.6
+Host: us7.api.mailchimp.com
+Accept: */*
+Content-Type: application/json
+Content-Length: 350
+
+* upload completely sent off: 350 out of 350 bytes
+< HTTP/1.1 500 Internal Server Error
+* Server nginx is not blacklisted
+< Server: nginx
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 146
+< X-MailChimp-API-Error-Code: 214
+< Date: Sat, 02 Jul 2016 15:02:20 GMT
+< Connection: close
+< Set-Cookie: _AVESTA_ENVIRONMENT=prod; path=/
+< 
+* Closing connection 0
+
+[02-Jul-2016 11:02:21 America/Santiago] Completed in 782.49ms
+[02-Jul-2016 11:02:21 America/Santiago] Got response: {"status":"error","code":214,"name":"List_AlreadySubscribed","error":"hellovaisman+pruebamailchimp2@gmail.com is already subscribed to the list."}
+[02-Jul-2016 12:04:48 America/Santiago] Call to https://us7.api.mailchimp.com/2.0/lists/subscribe.json: {"id":"1a9463286c","email":{"email":"hellovaisman+pruebaMC@gmail.com"},"merge_vars":{"EMAIL":"hellovaisman+pruebaMC@gmail.com","FNAME":"","LNAME":"","DESFC":"0","ACTIVO":"SI"},"email_type":"html","double_optin":true,"update_existing":false,"replace_interests":true,"send_welcome":false,"apikey":"385ff1a9a0b2cf9d67bd02531f686d44-us7"}
+[02-Jul-2016 12:04:48 America/Santiago] * Hostname was NOT found in DNS cache
+*   Trying 96.17.29.26...
+* Connected to us7.api.mailchimp.com (96.17.29.26) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLSv1.0 / AES128-SHA
+* Server certificate:
+* 	 subject: C=US; ST=Georgia; L=Atlanta; O=The Rocket Science Group, LLC; OU=IT; CN=*.api.mailchimp.com
+* 	 start date: 2016-05-03 00:00:00 GMT
+* 	 expire date: 2017-05-03 23:59:59 GMT
+* 	 subjectAltName: us7.api.mailchimp.com matched
+* 	 issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust SSL CA - G3
+* 	 SSL certificate verify ok.
+> POST /2.0/lists/subscribe.json HTTP/1.1
+User-Agent: MailChimp-PHP/2.0.6
+Host: us7.api.mailchimp.com
+Accept: */*
+Content-Type: application/json
+Content-Length: 334
+
+* upload completely sent off: 334 out of 334 bytes
+< HTTP/1.1 500 Internal Server Error
+* Server nginx is not blacklisted
+< Server: nginx
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 243
+< X-MailChimp-API-Error-Code: 212
+< Date: Sat, 02 Jul 2016 16:04:47 GMT
+< Connection: close
+< Set-Cookie: _AVESTA_ENVIRONMENT=prod; path=/
+< 
+* Closing connection 0
+
+[02-Jul-2016 12:04:48 America/Santiago] Completed in 420.46ms
+[02-Jul-2016 12:04:48 America/Santiago] Got response: {"status":"error","code":212,"name":"List_InvalidUnsubMember","error":"hellovaisman+pruebaMC@gmail.com has unsubscribed, and cannot be resubscribed by you. To prevent false spam complaints, they'll need to resubscribe of their own free will."}
+[02-Jul-2016 16:52:11 America/Santiago] Call to https://us7.api.mailchimp.com/2.0/lists/subscribe.json: {"id":"1a9463286c","email":{"email":"hellovaisman+p02@gmail.com"},"merge_vars":{"EMAIL":"hellovaisman+p02@gmail.com","FNAME":"","LNAME":"","DESFC":"0","ACTIVO":"SI"},"email_type":"html","double_optin":true,"update_existing":false,"replace_interests":true,"send_welcome":false,"apikey":"385ff1a9a0b2cf9d67bd02531f686d44-us7"}
+[02-Jul-2016 16:52:11 America/Santiago] * Hostname was NOT found in DNS cache
+*   Trying 96.17.29.26...
+* Connected to us7.api.mailchimp.com (96.17.29.26) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLSv1.0 / AES128-SHA
+* Server certificate:
+* 	 subject: C=US; ST=Georgia; L=Atlanta; O=The Rocket Science Group, LLC; OU=IT; CN=*.api.mailchimp.com
+* 	 start date: 2016-05-03 00:00:00 GMT
+* 	 expire date: 2017-05-03 23:59:59 GMT
+* 	 subjectAltName: us7.api.mailchimp.com matched
+* 	 issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust SSL CA - G3
+* 	 SSL certificate verify ok.
+> POST /2.0/lists/subscribe.json HTTP/1.1
+User-Agent: MailChimp-PHP/2.0.6
+Host: us7.api.mailchimp.com
+Accept: */*
+Content-Type: application/json
+Content-Length: 324
+
+* upload completely sent off: 324 out of 324 bytes
+< HTTP/1.1 200 OK
+* Server nginx is not blacklisted
+< Server: nginx
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 77
+< Vary: Accept-Encoding
+< Date: Sat, 02 Jul 2016 20:52:09 GMT
+< Connection: keep-alive
+< Set-Cookie: _AVESTA_ENVIRONMENT=prod; path=/
+< 
+* Connection #0 to host us7.api.mailchimp.com left intact
+
+[02-Jul-2016 16:52:11 America/Santiago] Completed in 604.87ms
+[02-Jul-2016 16:52:11 America/Santiago] Got response: {"email":"hellovaisman+p02@gmail.com","euid":"370e18d2b5","leid":"151107921"}
+[02-Jul-2016 17:28:47 America/Santiago] Call to https://us7.api.mailchimp.com/2.0/lists/subscribe.json: {"id":"1a9463286c","email":{"email":"aopazo@gmail.com"},"merge_vars":{"EMAIL":"aopazo@gmail.com","FNAME":"lskdf","LNAME":"lskdfj","DESFC":"0","ACTIVO":"SI"},"email_type":"html","double_optin":true,"update_existing":false,"replace_interests":true,"send_welcome":false,"apikey":"385ff1a9a0b2cf9d67bd02531f686d44-us7"}
+[02-Jul-2016 17:28:47 America/Santiago] * Hostname was NOT found in DNS cache
+*   Trying 96.17.29.26...
+* Connected to us7.api.mailchimp.com (96.17.29.26) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLSv1.0 / AES128-SHA
+* Server certificate:
+* 	 subject: C=US; ST=Georgia; L=Atlanta; O=The Rocket Science Group, LLC; OU=IT; CN=*.api.mailchimp.com
+* 	 start date: 2016-05-03 00:00:00 GMT
+* 	 expire date: 2017-05-03 23:59:59 GMT
+* 	 subjectAltName: us7.api.mailchimp.com matched
+* 	 issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust SSL CA - G3
+* 	 SSL certificate verify ok.
+> POST /2.0/lists/subscribe.json HTTP/1.1
+User-Agent: MailChimp-PHP/2.0.6
+Host: us7.api.mailchimp.com
+Accept: */*
+Content-Type: application/json
+Content-Length: 315
+
+* upload completely sent off: 315 out of 315 bytes
+< HTTP/1.1 500 Internal Server Error
+* Server nginx is not blacklisted
+< Server: nginx
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 123
+< X-MailChimp-API-Error-Code: 214
+< Date: Sat, 02 Jul 2016 21:28:45 GMT
+< Connection: close
+< Set-Cookie: _AVESTA_ENVIRONMENT=prod; path=/
+< 
+* Closing connection 0
+
+[02-Jul-2016 17:28:47 America/Santiago] Completed in 331.45ms
+[02-Jul-2016 17:28:47 America/Santiago] Got response: {"status":"error","code":214,"name":"List_AlreadySubscribed","error":"aopazo@gmail.com is already subscribed to the list."}
+[02-Jul-2016 17:30:10 America/Santiago] Call to https://us7.api.mailchimp.com/2.0/lists/subscribe.json: {"id":"1a9463286c","email":{"email":"aopazo@gmail.com"},"merge_vars":{"EMAIL":"aopazo@gmail.com","FNAME":"lskdf","LNAME":"lskdfj","DESFC":"0","ACTIVO":"SI"},"email_type":"html","double_optin":true,"update_existing":false,"replace_interests":true,"send_welcome":false,"apikey":"385ff1a9a0b2cf9d67bd02531f686d44-us7"}
+[02-Jul-2016 17:30:10 America/Santiago] * Hostname was NOT found in DNS cache
+*   Trying 96.17.29.26...
+* Connected to us7.api.mailchimp.com (96.17.29.26) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLSv1.0 / AES128-SHA
+* Server certificate:
+* 	 subject: C=US; ST=Georgia; L=Atlanta; O=The Rocket Science Group, LLC; OU=IT; CN=*.api.mailchimp.com
+* 	 start date: 2016-05-03 00:00:00 GMT
+* 	 expire date: 2017-05-03 23:59:59 GMT
+* 	 subjectAltName: us7.api.mailchimp.com matched
+* 	 issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust SSL CA - G3
+* 	 SSL certificate verify ok.
+> POST /2.0/lists/subscribe.json HTTP/1.1
+User-Agent: MailChimp-PHP/2.0.6
+Host: us7.api.mailchimp.com
+Accept: */*
+Content-Type: application/json
+Content-Length: 315
+
+* upload completely sent off: 315 out of 315 bytes
+< HTTP/1.1 500 Internal Server Error
+* Server nginx is not blacklisted
+< Server: nginx
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 123
+< X-MailChimp-API-Error-Code: 214
+< Date: Sat, 02 Jul 2016 21:30:08 GMT
+< Connection: close
+< Set-Cookie: _AVESTA_ENVIRONMENT=prod; path=/
+< 
+* Closing connection 0
+
+[02-Jul-2016 17:30:10 America/Santiago] Completed in 786.68ms
+[02-Jul-2016 17:30:10 America/Santiago] Got response: {"status":"error","code":214,"name":"List_AlreadySubscribed","error":"aopazo@gmail.com is already subscribed to the list."}
+[02-Jul-2016 17:32:29 America/Santiago] Call to https://us7.api.mailchimp.com/2.0/lists/subscribe.json: {"id":"1a9463286c","email":{"email":"aopazo@gmail.com"},"merge_vars":{"EMAIL":"aopazo@gmail.com","FNAME":"lskdf","LNAME":"lskdfj","DESFC":"0","ACTIVO":"SI"},"email_type":"html","double_optin":true,"update_existing":false,"replace_interests":true,"send_welcome":false,"apikey":"385ff1a9a0b2cf9d67bd02531f686d44-us7"}
+[02-Jul-2016 17:32:29 America/Santiago] * Hostname was NOT found in DNS cache
+*   Trying 96.17.29.26...
+* Connected to us7.api.mailchimp.com (96.17.29.26) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLSv1.0 / AES128-SHA
+* Server certificate:
+* 	 subject: C=US; ST=Georgia; L=Atlanta; O=The Rocket Science Group, LLC; OU=IT; CN=*.api.mailchimp.com
+* 	 start date: 2016-05-03 00:00:00 GMT
+* 	 expire date: 2017-05-03 23:59:59 GMT
+* 	 subjectAltName: us7.api.mailchimp.com matched
+* 	 issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust SSL CA - G3
+* 	 SSL certificate verify ok.
+> POST /2.0/lists/subscribe.json HTTP/1.1
+User-Agent: MailChimp-PHP/2.0.6
+Host: us7.api.mailchimp.com
+Accept: */*
+Content-Type: application/json
+Content-Length: 315
+
+* upload completely sent off: 315 out of 315 bytes
+< HTTP/1.1 500 Internal Server Error
+* Server nginx is not blacklisted
+< Server: nginx
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 123
+< X-MailChimp-API-Error-Code: 214
+< Date: Sat, 02 Jul 2016 21:32:27 GMT
+< Connection: close
+< Set-Cookie: _AVESTA_ENVIRONMENT=prod; path=/
+< 
+* Closing connection 0
+
+[02-Jul-2016 17:32:29 America/Santiago] Completed in 315.36ms
+[02-Jul-2016 17:32:29 America/Santiago] Got response: {"status":"error","code":214,"name":"List_AlreadySubscribed","error":"aopazo@gmail.com is already subscribed to the list."}
+[02-Jul-2016 17:32:47 America/Santiago] Call to https://us7.api.mailchimp.com/2.0/lists/subscribe.json: {"id":"1a9463286c","email":{"email":"aopazo@gmail.com"},"merge_vars":{"EMAIL":"aopazo@gmail.com","FNAME":"lskdf","LNAME":"lskdfj","DESFC":"0","ACTIVO":"SI"},"email_type":"html","double_optin":true,"update_existing":false,"replace_interests":true,"send_welcome":false,"apikey":"385ff1a9a0b2cf9d67bd02531f686d44-us7"}
+[02-Jul-2016 17:32:47 America/Santiago] * Hostname was NOT found in DNS cache
+*   Trying 96.17.29.26...
+* Connected to us7.api.mailchimp.com (96.17.29.26) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLSv1.0 / AES128-SHA
+* Server certificate:
+* 	 subject: C=US; ST=Georgia; L=Atlanta; O=The Rocket Science Group, LLC; OU=IT; CN=*.api.mailchimp.com
+* 	 start date: 2016-05-03 00:00:00 GMT
+* 	 expire date: 2017-05-03 23:59:59 GMT
+* 	 subjectAltName: us7.api.mailchimp.com matched
+* 	 issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust SSL CA - G3
+* 	 SSL certificate verify ok.
+> POST /2.0/lists/subscribe.json HTTP/1.1
+User-Agent: MailChimp-PHP/2.0.6
+Host: us7.api.mailchimp.com
+Accept: */*
+Content-Type: application/json
+Content-Length: 315
+
+* upload completely sent off: 315 out of 315 bytes
+< HTTP/1.1 500 Internal Server Error
+* Server nginx is not blacklisted
+< Server: nginx
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 123
+< X-MailChimp-API-Error-Code: 214
+< Date: Sat, 02 Jul 2016 21:32:45 GMT
+< Connection: close
+< Set-Cookie: _AVESTA_ENVIRONMENT=prod; path=/
+< 
+* Closing connection 0
+
+[02-Jul-2016 17:32:47 America/Santiago] Completed in 302.60ms
+[02-Jul-2016 17:32:47 America/Santiago] Got response: {"status":"error","code":214,"name":"List_AlreadySubscribed","error":"aopazo@gmail.com is already subscribed to the list."}
+[02-Jul-2016 17:34:52 America/Santiago] Call to https://us7.api.mailchimp.com/2.0/lists/subscribe.json: {"id":"1a9463286c","email":{"email":"aopazo@gmail.com"},"merge_vars":{"EMAIL":"aopazo@gmail.com","FNAME":"lskdf","LNAME":"lskdfj","DESFC":"0","ACTIVO":"SI"},"email_type":"html","double_optin":true,"update_existing":false,"replace_interests":true,"send_welcome":false,"apikey":"385ff1a9a0b2cf9d67bd02531f686d44-us7"}
+[02-Jul-2016 17:34:53 America/Santiago] * Hostname was NOT found in DNS cache
+*   Trying 96.17.29.26...
+* Connected to us7.api.mailchimp.com (96.17.29.26) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLSv1.0 / AES128-SHA
+* Server certificate:
+* 	 subject: C=US; ST=Georgia; L=Atlanta; O=The Rocket Science Group, LLC; OU=IT; CN=*.api.mailchimp.com
+* 	 start date: 2016-05-03 00:00:00 GMT
+* 	 expire date: 2017-05-03 23:59:59 GMT
+* 	 subjectAltName: us7.api.mailchimp.com matched
+* 	 issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust SSL CA - G3
+* 	 SSL certificate verify ok.
+> POST /2.0/lists/subscribe.json HTTP/1.1
+User-Agent: MailChimp-PHP/2.0.6
+Host: us7.api.mailchimp.com
+Accept: */*
+Content-Type: application/json
+Content-Length: 315
+
+* upload completely sent off: 315 out of 315 bytes
+< HTTP/1.1 500 Internal Server Error
+* Server nginx is not blacklisted
+< Server: nginx
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 123
+< X-MailChimp-API-Error-Code: 214
+< Date: Sat, 02 Jul 2016 21:34:50 GMT
+< Connection: close
+< Set-Cookie: _AVESTA_ENVIRONMENT=prod; path=/
+< 
+* Closing connection 0
+
+[02-Jul-2016 17:34:53 America/Santiago] Completed in 344.05ms
+[02-Jul-2016 17:34:53 America/Santiago] Got response: {"status":"error","code":214,"name":"List_AlreadySubscribed","error":"aopazo@gmail.com is already subscribed to the list."}
+[02-Jul-2016 17:36:55 America/Santiago] Call to https://us7.api.mailchimp.com/2.0/lists/subscribe.json: {"id":"1a9463286c","email":{"email":"aopazo@gmail.com"},"merge_vars":{"EMAIL":"aopazo@gmail.com","FNAME":"lskdf","LNAME":"lskdfj","DESFC":"0","ACTIVO":"SI"},"email_type":"html","double_optin":true,"update_existing":false,"replace_interests":true,"send_welcome":false,"apikey":"385ff1a9a0b2cf9d67bd02531f686d44-us7"}
+[02-Jul-2016 17:36:55 America/Santiago] * Hostname was NOT found in DNS cache
+*   Trying 96.17.29.26...
+* Connected to us7.api.mailchimp.com (96.17.29.26) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLSv1.0 / AES128-SHA
+* Server certificate:
+* 	 subject: C=US; ST=Georgia; L=Atlanta; O=The Rocket Science Group, LLC; OU=IT; CN=*.api.mailchimp.com
+* 	 start date: 2016-05-03 00:00:00 GMT
+* 	 expire date: 2017-05-03 23:59:59 GMT
+* 	 subjectAltName: us7.api.mailchimp.com matched
+* 	 issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust SSL CA - G3
+* 	 SSL certificate verify ok.
+> POST /2.0/lists/subscribe.json HTTP/1.1
+User-Agent: MailChimp-PHP/2.0.6
+Host: us7.api.mailchimp.com
+Accept: */*
+Content-Type: application/json
+Content-Length: 315
+
+* upload completely sent off: 315 out of 315 bytes
+< HTTP/1.1 500 Internal Server Error
+* Server nginx is not blacklisted
+< Server: nginx
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 123
+< X-MailChimp-API-Error-Code: 214
+< Date: Sat, 02 Jul 2016 21:36:53 GMT
+< Connection: close
+< Set-Cookie: _AVESTA_ENVIRONMENT=prod; path=/
+< 
+* Closing connection 0
+
+[02-Jul-2016 17:36:55 America/Santiago] Completed in 570.73ms
+[02-Jul-2016 17:36:55 America/Santiago] Got response: {"status":"error","code":214,"name":"List_AlreadySubscribed","error":"aopazo@gmail.com is already subscribed to the list."}
+[02-Jul-2016 17:37:18 America/Santiago] Call to https://us7.api.mailchimp.com/2.0/lists/subscribe.json: {"id":"1a9463286c","email":{"email":"aopazo@gmail.com"},"merge_vars":{"EMAIL":"aopazo@gmail.com","FNAME":"lskdf","LNAME":"lskdfj","DESFC":"0","ACTIVO":"SI"},"email_type":"html","double_optin":true,"update_existing":false,"replace_interests":true,"send_welcome":false,"apikey":"385ff1a9a0b2cf9d67bd02531f686d44-us7"}
+[02-Jul-2016 17:37:19 America/Santiago] * Hostname was NOT found in DNS cache
+*   Trying 96.17.29.26...
+* Connected to us7.api.mailchimp.com (96.17.29.26) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLSv1.0 / AES128-SHA
+* Server certificate:
+* 	 subject: C=US; ST=Georgia; L=Atlanta; O=The Rocket Science Group, LLC; OU=IT; CN=*.api.mailchimp.com
+* 	 start date: 2016-05-03 00:00:00 GMT
+* 	 expire date: 2017-05-03 23:59:59 GMT
+* 	 subjectAltName: us7.api.mailchimp.com matched
+* 	 issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust SSL CA - G3
+* 	 SSL certificate verify ok.
+> POST /2.0/lists/subscribe.json HTTP/1.1
+User-Agent: MailChimp-PHP/2.0.6
+Host: us7.api.mailchimp.com
+Accept: */*
+Content-Type: application/json
+Content-Length: 315
+
+* upload completely sent off: 315 out of 315 bytes
+< HTTP/1.1 500 Internal Server Error
+* Server nginx is not blacklisted
+< Server: nginx
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 123
+< X-MailChimp-API-Error-Code: 214
+< Date: Sat, 02 Jul 2016 21:37:16 GMT
+< Connection: close
+< Set-Cookie: _AVESTA_ENVIRONMENT=prod; path=/
+< 
+* Closing connection 0
+
+[02-Jul-2016 17:37:19 America/Santiago] Completed in 304.38ms
+[02-Jul-2016 17:37:19 America/Santiago] Got response: {"status":"error","code":214,"name":"List_AlreadySubscribed","error":"aopazo@gmail.com is already subscribed to the list."}
+[02-Jul-2016 17:37:20 America/Santiago] Call to https://us7.api.mailchimp.com/2.0/lists/subscribe.json: {"id":"1a9463286c","email":{"email":"aopazo@gmail.com"},"merge_vars":{"EMAIL":"aopazo@gmail.com","FNAME":"lskdf","LNAME":"lskdfj","DESFC":"0","ACTIVO":"SI"},"email_type":"html","double_optin":true,"update_existing":false,"replace_interests":true,"send_welcome":false,"apikey":"385ff1a9a0b2cf9d67bd02531f686d44-us7"}
+[02-Jul-2016 17:37:21 America/Santiago] * Hostname was NOT found in DNS cache
+*   Trying 96.17.29.26...
+* Connected to us7.api.mailchimp.com (96.17.29.26) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLSv1.0 / AES128-SHA
+* Server certificate:
+* 	 subject: C=US; ST=Georgia; L=Atlanta; O=The Rocket Science Group, LLC; OU=IT; CN=*.api.mailchimp.com
+* 	 start date: 2016-05-03 00:00:00 GMT
+* 	 expire date: 2017-05-03 23:59:59 GMT
+* 	 subjectAltName: us7.api.mailchimp.com matched
+* 	 issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust SSL CA - G3
+* 	 SSL certificate verify ok.
+> POST /2.0/lists/subscribe.json HTTP/1.1
+User-Agent: MailChimp-PHP/2.0.6
+Host: us7.api.mailchimp.com
+Accept: */*
+Content-Type: application/json
+Content-Length: 315
+
+* upload completely sent off: 315 out of 315 bytes
+< HTTP/1.1 500 Internal Server Error
+* Server nginx is not blacklisted
+< Server: nginx
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 123
+< X-MailChimp-API-Error-Code: 214
+< Date: Sat, 02 Jul 2016 21:37:18 GMT
+< Connection: close
+< Set-Cookie: _AVESTA_ENVIRONMENT=prod; path=/
+< 
+* Closing connection 0
+
+[02-Jul-2016 17:37:21 America/Santiago] Completed in 574.66ms
+[02-Jul-2016 17:37:21 America/Santiago] Got response: {"status":"error","code":214,"name":"List_AlreadySubscribed","error":"aopazo@gmail.com is already subscribed to the list."}
+[02-Jul-2016 17:37:24 America/Santiago] Call to https://us7.api.mailchimp.com/2.0/lists/subscribe.json: {"id":"1a9463286c","email":{"email":"aopazo@gmail.com"},"merge_vars":{"EMAIL":"aopazo@gmail.com","FNAME":"lskdf","LNAME":"lskdfj","DESFC":"0","ACTIVO":"SI"},"email_type":"html","double_optin":true,"update_existing":false,"replace_interests":true,"send_welcome":false,"apikey":"385ff1a9a0b2cf9d67bd02531f686d44-us7"}
+[02-Jul-2016 17:37:25 America/Santiago] * Hostname was NOT found in DNS cache
+*   Trying 96.17.29.26...
+* Connected to us7.api.mailchimp.com (96.17.29.26) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLSv1.0 / AES128-SHA
+* Server certificate:
+* 	 subject: C=US; ST=Georgia; L=Atlanta; O=The Rocket Science Group, LLC; OU=IT; CN=*.api.mailchimp.com
+* 	 start date: 2016-05-03 00:00:00 GMT
+* 	 expire date: 2017-05-03 23:59:59 GMT
+* 	 subjectAltName: us7.api.mailchimp.com matched
+* 	 issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust SSL CA - G3
+* 	 SSL certificate verify ok.
+> POST /2.0/lists/subscribe.json HTTP/1.1
+User-Agent: MailChimp-PHP/2.0.6
+Host: us7.api.mailchimp.com
+Accept: */*
+Content-Type: application/json
+Content-Length: 315
+
+* upload completely sent off: 315 out of 315 bytes
+< HTTP/1.1 500 Internal Server Error
+* Server nginx is not blacklisted
+< Server: nginx
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 123
+< X-MailChimp-API-Error-Code: 214
+< Date: Sat, 02 Jul 2016 21:37:23 GMT
+< Connection: close
+< Set-Cookie: _AVESTA_ENVIRONMENT=prod; path=/
+< 
+* Closing connection 0
+
+[02-Jul-2016 17:37:25 America/Santiago] Completed in 720.30ms
+[02-Jul-2016 17:37:25 America/Santiago] Got response: {"status":"error","code":214,"name":"List_AlreadySubscribed","error":"aopazo@gmail.com is already subscribed to the list."}
+[02-Jul-2016 17:39:10 America/Santiago] Call to https://us7.api.mailchimp.com/2.0/lists/subscribe.json: {"id":"1a9463286c","email":{"email":"aopazo@gmail.com"},"merge_vars":{"EMAIL":"aopazo@gmail.com","FNAME":"lskdf","LNAME":"lskdfj","DESFC":"0","ACTIVO":"SI"},"email_type":"html","double_optin":true,"update_existing":false,"replace_interests":true,"send_welcome":false,"apikey":"385ff1a9a0b2cf9d67bd02531f686d44-us7"}
+[02-Jul-2016 17:39:13 America/Santiago] * Hostname was NOT found in DNS cache
+*   Trying 96.17.29.26...
+* Connected to us7.api.mailchimp.com (96.17.29.26) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLSv1.0 / AES128-SHA
+* Server certificate:
+* 	 subject: C=US; ST=Georgia; L=Atlanta; O=The Rocket Science Group, LLC; OU=IT; CN=*.api.mailchimp.com
+* 	 start date: 2016-05-03 00:00:00 GMT
+* 	 expire date: 2017-05-03 23:59:59 GMT
+* 	 subjectAltName: us7.api.mailchimp.com matched
+* 	 issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust SSL CA - G3
+* 	 SSL certificate verify ok.
+> POST /2.0/lists/subscribe.json HTTP/1.1
+User-Agent: MailChimp-PHP/2.0.6
+Host: us7.api.mailchimp.com
+Accept: */*
+Content-Type: application/json
+Content-Length: 315
+
+* upload completely sent off: 315 out of 315 bytes
+< HTTP/1.1 500 Internal Server Error
+* Server nginx is not blacklisted
+< Server: nginx
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 123
+< X-MailChimp-API-Error-Code: 214
+< Date: Sat, 02 Jul 2016 21:39:11 GMT
+< Connection: close
+< Set-Cookie: _AVESTA_ENVIRONMENT=prod; path=/
+< 
+* Closing connection 0
+
+[02-Jul-2016 17:39:13 America/Santiago] Completed in 3,298.88ms
+[02-Jul-2016 17:39:13 America/Santiago] Got response: {"status":"error","code":214,"name":"List_AlreadySubscribed","error":"aopazo@gmail.com is already subscribed to the list."}
+[02-Jul-2016 17:39:13 America/Santiago] Call to https://us7.api.mailchimp.com/2.0/lists/subscribe.json: {"id":"1a9463286c","email":{"email":"aopazo@gmail.com"},"merge_vars":{"EMAIL":"aopazo@gmail.com","FNAME":"lskdf","LNAME":"lskdfj","DESFC":"0","ACTIVO":"SI"},"email_type":"html","double_optin":true,"update_existing":false,"replace_interests":true,"send_welcome":false,"apikey":"385ff1a9a0b2cf9d67bd02531f686d44-us7"}
+[02-Jul-2016 17:39:13 America/Santiago] * Hostname was NOT found in DNS cache
+*   Trying 96.17.29.26...
+* Connected to us7.api.mailchimp.com (96.17.29.26) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLSv1.0 / AES128-SHA
+* Server certificate:
+* 	 subject: C=US; ST=Georgia; L=Atlanta; O=The Rocket Science Group, LLC; OU=IT; CN=*.api.mailchimp.com
+* 	 start date: 2016-05-03 00:00:00 GMT
+* 	 expire date: 2017-05-03 23:59:59 GMT
+* 	 subjectAltName: us7.api.mailchimp.com matched
+* 	 issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust SSL CA - G3
+* 	 SSL certificate verify ok.
+> POST /2.0/lists/subscribe.json HTTP/1.1
+User-Agent: MailChimp-PHP/2.0.6
+Host: us7.api.mailchimp.com
+Accept: */*
+Content-Type: application/json
+Content-Length: 315
+
+* upload completely sent off: 315 out of 315 bytes
+< HTTP/1.1 500 Internal Server Error
+* Server nginx is not blacklisted
+< Server: nginx
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 123
+< X-MailChimp-API-Error-Code: 214
+< Date: Sat, 02 Jul 2016 21:39:11 GMT
+< Connection: close
+< Set-Cookie: _AVESTA_ENVIRONMENT=prod; path=/
+< 
+* Closing connection 0
+
+[02-Jul-2016 17:39:13 America/Santiago] Completed in 315.16ms
+[02-Jul-2016 17:39:13 America/Santiago] Got response: {"status":"error","code":214,"name":"List_AlreadySubscribed","error":"aopazo@gmail.com is already subscribed to the list."}
+[02-Jul-2016 17:40:59 America/Santiago] Call to https://us7.api.mailchimp.com/2.0/lists/subscribe.json: {"id":"1a9463286c","email":{"email":"aopazo@gmail.com"},"merge_vars":{"EMAIL":"aopazo@gmail.com","FNAME":"lskdf","LNAME":"lskdfj","DESFC":"0","ACTIVO":"SI"},"email_type":"html","double_optin":true,"update_existing":false,"replace_interests":true,"send_welcome":false,"apikey":"385ff1a9a0b2cf9d67bd02531f686d44-us7"}
+[02-Jul-2016 17:41:00 America/Santiago] * Hostname was NOT found in DNS cache
+*   Trying 96.17.29.26...
+* Connected to us7.api.mailchimp.com (96.17.29.26) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLSv1.0 / AES128-SHA
+* Server certificate:
+* 	 subject: C=US; ST=Georgia; L=Atlanta; O=The Rocket Science Group, LLC; OU=IT; CN=*.api.mailchimp.com
+* 	 start date: 2016-05-03 00:00:00 GMT
+* 	 expire date: 2017-05-03 23:59:59 GMT
+* 	 subjectAltName: us7.api.mailchimp.com matched
+* 	 issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust SSL CA - G3
+* 	 SSL certificate verify ok.
+> POST /2.0/lists/subscribe.json HTTP/1.1
+User-Agent: MailChimp-PHP/2.0.6
+Host: us7.api.mailchimp.com
+Accept: */*
+Content-Type: application/json
+Content-Length: 315
+
+* upload completely sent off: 315 out of 315 bytes
+< HTTP/1.1 500 Internal Server Error
+* Server nginx is not blacklisted
+< Server: nginx
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 123
+< X-MailChimp-API-Error-Code: 214
+< Date: Sat, 02 Jul 2016 21:40:57 GMT
+< Connection: close
+< Set-Cookie: _AVESTA_ENVIRONMENT=prod; path=/
+< 
+* Closing connection 0
+
+[02-Jul-2016 17:41:00 America/Santiago] Completed in 356.28ms
+[02-Jul-2016 17:41:00 America/Santiago] Got response: {"status":"error","code":214,"name":"List_AlreadySubscribed","error":"aopazo@gmail.com is already subscribed to the list."}
+[02-Jul-2016 17:42:19 America/Santiago] Call to https://us7.api.mailchimp.com/2.0/lists/subscribe.json: {"id":"1a9463286c","email":{"email":"aopazo@gmail.com"},"merge_vars":{"EMAIL":"aopazo@gmail.com","FNAME":"lskdf","LNAME":"lskdfj","DESFC":"0","ACTIVO":"SI"},"email_type":"html","double_optin":true,"update_existing":false,"replace_interests":true,"send_welcome":false,"apikey":"385ff1a9a0b2cf9d67bd02531f686d44-us7"}
+[02-Jul-2016 17:42:20 America/Santiago] * Hostname was NOT found in DNS cache
+*   Trying 96.17.29.26...
+* Connected to us7.api.mailchimp.com (96.17.29.26) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLSv1.0 / AES128-SHA
+* Server certificate:
+* 	 subject: C=US; ST=Georgia; L=Atlanta; O=The Rocket Science Group, LLC; OU=IT; CN=*.api.mailchimp.com
+* 	 start date: 2016-05-03 00:00:00 GMT
+* 	 expire date: 2017-05-03 23:59:59 GMT
+* 	 subjectAltName: us7.api.mailchimp.com matched
+* 	 issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust SSL CA - G3
+* 	 SSL certificate verify ok.
+> POST /2.0/lists/subscribe.json HTTP/1.1
+User-Agent: MailChimp-PHP/2.0.6
+Host: us7.api.mailchimp.com
+Accept: */*
+Content-Type: application/json
+Content-Length: 315
+
+* upload completely sent off: 315 out of 315 bytes
+< HTTP/1.1 500 Internal Server Error
+* Server nginx is not blacklisted
+< Server: nginx
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 123
+< X-MailChimp-API-Error-Code: 214
+< Date: Sat, 02 Jul 2016 21:42:17 GMT
+< Connection: close
+< Set-Cookie: _AVESTA_ENVIRONMENT=prod; path=/
+< 
+* Closing connection 0
+
+[02-Jul-2016 17:42:20 America/Santiago] Completed in 1,085.73ms
+[02-Jul-2016 17:42:20 America/Santiago] Got response: {"status":"error","code":214,"name":"List_AlreadySubscribed","error":"aopazo@gmail.com is already subscribed to the list."}
+[02-Jul-2016 17:45:35 America/Santiago] Call to https://us7.api.mailchimp.com/2.0/lists/subscribe.json: {"id":"1a9463286c","email":{"email":"aopazo@gmail.com"},"merge_vars":{"EMAIL":"aopazo@gmail.com","FNAME":"lskdf","LNAME":"lskdfj","DESFC":"0","ACTIVO":"SI"},"email_type":"html","double_optin":true,"update_existing":false,"replace_interests":true,"send_welcome":false,"apikey":"385ff1a9a0b2cf9d67bd02531f686d44-us7"}
+[02-Jul-2016 17:45:35 America/Santiago] * Hostname was NOT found in DNS cache
+*   Trying 96.17.29.26...
+* Connected to us7.api.mailchimp.com (96.17.29.26) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLSv1.0 / AES128-SHA
+* Server certificate:
+* 	 subject: C=US; ST=Georgia; L=Atlanta; O=The Rocket Science Group, LLC; OU=IT; CN=*.api.mailchimp.com
+* 	 start date: 2016-05-03 00:00:00 GMT
+* 	 expire date: 2017-05-03 23:59:59 GMT
+* 	 subjectAltName: us7.api.mailchimp.com matched
+* 	 issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust SSL CA - G3
+* 	 SSL certificate verify ok.
+> POST /2.0/lists/subscribe.json HTTP/1.1
+User-Agent: MailChimp-PHP/2.0.6
+Host: us7.api.mailchimp.com
+Accept: */*
+Content-Type: application/json
+Content-Length: 315
+
+* upload completely sent off: 315 out of 315 bytes
+< HTTP/1.1 500 Internal Server Error
+* Server nginx is not blacklisted
+< Server: nginx
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 123
+< X-MailChimp-API-Error-Code: 214
+< Date: Sat, 02 Jul 2016 21:45:33 GMT
+< Connection: close
+< Set-Cookie: _AVESTA_ENVIRONMENT=prod; path=/
+< 
+* Closing connection 0
+
+[02-Jul-2016 17:45:35 America/Santiago] Completed in 321.13ms
+[02-Jul-2016 17:45:35 America/Santiago] Got response: {"status":"error","code":214,"name":"List_AlreadySubscribed","error":"aopazo@gmail.com is already subscribed to the list."}
+[02-Jul-2016 17:49:57 America/Santiago] Call to https://us7.api.mailchimp.com/2.0/lists/subscribe.json: {"id":"1a9463286c","email":{"email":"aopazo@gmail.com"},"merge_vars":{"EMAIL":"aopazo@gmail.com","FNAME":"lskdf","LNAME":"lskdfj","DESFC":"0","ACTIVO":"SI"},"email_type":"html","double_optin":true,"update_existing":false,"replace_interests":true,"send_welcome":false,"apikey":"385ff1a9a0b2cf9d67bd02531f686d44-us7"}
+[02-Jul-2016 17:49:58 America/Santiago] * Hostname was NOT found in DNS cache
+*   Trying 96.17.29.26...
+* Connected to us7.api.mailchimp.com (96.17.29.26) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLSv1.0 / AES128-SHA
+* Server certificate:
+* 	 subject: C=US; ST=Georgia; L=Atlanta; O=The Rocket Science Group, LLC; OU=IT; CN=*.api.mailchimp.com
+* 	 start date: 2016-05-03 00:00:00 GMT
+* 	 expire date: 2017-05-03 23:59:59 GMT
+* 	 subjectAltName: us7.api.mailchimp.com matched
+* 	 issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust SSL CA - G3
+* 	 SSL certificate verify ok.
+> POST /2.0/lists/subscribe.json HTTP/1.1
+User-Agent: MailChimp-PHP/2.0.6
+Host: us7.api.mailchimp.com
+Accept: */*
+Content-Type: application/json
+Content-Length: 315
+
+* upload completely sent off: 315 out of 315 bytes
+< HTTP/1.1 500 Internal Server Error
+* Server nginx is not blacklisted
+< Server: nginx
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 123
+< X-MailChimp-API-Error-Code: 214
+< Date: Sat, 02 Jul 2016 21:49:55 GMT
+< Connection: close
+< Set-Cookie: _AVESTA_ENVIRONMENT=prod; path=/
+< 
+* Closing connection 0
+
+[02-Jul-2016 17:49:58 America/Santiago] Completed in 323.03ms
+[02-Jul-2016 17:49:58 America/Santiago] Got response: {"status":"error","code":214,"name":"List_AlreadySubscribed","error":"aopazo@gmail.com is already subscribed to the list."}
+[02-Jul-2016 18:08:00 America/Santiago] Call to https://us7.api.mailchimp.com/2.0/lists/subscribe.json: {"id":"1a9463286c","email":{"email":"aopazo@gmail.com"},"merge_vars":{"EMAIL":"aopazo@gmail.com","FNAME":"lskdf","LNAME":"lskdfj","DESFC":"0","ACTIVO":"SI"},"email_type":"html","double_optin":true,"update_existing":false,"replace_interests":true,"send_welcome":false,"apikey":"385ff1a9a0b2cf9d67bd02531f686d44-us7"}
+[02-Jul-2016 18:08:01 America/Santiago] * Hostname was NOT found in DNS cache
+*   Trying 96.17.29.26...
+* Connected to us7.api.mailchimp.com (96.17.29.26) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLSv1.0 / AES128-SHA
+* Server certificate:
+* 	 subject: C=US; ST=Georgia; L=Atlanta; O=The Rocket Science Group, LLC; OU=IT; CN=*.api.mailchimp.com
+* 	 start date: 2016-05-03 00:00:00 GMT
+* 	 expire date: 2017-05-03 23:59:59 GMT
+* 	 subjectAltName: us7.api.mailchimp.com matched
+* 	 issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust SSL CA - G3
+* 	 SSL certificate verify ok.
+> POST /2.0/lists/subscribe.json HTTP/1.1
+User-Agent: MailChimp-PHP/2.0.6
+Host: us7.api.mailchimp.com
+Accept: */*
+Content-Type: application/json
+Content-Length: 315
+
+* upload completely sent off: 315 out of 315 bytes
+< HTTP/1.1 500 Internal Server Error
+* Server nginx is not blacklisted
+< Server: nginx
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 123
+< X-MailChimp-API-Error-Code: 214
+< Date: Sat, 02 Jul 2016 22:07:58 GMT
+< Connection: close
+< Set-Cookie: _AVESTA_ENVIRONMENT=prod; path=/
+< 
+* Closing connection 0
+
+[02-Jul-2016 18:08:01 America/Santiago] Completed in 764.30ms
+[02-Jul-2016 18:08:01 America/Santiago] Got response: {"status":"error","code":214,"name":"List_AlreadySubscribed","error":"aopazo@gmail.com is already subscribed to the list."}
+[02-Jul-2016 18:10:56 America/Santiago] Call to https://us7.api.mailchimp.com/2.0/lists/subscribe.json: {"id":"1a9463286c","email":{"email":"aopazo@gmail.com"},"merge_vars":{"EMAIL":"aopazo@gmail.com","FNAME":"lskdf","LNAME":"lskdfj","DESFC":"0","ACTIVO":"SI"},"email_type":"html","double_optin":true,"update_existing":false,"replace_interests":true,"send_welcome":false,"apikey":"385ff1a9a0b2cf9d67bd02531f686d44-us7"}
+[02-Jul-2016 18:10:57 America/Santiago] * Hostname was NOT found in DNS cache
+*   Trying 96.17.29.26...
+* Connected to us7.api.mailchimp.com (96.17.29.26) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLSv1.0 / AES128-SHA
+* Server certificate:
+* 	 subject: C=US; ST=Georgia; L=Atlanta; O=The Rocket Science Group, LLC; OU=IT; CN=*.api.mailchimp.com
+* 	 start date: 2016-05-03 00:00:00 GMT
+* 	 expire date: 2017-05-03 23:59:59 GMT
+* 	 subjectAltName: us7.api.mailchimp.com matched
+* 	 issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust SSL CA - G3
+* 	 SSL certificate verify ok.
+> POST /2.0/lists/subscribe.json HTTP/1.1
+User-Agent: MailChimp-PHP/2.0.6
+Host: us7.api.mailchimp.com
+Accept: */*
+Content-Type: application/json
+Content-Length: 315
+
+* upload completely sent off: 315 out of 315 bytes
+< HTTP/1.1 500 Internal Server Error
+* Server nginx is not blacklisted
+< Server: nginx
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 123
+< X-MailChimp-API-Error-Code: 214
+< Date: Sat, 02 Jul 2016 22:10:54 GMT
+< Connection: close
+< Set-Cookie: _AVESTA_ENVIRONMENT=prod; path=/
+< 
+* Closing connection 0
+
+[02-Jul-2016 18:10:57 America/Santiago] Completed in 638.25ms
+[02-Jul-2016 18:10:57 America/Santiago] Got response: {"status":"error","code":214,"name":"List_AlreadySubscribed","error":"aopazo@gmail.com is already subscribed to the list."}
+[02-Jul-2016 18:11:09 America/Santiago] Call to https://us7.api.mailchimp.com/2.0/lists/subscribe.json: {"id":"1a9463286c","email":{"email":"aopazo@gmail.com"},"merge_vars":{"EMAIL":"aopazo@gmail.com","FNAME":"lskdf","LNAME":"lskdfj","DESFC":"0","ACTIVO":"SI"},"email_type":"html","double_optin":true,"update_existing":false,"replace_interests":true,"send_welcome":false,"apikey":"385ff1a9a0b2cf9d67bd02531f686d44-us7"}
+[02-Jul-2016 18:11:10 America/Santiago] * Hostname was NOT found in DNS cache
+*   Trying 96.17.29.26...
+* Connected to us7.api.mailchimp.com (96.17.29.26) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLSv1.0 / AES128-SHA
+* Server certificate:
+* 	 subject: C=US; ST=Georgia; L=Atlanta; O=The Rocket Science Group, LLC; OU=IT; CN=*.api.mailchimp.com
+* 	 start date: 2016-05-03 00:00:00 GMT
+* 	 expire date: 2017-05-03 23:59:59 GMT
+* 	 subjectAltName: us7.api.mailchimp.com matched
+* 	 issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust SSL CA - G3
+* 	 SSL certificate verify ok.
+> POST /2.0/lists/subscribe.json HTTP/1.1
+User-Agent: MailChimp-PHP/2.0.6
+Host: us7.api.mailchimp.com
+Accept: */*
+Content-Type: application/json
+Content-Length: 315
+
+* upload completely sent off: 315 out of 315 bytes
+< HTTP/1.1 500 Internal Server Error
+* Server nginx is not blacklisted
+< Server: nginx
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 123
+< X-MailChimp-API-Error-Code: 214
+< Date: Sat, 02 Jul 2016 22:11:07 GMT
+< Connection: close
+< Set-Cookie: _AVESTA_ENVIRONMENT=prod; path=/
+< 
+* Closing connection 0
+
+[02-Jul-2016 18:11:10 America/Santiago] Completed in 335.63ms
+[02-Jul-2016 18:11:10 America/Santiago] Got response: {"status":"error","code":214,"name":"List_AlreadySubscribed","error":"aopazo@gmail.com is already subscribed to the list."}
+[02-Jul-2016 18:11:21 America/Santiago] Call to https://us7.api.mailchimp.com/2.0/lists/subscribe.json: {"id":"1a9463286c","email":{"email":"aopazo@gmail.com"},"merge_vars":{"EMAIL":"aopazo@gmail.com","FNAME":"lskdf","LNAME":"lskdfj","DESFC":"0","ACTIVO":"SI"},"email_type":"html","double_optin":true,"update_existing":false,"replace_interests":true,"send_welcome":false,"apikey":"385ff1a9a0b2cf9d67bd02531f686d44-us7"}
+[02-Jul-2016 18:11:21 America/Santiago] * Hostname was NOT found in DNS cache
+*   Trying 96.17.29.26...
+* Connected to us7.api.mailchimp.com (96.17.29.26) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLSv1.0 / AES128-SHA
+* Server certificate:
+* 	 subject: C=US; ST=Georgia; L=Atlanta; O=The Rocket Science Group, LLC; OU=IT; CN=*.api.mailchimp.com
+* 	 start date: 2016-05-03 00:00:00 GMT
+* 	 expire date: 2017-05-03 23:59:59 GMT
+* 	 subjectAltName: us7.api.mailchimp.com matched
+* 	 issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust SSL CA - G3
+* 	 SSL certificate verify ok.
+> POST /2.0/lists/subscribe.json HTTP/1.1
+User-Agent: MailChimp-PHP/2.0.6
+Host: us7.api.mailchimp.com
+Accept: */*
+Content-Type: application/json
+Content-Length: 315
+
+* upload completely sent off: 315 out of 315 bytes
+< HTTP/1.1 500 Internal Server Error
+* Server nginx is not blacklisted
+< Server: nginx
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 123
+< X-MailChimp-API-Error-Code: 214
+< Date: Sat, 02 Jul 2016 22:11:19 GMT
+< Connection: close
+< Set-Cookie: _AVESTA_ENVIRONMENT=prod; path=/
+< 
+* Closing connection 0
+
+[02-Jul-2016 18:11:21 America/Santiago] Completed in 686.12ms
+[02-Jul-2016 18:11:21 America/Santiago] Got response: {"status":"error","code":214,"name":"List_AlreadySubscribed","error":"aopazo@gmail.com is already subscribed to the list."}
+[02-Jul-2016 18:13:36 America/Santiago] Call to https://us7.api.mailchimp.com/2.0/lists/subscribe.json: {"id":"1a9463286c","email":{"email":"aopazo@gmail.com"},"merge_vars":{"EMAIL":"aopazo@gmail.com","FNAME":"lskdf","LNAME":"lskdfj","DESFC":"0","ACTIVO":"SI"},"email_type":"html","double_optin":true,"update_existing":false,"replace_interests":true,"send_welcome":false,"apikey":"385ff1a9a0b2cf9d67bd02531f686d44-us7"}
+[02-Jul-2016 18:13:36 America/Santiago] * Hostname was NOT found in DNS cache
+*   Trying 96.17.29.26...
+* Connected to us7.api.mailchimp.com (96.17.29.26) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLSv1.0 / AES128-SHA
+* Server certificate:
+* 	 subject: C=US; ST=Georgia; L=Atlanta; O=The Rocket Science Group, LLC; OU=IT; CN=*.api.mailchimp.com
+* 	 start date: 2016-05-03 00:00:00 GMT
+* 	 expire date: 2017-05-03 23:59:59 GMT
+* 	 subjectAltName: us7.api.mailchimp.com matched
+* 	 issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust SSL CA - G3
+* 	 SSL certificate verify ok.
+> POST /2.0/lists/subscribe.json HTTP/1.1
+User-Agent: MailChimp-PHP/2.0.6
+Host: us7.api.mailchimp.com
+Accept: */*
+Content-Type: application/json
+Content-Length: 315
+
+* upload completely sent off: 315 out of 315 bytes
+< HTTP/1.1 500 Internal Server Error
+* Server nginx is not blacklisted
+< Server: nginx
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 123
+< X-MailChimp-API-Error-Code: 214
+< Date: Sat, 02 Jul 2016 22:13:33 GMT
+< Connection: close
+< Set-Cookie: _AVESTA_ENVIRONMENT=prod; path=/
+< 
+* Closing connection 0
+
+[02-Jul-2016 18:13:36 America/Santiago] Completed in 332.00ms
+[02-Jul-2016 18:13:36 America/Santiago] Got response: {"status":"error","code":214,"name":"List_AlreadySubscribed","error":"aopazo@gmail.com is already subscribed to the list."}
+[02-Jul-2016 18:14:17 America/Santiago] Call to https://us7.api.mailchimp.com/2.0/lists/subscribe.json: {"id":"1a9463286c","email":{"email":"aopazo@gmail.com"},"merge_vars":{"EMAIL":"aopazo@gmail.com","FNAME":"lskdf","LNAME":"lskdfj","DESFC":"0","ACTIVO":"SI"},"email_type":"html","double_optin":true,"update_existing":false,"replace_interests":true,"send_welcome":false,"apikey":"385ff1a9a0b2cf9d67bd02531f686d44-us7"}
+[02-Jul-2016 18:14:18 America/Santiago] * Hostname was NOT found in DNS cache
+*   Trying 96.17.29.26...
+* Connected to us7.api.mailchimp.com (96.17.29.26) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLSv1.0 / AES128-SHA
+* Server certificate:
+* 	 subject: C=US; ST=Georgia; L=Atlanta; O=The Rocket Science Group, LLC; OU=IT; CN=*.api.mailchimp.com
+* 	 start date: 2016-05-03 00:00:00 GMT
+* 	 expire date: 2017-05-03 23:59:59 GMT
+* 	 subjectAltName: us7.api.mailchimp.com matched
+* 	 issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust SSL CA - G3
+* 	 SSL certificate verify ok.
+> POST /2.0/lists/subscribe.json HTTP/1.1
+User-Agent: MailChimp-PHP/2.0.6
+Host: us7.api.mailchimp.com
+Accept: */*
+Content-Type: application/json
+Content-Length: 315
+
+* upload completely sent off: 315 out of 315 bytes
+< HTTP/1.1 500 Internal Server Error
+* Server nginx is not blacklisted
+< Server: nginx
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 123
+< X-MailChimp-API-Error-Code: 214
+< Date: Sat, 02 Jul 2016 22:14:15 GMT
+< Connection: close
+< Set-Cookie: _AVESTA_ENVIRONMENT=prod; path=/
+< 
+* Closing connection 0
+
+[02-Jul-2016 18:14:18 America/Santiago] Completed in 364.71ms
+[02-Jul-2016 18:14:18 America/Santiago] Got response: {"status":"error","code":214,"name":"List_AlreadySubscribed","error":"aopazo@gmail.com is already subscribed to the list."}
+[02-Jul-2016 18:17:55 America/Santiago] Call to https://us7.api.mailchimp.com/2.0/lists/subscribe.json: {"id":"1a9463286c","email":{"email":"aopazo@gmail.com"},"merge_vars":{"EMAIL":"aopazo@gmail.com","FNAME":"lskdf","LNAME":"lskdfj","DESFC":"0","ACTIVO":"SI"},"email_type":"html","double_optin":true,"update_existing":false,"replace_interests":true,"send_welcome":false,"apikey":"385ff1a9a0b2cf9d67bd02531f686d44-us7"}
+[02-Jul-2016 18:17:55 America/Santiago] * Hostname was NOT found in DNS cache
+*   Trying 96.17.29.26...
+* Connected to us7.api.mailchimp.com (96.17.29.26) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLSv1.0 / AES128-SHA
+* Server certificate:
+* 	 subject: C=US; ST=Georgia; L=Atlanta; O=The Rocket Science Group, LLC; OU=IT; CN=*.api.mailchimp.com
+* 	 start date: 2016-05-03 00:00:00 GMT
+* 	 expire date: 2017-05-03 23:59:59 GMT
+* 	 subjectAltName: us7.api.mailchimp.com matched
+* 	 issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust SSL CA - G3
+* 	 SSL certificate verify ok.
+> POST /2.0/lists/subscribe.json HTTP/1.1
+User-Agent: MailChimp-PHP/2.0.6
+Host: us7.api.mailchimp.com
+Accept: */*
+Content-Type: application/json
+Content-Length: 315
+
+* upload completely sent off: 315 out of 315 bytes
+< HTTP/1.1 500 Internal Server Error
+* Server nginx is not blacklisted
+< Server: nginx
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 123
+< X-MailChimp-API-Error-Code: 214
+< Date: Sat, 02 Jul 2016 22:17:52 GMT
+< Connection: close
+< Set-Cookie: _AVESTA_ENVIRONMENT=prod; path=/
+< 
+* Closing connection 0
+
+[02-Jul-2016 18:17:55 America/Santiago] Completed in 314.02ms
+[02-Jul-2016 18:17:55 America/Santiago] Got response: {"status":"error","code":214,"name":"List_AlreadySubscribed","error":"aopazo@gmail.com is already subscribed to the list."}
+[02-Jul-2016 18:18:15 America/Santiago] Call to https://us7.api.mailchimp.com/2.0/lists/subscribe.json: {"id":"1a9463286c","email":{"email":"aopazo@gmail.com"},"merge_vars":{"EMAIL":"aopazo@gmail.com","FNAME":"lskdf","LNAME":"lskdfj","DESFC":"0","ACTIVO":"SI"},"email_type":"html","double_optin":true,"update_existing":false,"replace_interests":true,"send_welcome":false,"apikey":"385ff1a9a0b2cf9d67bd02531f686d44-us7"}
+[02-Jul-2016 18:18:16 America/Santiago] * Hostname was NOT found in DNS cache
+*   Trying 96.17.29.26...
+* Connected to us7.api.mailchimp.com (96.17.29.26) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLSv1.0 / AES128-SHA
+* Server certificate:
+* 	 subject: C=US; ST=Georgia; L=Atlanta; O=The Rocket Science Group, LLC; OU=IT; CN=*.api.mailchimp.com
+* 	 start date: 2016-05-03 00:00:00 GMT
+* 	 expire date: 2017-05-03 23:59:59 GMT
+* 	 subjectAltName: us7.api.mailchimp.com matched
+* 	 issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust SSL CA - G3
+* 	 SSL certificate verify ok.
+> POST /2.0/lists/subscribe.json HTTP/1.1
+User-Agent: MailChimp-PHP/2.0.6
+Host: us7.api.mailchimp.com
+Accept: */*
+Content-Type: application/json
+Content-Length: 315
+
+* upload completely sent off: 315 out of 315 bytes
+< HTTP/1.1 500 Internal Server Error
+* Server nginx is not blacklisted
+< Server: nginx
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 123
+< X-MailChimp-API-Error-Code: 214
+< Date: Sat, 02 Jul 2016 22:18:13 GMT
+< Connection: close
+< Set-Cookie: _AVESTA_ENVIRONMENT=prod; path=/
+< 
+* Closing connection 0
+
+[02-Jul-2016 18:18:16 America/Santiago] Completed in 341.04ms
+[02-Jul-2016 18:18:16 America/Santiago] Got response: {"status":"error","code":214,"name":"List_AlreadySubscribed","error":"aopazo@gmail.com is already subscribed to the list."}
+[02-Jul-2016 18:19:05 America/Santiago] Call to https://us7.api.mailchimp.com/2.0/lists/subscribe.json: {"id":"1a9463286c","email":{"email":"aopazo@gmail.com"},"merge_vars":{"EMAIL":"aopazo@gmail.com","FNAME":"lskdf","LNAME":"lskdfj","DESFC":"0","ACTIVO":"SI"},"email_type":"html","double_optin":true,"update_existing":false,"replace_interests":true,"send_welcome":false,"apikey":"385ff1a9a0b2cf9d67bd02531f686d44-us7"}
+[02-Jul-2016 18:19:06 America/Santiago] * Hostname was NOT found in DNS cache
+*   Trying 96.17.29.26...
+* Connected to us7.api.mailchimp.com (96.17.29.26) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLSv1.0 / AES128-SHA
+* Server certificate:
+* 	 subject: C=US; ST=Georgia; L=Atlanta; O=The Rocket Science Group, LLC; OU=IT; CN=*.api.mailchimp.com
+* 	 start date: 2016-05-03 00:00:00 GMT
+* 	 expire date: 2017-05-03 23:59:59 GMT
+* 	 subjectAltName: us7.api.mailchimp.com matched
+* 	 issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust SSL CA - G3
+* 	 SSL certificate verify ok.
+> POST /2.0/lists/subscribe.json HTTP/1.1
+User-Agent: MailChimp-PHP/2.0.6
+Host: us7.api.mailchimp.com
+Accept: */*
+Content-Type: application/json
+Content-Length: 315
+
+* upload completely sent off: 315 out of 315 bytes
+< HTTP/1.1 500 Internal Server Error
+* Server nginx is not blacklisted
+< Server: nginx
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 123
+< X-MailChimp-API-Error-Code: 214
+< Date: Sat, 02 Jul 2016 22:19:04 GMT
+< Connection: close
+< Set-Cookie: _AVESTA_ENVIRONMENT=prod; path=/
+< 
+* Closing connection 0
+
+[02-Jul-2016 18:19:06 America/Santiago] Completed in 745.79ms
+[02-Jul-2016 18:19:06 America/Santiago] Got response: {"status":"error","code":214,"name":"List_AlreadySubscribed","error":"aopazo@gmail.com is already subscribed to the list."}
+[02-Jul-2016 18:19:12 America/Santiago] Call to https://us7.api.mailchimp.com/2.0/lists/subscribe.json: {"id":"1a9463286c","email":{"email":"aopazo@gmail.com"},"merge_vars":{"EMAIL":"aopazo@gmail.com","FNAME":"lskdf","LNAME":"lskdfj","DESFC":"0","ACTIVO":"SI"},"email_type":"html","double_optin":true,"update_existing":false,"replace_interests":true,"send_welcome":false,"apikey":"385ff1a9a0b2cf9d67bd02531f686d44-us7"}
+[02-Jul-2016 18:19:12 America/Santiago] * Hostname was NOT found in DNS cache
+*   Trying 96.17.29.26...
+* Connected to us7.api.mailchimp.com (96.17.29.26) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLSv1.0 / AES128-SHA
+* Server certificate:
+* 	 subject: C=US; ST=Georgia; L=Atlanta; O=The Rocket Science Group, LLC; OU=IT; CN=*.api.mailchimp.com
+* 	 start date: 2016-05-03 00:00:00 GMT
+* 	 expire date: 2017-05-03 23:59:59 GMT
+* 	 subjectAltName: us7.api.mailchimp.com matched
+* 	 issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust SSL CA - G3
+* 	 SSL certificate verify ok.
+> POST /2.0/lists/subscribe.json HTTP/1.1
+User-Agent: MailChimp-PHP/2.0.6
+Host: us7.api.mailchimp.com
+Accept: */*
+Content-Type: application/json
+Content-Length: 315
+
+* upload completely sent off: 315 out of 315 bytes
+< HTTP/1.1 500 Internal Server Error
+* Server nginx is not blacklisted
+< Server: nginx
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 123
+< X-MailChimp-API-Error-Code: 214
+< Date: Sat, 02 Jul 2016 22:19:10 GMT
+< Connection: close
+< Set-Cookie: _AVESTA_ENVIRONMENT=prod; path=/
+< 
+* Closing connection 0
+
+[02-Jul-2016 18:19:12 America/Santiago] Completed in 352.30ms
+[02-Jul-2016 18:19:12 America/Santiago] Got response: {"status":"error","code":214,"name":"List_AlreadySubscribed","error":"aopazo@gmail.com is already subscribed to the list."}
+[19-Jul-2016 17:16:23 America/Santiago] Call to https://us7.api.mailchimp.com/2.0/lists/subscribe.json: {"id":"1a9463286c","email":{"email":"fjsandoval82@gmail.com"},"merge_vars":{"EMAIL":"fjsandoval82@gmail.com","FNAME":"Fernando jos\u00e9 ","LNAME":"Sandoval lopez","DESFC":"0","ACTIVO":"SI"},"email_type":"html","double_optin":true,"update_existing":false,"replace_interests":true,"send_welcome":false,"apikey":"385ff1a9a0b2cf9d67bd02531f686d44-us7"}
+[19-Jul-2016 17:16:24 America/Santiago] * Hostname was NOT found in DNS cache
+*   Trying 96.17.29.26...
+* Connected to us7.api.mailchimp.com (96.17.29.26) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLSv1.0 / AES128-SHA
+* Server certificate:
+* 	 subject: C=US; ST=Georgia; L=Atlanta; O=The Rocket Science Group, LLC; OU=IT; CN=*.api.mailchimp.com
+* 	 start date: 2016-05-03 00:00:00 GMT
+* 	 expire date: 2017-05-03 23:59:59 GMT
+* 	 subjectAltName: us7.api.mailchimp.com matched
+* 	 issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust SSL CA - G3
+* 	 SSL certificate verify ok.
+> POST /2.0/lists/subscribe.json HTTP/1.1
+User-Agent: MailChimp-PHP/2.0.6
+Host: us7.api.mailchimp.com
+Accept: */*
+Content-Type: application/json
+Content-Length: 349
+
+* upload completely sent off: 349 out of 349 bytes
+< HTTP/1.1 500 Internal Server Error
+* Server nginx is not blacklisted
+< Server: nginx
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 129
+< X-MailChimp-API-Error-Code: 214
+< Date: Tue, 19 Jul 2016 21:16:23 GMT
+< Connection: close
+< Set-Cookie: _AVESTA_ENVIRONMENT=prod; path=/
+< 
+* Closing connection 0
+
+[19-Jul-2016 17:16:24 America/Santiago] Completed in 909.95ms
+[19-Jul-2016 17:16:24 America/Santiago] Got response: {"status":"error","code":214,"name":"List_AlreadySubscribed","error":"fjsandoval82@gmail.com is already subscribed to the list."}
+[19-Jul-2016 17:34:01 America/Santiago] Call to https://us7.api.mailchimp.com/2.0/lists/subscribe.json: {"id":"1a9463286c","email":{"email":"fjsandoval82@gmail.com"},"merge_vars":{"EMAIL":"fjsandoval82@gmail.com","FNAME":"Fernando jos\u00e9 ","LNAME":"Sandoval lopez","DESFC":"0","ACTIVO":"SI"},"email_type":"html","double_optin":true,"update_existing":false,"replace_interests":true,"send_welcome":false,"apikey":"385ff1a9a0b2cf9d67bd02531f686d44-us7"}
+[19-Jul-2016 17:34:02 America/Santiago] * Hostname was NOT found in DNS cache
+*   Trying 96.17.29.26...
+* Connected to us7.api.mailchimp.com (96.17.29.26) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLSv1.0 / AES128-SHA
+* Server certificate:
+* 	 subject: C=US; ST=Georgia; L=Atlanta; O=The Rocket Science Group, LLC; OU=IT; CN=*.api.mailchimp.com
+* 	 start date: 2016-05-03 00:00:00 GMT
+* 	 expire date: 2017-05-03 23:59:59 GMT
+* 	 subjectAltName: us7.api.mailchimp.com matched
+* 	 issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust SSL CA - G3
+* 	 SSL certificate verify ok.
+> POST /2.0/lists/subscribe.json HTTP/1.1
+User-Agent: MailChimp-PHP/2.0.6
+Host: us7.api.mailchimp.com
+Accept: */*
+Content-Type: application/json
+Content-Length: 349
+
+* upload completely sent off: 349 out of 349 bytes
+< HTTP/1.1 500 Internal Server Error
+* Server nginx is not blacklisted
+< Server: nginx
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 129
+< X-MailChimp-API-Error-Code: 214
+< Date: Tue, 19 Jul 2016 21:34:00 GMT
+< Connection: close
+< Set-Cookie: _AVESTA_ENVIRONMENT=prod; path=/
+< 
+* Closing connection 0
+
+[19-Jul-2016 17:34:02 America/Santiago] Completed in 435.64ms
+[19-Jul-2016 17:34:02 America/Santiago] Got response: {"status":"error","code":214,"name":"List_AlreadySubscribed","error":"fjsandoval82@gmail.com is already subscribed to the list."}
+[24-Jul-2016 13:56:54 America/Santiago] Call to https://us7.api.mailchimp.com/2.0/lists/subscribe.json: {"id":"1a9463286c","email":{"email":"hellovaisman+1478963@gmail.com"},"merge_vars":{"EMAIL":"hellovaisman+1478963@gmail.com","FNAME":"","LNAME":"","DESFC":"0","ACTIVO":"SI"},"email_type":"html","double_optin":true,"update_existing":false,"replace_interests":true,"send_welcome":false,"apikey":"385ff1a9a0b2cf9d67bd02531f686d44-us7"}
+[24-Jul-2016 13:56:55 America/Santiago] * Hostname was NOT found in DNS cache
+*   Trying 96.17.29.26...
+* Connected to us7.api.mailchimp.com (96.17.29.26) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLSv1.0 / AES128-SHA
+* Server certificate:
+* 	 subject: C=US; ST=Georgia; L=Atlanta; O=The Rocket Science Group, LLC; OU=IT; CN=*.api.mailchimp.com
+* 	 start date: 2016-05-03 00:00:00 GMT
+* 	 expire date: 2017-05-03 23:59:59 GMT
+* 	 subjectAltName: us7.api.mailchimp.com matched
+* 	 issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust SSL CA - G3
+* 	 SSL certificate verify ok.
+> POST /2.0/lists/subscribe.json HTTP/1.1
+User-Agent: MailChimp-PHP/2.0.6
+Host: us7.api.mailchimp.com
+Accept: */*
+Content-Type: application/json
+Content-Length: 332
+
+* upload completely sent off: 332 out of 332 bytes
+< HTTP/1.1 200 OK
+* Server nginx is not blacklisted
+< Server: nginx
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 81
+< Vary: Accept-Encoding
+< Date: Sun, 24 Jul 2016 17:56:53 GMT
+< Connection: keep-alive
+< Set-Cookie: _AVESTA_ENVIRONMENT=prod; path=/
+< 
+* Connection #0 to host us7.api.mailchimp.com left intact
+
+[24-Jul-2016 13:56:55 America/Santiago] Completed in 948.06ms
+[24-Jul-2016 13:56:55 America/Santiago] Got response: {"email":"hellovaisman+1478963@gmail.com","euid":"31bbaeb915","leid":"151666585"}
+[08-Aug-2016 23:52:14 America/Santiago] Call to https://us7.api.mailchimp.com/2.0/lists/subscribe.json: {"id":"1a9463286c","email":{"email":"fcn1960@gmail.com"},"merge_vars":{"EMAIL":"fcn1960@gmail.com","FNAME":"Fernando Vicente","LNAME":"Castro Nu\u00f1ez","DESFC":"0","ACTIVO":"SI"},"email_type":"html","double_optin":true,"update_existing":false,"replace_interests":true,"send_welcome":false,"apikey":"385ff1a9a0b2cf9d67bd02531f686d44-us7"}
+[08-Aug-2016 23:52:14 America/Santiago] * Hostname was NOT found in DNS cache
+*   Trying 96.17.29.26...
+* Connected to us7.api.mailchimp.com (96.17.29.26) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLSv1.0 / AES128-SHA
+* Server certificate:
+* 	 subject: C=US; ST=Georgia; L=Atlanta; O=The Rocket Science Group, LLC; OU=IT; CN=*.api.mailchimp.com
+* 	 start date: 2016-05-03 00:00:00 GMT
+* 	 expire date: 2017-05-03 23:59:59 GMT
+* 	 subjectAltName: us7.api.mailchimp.com matched
+* 	 issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust SSL CA - G3
+* 	 SSL certificate verify ok.
+> POST /2.0/lists/subscribe.json HTTP/1.1
+User-Agent: MailChimp-PHP/2.0.6
+Host: us7.api.mailchimp.com
+Accept: */*
+Content-Type: application/json
+Content-Length: 339
+
+* upload completely sent off: 339 out of 339 bytes
+< HTTP/1.1 200 OK
+* Server nginx is not blacklisted
+< Server: nginx
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 68
+< Vary: Accept-Encoding
+< Date: Tue, 09 Aug 2016 03:52:15 GMT
+< Connection: keep-alive
+< Set-Cookie: _AVESTA_ENVIRONMENT=prod; path=/
+< 
+* Connection #0 to host us7.api.mailchimp.com left intact
+
+[08-Aug-2016 23:52:14 America/Santiago] Completed in 633.00ms
+[08-Aug-2016 23:52:14 America/Santiago] Got response: {"email":"fcn1960@gmail.com","euid":"e9da1cbab8","leid":"152543977"}
+[13-Aug-2016 15:14:50 America/Santiago] Call to https://us7.api.mailchimp.com/2.0/lists/subscribe.json: {"id":"1a9463286c","email":{"email":"hellovaisman@gmail.com"},"merge_vars":{"EMAIL":"hellovaisman@gmail.com","FNAME":"Jose","LNAME":"Vaisman Romero","DESFC":"0","ACTIVO":"SI"},"email_type":"html","double_optin":true,"update_existing":false,"replace_interests":true,"send_welcome":false,"apikey":"385ff1a9a0b2cf9d67bd02531f686d44-us7"}
+[13-Aug-2016 15:14:50 America/Santiago] * Hostname was NOT found in DNS cache
+*   Trying 96.17.29.26...
+* Connected to us7.api.mailchimp.com (96.17.29.26) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLSv1.0 / AES128-SHA
+* Server certificate:
+* 	 subject: C=US; ST=Georgia; L=Atlanta; O=The Rocket Science Group, LLC; OU=IT; CN=*.api.mailchimp.com
+* 	 start date: 2016-05-03 00:00:00 GMT
+* 	 expire date: 2017-05-03 23:59:59 GMT
+* 	 subjectAltName: us7.api.mailchimp.com matched
+* 	 issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust SSL CA - G3
+* 	 SSL certificate verify ok.
+> POST /2.0/lists/subscribe.json HTTP/1.1
+User-Agent: MailChimp-PHP/2.0.6
+Host: us7.api.mailchimp.com
+Accept: */*
+Content-Type: application/json
+Content-Length: 334
+
+* upload completely sent off: 334 out of 334 bytes
+< HTTP/1.1 500 Internal Server Error
+* Server nginx is not blacklisted
+< Server: nginx
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 129
+< X-MailChimp-API-Error-Code: 214
+< Date: Sat, 13 Aug 2016 19:14:48 GMT
+< Connection: close
+< Set-Cookie: _AVESTA_ENVIRONMENT=prod; path=/
+< 
+* Closing connection 0
+
+[13-Aug-2016 15:14:50 America/Santiago] Completed in 726.19ms
+[13-Aug-2016 15:14:50 America/Santiago] Got response: {"status":"error","code":214,"name":"List_AlreadySubscribed","error":"hellovaisman@gmail.com is already subscribed to the list."}
+[16-Aug-2016 19:33:18 America/Santiago] Call to https://us7.api.mailchimp.com/2.0/lists/subscribe.json: {"id":"1a9463286c","email":{"email":"hellovaisman+4578@gmail.com"},"merge_vars":{"EMAIL":"hellovaisman+4578@gmail.com","FNAME":"","LNAME":"","DESFC":"0","ACTIVO":"SI"},"email_type":"html","double_optin":true,"update_existing":false,"replace_interests":true,"send_welcome":false,"apikey":"385ff1a9a0b2cf9d67bd02531f686d44-us7"}
+[16-Aug-2016 19:33:18 America/Santiago] * Hostname was NOT found in DNS cache
+*   Trying 96.17.29.26...
+* Connected to us7.api.mailchimp.com (96.17.29.26) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLSv1.0 / AES128-SHA
+* Server certificate:
+* 	 subject: C=US; ST=Georgia; L=Atlanta; O=The Rocket Science Group, LLC; OU=IT; CN=*.api.mailchimp.com
+* 	 start date: 2016-05-03 00:00:00 GMT
+* 	 expire date: 2017-05-03 23:59:59 GMT
+* 	 subjectAltName: us7.api.mailchimp.com matched
+* 	 issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust SSL CA - G3
+* 	 SSL certificate verify ok.
+> POST /2.0/lists/subscribe.json HTTP/1.1
+User-Agent: MailChimp-PHP/2.0.6
+Host: us7.api.mailchimp.com
+Accept: */*
+Content-Type: application/json
+Content-Length: 326
+
+* upload completely sent off: 326 out of 326 bytes
+< HTTP/1.1 200 OK
+* Server nginx is not blacklisted
+< Server: nginx
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 78
+< Vary: Accept-Encoding
+< Date: Tue, 16 Aug 2016 23:33:16 GMT
+< Connection: keep-alive
+< Set-Cookie: _AVESTA_ENVIRONMENT=prod; path=/
+< 
+* Connection #0 to host us7.api.mailchimp.com left intact
+
+[16-Aug-2016 19:33:18 America/Santiago] Completed in 772.50ms
+[16-Aug-2016 19:33:18 America/Santiago] Got response: {"email":"hellovaisman+4578@gmail.com","euid":"3fbdbeefb2","leid":"152733281"}
+[10-Sep-2016 01:43:36 America/Santiago] Call to https://us7.api.mailchimp.com/2.0/lists/subscribe.json: {"id":"1a9463286c","email":{"email":"tativaisman@gmail.com"},"merge_vars":{"EMAIL":"tativaisman@gmail.com","FNAME":"","LNAME":"","DESFC":"0","ACTIVO":"SI"},"email_type":"html","double_optin":true,"update_existing":false,"replace_interests":true,"send_welcome":false,"apikey":"385ff1a9a0b2cf9d67bd02531f686d44-us7"}
+[10-Sep-2016 01:43:36 America/Santiago] * Hostname was NOT found in DNS cache
+*   Trying 96.17.29.26...
+* Connected to us7.api.mailchimp.com (96.17.29.26) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLSv1.0 / AES128-SHA
+* Server certificate:
+* 	 subject: C=US; ST=Georgia; L=Atlanta; O=The Rocket Science Group, LLC; OU=IT; CN=*.api.mailchimp.com
+* 	 start date: 2016-05-03 00:00:00 GMT
+* 	 expire date: 2017-05-03 23:59:59 GMT
+* 	 subjectAltName: us7.api.mailchimp.com matched
+* 	 issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust SSL CA - G3
+* 	 SSL certificate verify ok.
+> POST /2.0/lists/subscribe.json HTTP/1.1
+User-Agent: MailChimp-PHP/2.0.6
+Host: us7.api.mailchimp.com
+Accept: */*
+Content-Type: application/json
+Content-Length: 314
+
+* upload completely sent off: 314 out of 314 bytes
+< HTTP/1.1 500 Internal Server Error
+* Server nginx is not blacklisted
+< Server: nginx
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 128
+< X-MailChimp-API-Error-Code: 214
+< Date: Sat, 10 Sep 2016 04:43:32 GMT
+< Connection: close
+< Set-Cookie: _AVESTA_ENVIRONMENT=prod; path=/
+< 
+* Closing connection 0
+
+[10-Sep-2016 01:43:36 America/Santiago] Completed in 685.96ms
+[10-Sep-2016 01:43:36 America/Santiago] Got response: {"status":"error","code":214,"name":"List_AlreadySubscribed","error":"tativaisman@gmail.com is already subscribed to the list."}
+[03-Oct-2016 10:49:23 America/Santiago] Call to https://us7.api.mailchimp.com/2.0/lists/subscribe.json: {"id":"1a9463286c","email":{"email":"mauroorodriguez@gmail.com"},"merge_vars":{"EMAIL":"mauroorodriguez@gmail.com","FNAME":"Mauricio","LNAME":"Rodriguez","DESFC":"0","ACTIVO":"SI"},"email_type":"html","double_optin":true,"update_existing":false,"replace_interests":true,"send_welcome":false,"apikey":"385ff1a9a0b2cf9d67bd02531f686d44-us7"}
+[03-Oct-2016 10:49:24 America/Santiago] * Hostname was NOT found in DNS cache
+*   Trying 96.17.29.26...
+* Connected to us7.api.mailchimp.com (96.17.29.26) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLSv1.0 / AES128-SHA
+* Server certificate:
+* 	 subject: C=US; ST=Georgia; L=Atlanta; O=The Rocket Science Group, LLC; OU=IT; CN=*.api.mailchimp.com
+* 	 start date: 2016-05-03 00:00:00 GMT
+* 	 expire date: 2017-05-03 23:59:59 GMT
+* 	 subjectAltName: us7.api.mailchimp.com matched
+* 	 issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust SSL CA - G3
+* 	 SSL certificate verify ok.
+> POST /2.0/lists/subscribe.json HTTP/1.1
+User-Agent: MailChimp-PHP/2.0.6
+Host: us7.api.mailchimp.com
+Accept: */*
+Content-Type: application/json
+Content-Length: 339
+
+* upload completely sent off: 339 out of 339 bytes
+< HTTP/1.1 500 Internal Server Error
+* Server nginx is not blacklisted
+< Server: nginx
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 132
+< X-MailChimp-API-Error-Code: 214
+< Date: Mon, 03 Oct 2016 13:49:23 GMT
+< Connection: close
+< Set-Cookie: _AVESTA_ENVIRONMENT=prod; path=/
+< 
+* Closing connection 0
+
+[03-Oct-2016 10:49:24 America/Santiago] Completed in 854.54ms
+[03-Oct-2016 10:49:24 America/Santiago] Got response: {"status":"error","code":214,"name":"List_AlreadySubscribed","error":"mauroorodriguez@gmail.com is already subscribed to the list."}
+[03-Oct-2016 10:49:26 America/Santiago] Call to https://us7.api.mailchimp.com/2.0/lists/subscribe.json: {"id":"1a9463286c","email":{"email":"mauroorodriguez@gmail.com"},"merge_vars":{"EMAIL":"mauroorodriguez@gmail.com","FNAME":"Mauricio","LNAME":"Rodriguez","DESFC":"0","ACTIVO":"SI"},"email_type":"html","double_optin":true,"update_existing":false,"replace_interests":true,"send_welcome":false,"apikey":"385ff1a9a0b2cf9d67bd02531f686d44-us7"}
+[03-Oct-2016 10:49:26 America/Santiago] * Hostname was NOT found in DNS cache
+*   Trying 96.17.29.26...
+* Connected to us7.api.mailchimp.com (96.17.29.26) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLSv1.0 / AES128-SHA
+* Server certificate:
+* 	 subject: C=US; ST=Georgia; L=Atlanta; O=The Rocket Science Group, LLC; OU=IT; CN=*.api.mailchimp.com
+* 	 start date: 2016-05-03 00:00:00 GMT
+* 	 expire date: 2017-05-03 23:59:59 GMT
+* 	 subjectAltName: us7.api.mailchimp.com matched
+* 	 issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust SSL CA - G3
+* 	 SSL certificate verify ok.
+> POST /2.0/lists/subscribe.json HTTP/1.1
+User-Agent: MailChimp-PHP/2.0.6
+Host: us7.api.mailchimp.com
+Accept: */*
+Content-Type: application/json
+Content-Length: 339
+
+* upload completely sent off: 339 out of 339 bytes
+< HTTP/1.1 500 Internal Server Error
+* Server nginx is not blacklisted
+< Server: nginx
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 132
+< X-MailChimp-API-Error-Code: 214
+< Date: Mon, 03 Oct 2016 13:49:25 GMT
+< Connection: close
+< Set-Cookie: _AVESTA_ENVIRONMENT=prod; path=/
+< 
+* Closing connection 0
+
+[03-Oct-2016 10:49:26 America/Santiago] Completed in 662.47ms
+[03-Oct-2016 10:49:26 America/Santiago] Got response: {"status":"error","code":214,"name":"List_AlreadySubscribed","error":"mauroorodriguez@gmail.com is already subscribed to the list."}
+[03-Oct-2016 10:57:00 America/Santiago] Call to https://us7.api.mailchimp.com/2.0/lists/subscribe.json: {"id":"1a9463286c","email":{"email":"mauroorodriguez@gmail.com"},"merge_vars":{"EMAIL":"mauroorodriguez@gmail.com","FNAME":"Mauricio","LNAME":"Rodriguez","DESFC":"0","ACTIVO":"SI"},"email_type":"html","double_optin":true,"update_existing":false,"replace_interests":true,"send_welcome":false,"apikey":"385ff1a9a0b2cf9d67bd02531f686d44-us7"}
+[03-Oct-2016 10:57:01 America/Santiago] * Hostname was NOT found in DNS cache
+*   Trying 96.17.29.26...
+* Connected to us7.api.mailchimp.com (96.17.29.26) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLSv1.0 / AES128-SHA
+* Server certificate:
+* 	 subject: C=US; ST=Georgia; L=Atlanta; O=The Rocket Science Group, LLC; OU=IT; CN=*.api.mailchimp.com
+* 	 start date: 2016-05-03 00:00:00 GMT
+* 	 expire date: 2017-05-03 23:59:59 GMT
+* 	 subjectAltName: us7.api.mailchimp.com matched
+* 	 issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust SSL CA - G3
+* 	 SSL certificate verify ok.
+> POST /2.0/lists/subscribe.json HTTP/1.1
+User-Agent: MailChimp-PHP/2.0.6
+Host: us7.api.mailchimp.com
+Accept: */*
+Content-Type: application/json
+Content-Length: 339
+
+* upload completely sent off: 339 out of 339 bytes
+< HTTP/1.1 500 Internal Server Error
+* Server nginx is not blacklisted
+< Server: nginx
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 132
+< X-MailChimp-API-Error-Code: 214
+< Date: Mon, 03 Oct 2016 13:57:00 GMT
+< Connection: close
+< Set-Cookie: _AVESTA_ENVIRONMENT=prod; path=/
+< 
+* Closing connection 0
+
+[03-Oct-2016 10:57:01 America/Santiago] Completed in 623.04ms
+[03-Oct-2016 10:57:01 America/Santiago] Got response: {"status":"error","code":214,"name":"List_AlreadySubscribed","error":"mauroorodriguez@gmail.com is already subscribed to the list."}
+[03-Oct-2016 10:57:05 America/Santiago] Call to https://us7.api.mailchimp.com/2.0/lists/subscribe.json: {"id":"1a9463286c","email":{"email":"mauroorodriguez@gmail.com"},"merge_vars":{"EMAIL":"mauroorodriguez@gmail.com","FNAME":"Mauricio","LNAME":"Rodriguez","DESFC":"0","ACTIVO":"SI"},"email_type":"html","double_optin":true,"update_existing":false,"replace_interests":true,"send_welcome":false,"apikey":"385ff1a9a0b2cf9d67bd02531f686d44-us7"}
+[03-Oct-2016 10:57:05 America/Santiago] * Hostname was NOT found in DNS cache
+*   Trying 96.17.29.26...
+* Connected to us7.api.mailchimp.com (96.17.29.26) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLSv1.0 / AES128-SHA
+* Server certificate:
+* 	 subject: C=US; ST=Georgia; L=Atlanta; O=The Rocket Science Group, LLC; OU=IT; CN=*.api.mailchimp.com
+* 	 start date: 2016-05-03 00:00:00 GMT
+* 	 expire date: 2017-05-03 23:59:59 GMT
+* 	 subjectAltName: us7.api.mailchimp.com matched
+* 	 issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust SSL CA - G3
+* 	 SSL certificate verify ok.
+> POST /2.0/lists/subscribe.json HTTP/1.1
+User-Agent: MailChimp-PHP/2.0.6
+Host: us7.api.mailchimp.com
+Accept: */*
+Content-Type: application/json
+Content-Length: 339
+
+* upload completely sent off: 339 out of 339 bytes
+< HTTP/1.1 500 Internal Server Error
+* Server nginx is not blacklisted
+< Server: nginx
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 132
+< X-MailChimp-API-Error-Code: 214
+< Date: Mon, 03 Oct 2016 13:57:04 GMT
+< Connection: close
+< Set-Cookie: _AVESTA_ENVIRONMENT=prod; path=/
+< 
+* Closing connection 0
+
+[03-Oct-2016 10:57:05 America/Santiago] Completed in 827.11ms
+[03-Oct-2016 10:57:05 America/Santiago] Got response: {"status":"error","code":214,"name":"List_AlreadySubscribed","error":"mauroorodriguez@gmail.com is already subscribed to the list."}
+[03-Oct-2016 11:08:58 America/Santiago] Call to https://us7.api.mailchimp.com/2.0/lists/subscribe.json: {"id":"1a9463286c","email":{"email":"mauroorodriguez@gmail.com"},"merge_vars":{"EMAIL":"mauroorodriguez@gmail.com","FNAME":"Mauricio","LNAME":"Rodriguez","DESFC":"0","ACTIVO":"SI"},"email_type":"html","double_optin":true,"update_existing":false,"replace_interests":true,"send_welcome":false,"apikey":"385ff1a9a0b2cf9d67bd02531f686d44-us7"}
+[03-Oct-2016 11:08:58 America/Santiago] * Hostname was NOT found in DNS cache
+*   Trying 96.17.29.26...
+* Connected to us7.api.mailchimp.com (96.17.29.26) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLSv1.0 / AES128-SHA
+* Server certificate:
+* 	 subject: C=US; ST=Georgia; L=Atlanta; O=The Rocket Science Group, LLC; OU=IT; CN=*.api.mailchimp.com
+* 	 start date: 2016-05-03 00:00:00 GMT
+* 	 expire date: 2017-05-03 23:59:59 GMT
+* 	 subjectAltName: us7.api.mailchimp.com matched
+* 	 issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust SSL CA - G3
+* 	 SSL certificate verify ok.
+> POST /2.0/lists/subscribe.json HTTP/1.1
+User-Agent: MailChimp-PHP/2.0.6
+Host: us7.api.mailchimp.com
+Accept: */*
+Content-Type: application/json
+Content-Length: 339
+
+* upload completely sent off: 339 out of 339 bytes
+< HTTP/1.1 500 Internal Server Error
+* Server nginx is not blacklisted
+< Server: nginx
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 132
+< X-MailChimp-API-Error-Code: 214
+< Date: Mon, 03 Oct 2016 14:08:57 GMT
+< Connection: close
+< Set-Cookie: _AVESTA_ENVIRONMENT=prod; path=/
+< 
+* Closing connection 0
+
+[03-Oct-2016 11:08:58 America/Santiago] Completed in 554.60ms
+[03-Oct-2016 11:08:58 America/Santiago] Got response: {"status":"error","code":214,"name":"List_AlreadySubscribed","error":"mauroorodriguez@gmail.com is already subscribed to the list."}
+[03-Oct-2016 11:53:49 America/Santiago] Call to https://us7.api.mailchimp.com/2.0/lists/subscribe.json: {"id":"1a9463286c","email":{"email":"mauroorodriguez@gmail.com"},"merge_vars":{"EMAIL":"mauroorodriguez@gmail.com","FNAME":"Mauricio","LNAME":"Rodriguez","DESFC":"0","ACTIVO":"SI"},"email_type":"html","double_optin":true,"update_existing":false,"replace_interests":true,"send_welcome":false,"apikey":"385ff1a9a0b2cf9d67bd02531f686d44-us7"}
+[03-Oct-2016 11:53:50 America/Santiago] * Hostname was NOT found in DNS cache
+*   Trying 96.17.29.26...
+* Connected to us7.api.mailchimp.com (96.17.29.26) port 443 (#0)
+* successfully set certificate verify locations:
+*   CAfile: /etc/pki/tls/certs/ca-bundle.crt
+  CApath: none
+* SSL connection using TLSv1.0 / AES128-SHA
+* Server certificate:
+* 	 subject: C=US; ST=Georgia; L=Atlanta; O=The Rocket Science Group, LLC; OU=IT; CN=*.api.mailchimp.com
+* 	 start date: 2016-05-03 00:00:00 GMT
+* 	 expire date: 2017-05-03 23:59:59 GMT
+* 	 subjectAltName: us7.api.mailchimp.com matched
+* 	 issuer: C=US; O=GeoTrust Inc.; CN=GeoTrust SSL CA - G3
+* 	 SSL certificate verify ok.
+> POST /2.0/lists/subscribe.json HTTP/1.1
+User-Agent: MailChimp-PHP/2.0.6
+Host: us7.api.mailchimp.com
+Accept: */*
+Content-Type: application/json
+Content-Length: 339
+
+* upload completely sent off: 339 out of 339 bytes
+< HTTP/1.1 500 Internal Server Error
+* Server nginx is not blacklisted
+< Server: nginx
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 132
+< X-MailChimp-API-Error-Code: 214
+< Date: Mon, 03 Oct 2016 14:53:48 GMT
+< Connection: close
+< Set-Cookie: _AVESTA_ENVIRONMENT=prod; path=/
+< 
+* Closing connection 0
+
+[03-Oct-2016 11:53:50 America/Santiago] Completed in 477.86ms
+[03-Oct-2016 11:53:50 America/Santiago] Got response: {"status":"error","code":214,"name":"List_AlreadySubscribed","error":"mauroorodriguez@gmail.com is already subscribed to the list."}

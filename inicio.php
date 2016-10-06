@@ -1,4 +1,5 @@
-﻿<?php 
+<?php 
+
 	// Inialize session
 	session_start();
     require_once 'connection.php';
@@ -8,37 +9,9 @@
         $username = $_SESSION['correo'];
     } else { $correo = ""; $username = ""; }
 
-	if(isset($_REQUEST['errorMessage'])) {
-		if($_REQUEST['errorMessage'] == "correoError") {
-			echo "<script languaje=’javascript’>alert('Nombre de usuario inv\u00e1lido')</script>";
-//			$_REQUEST['errorMessage'] = "";
-		}
-		if($_REQUEST['errorMessage'] == "contraError") {
-			echo "<script languaje=’javascript’>alert('Contrase\u00f1a incorrecta')</script>";
-//			$_REQUEST['errorMessage'] = "";
-		}
-		if($_REQUEST['errorMessage'] == "sessionStart") {
-			echo "<script languaje=’javascript’>alert('Bienvenido ".$_SESSION['username'].". Su sesi\u00f3n ha sido iniciada.')</script>";
-//			$_REQUEST['errorMessage'] = "";
-		}
-		if($_REQUEST['errorMessage'] == "tokenInvalido") {
-			echo "<script languaje=’javascript’>alert('Token Inv&aacute;lido.\nPor favor, reintenta copiar y pegar el link que te enviamos nuevamente.\nSi el problema persiste, env&iacute;anos un correo ;)')</script>";
-//			$_REQUEST['errorMessage'] = "";
-		}
-		if($_REQUEST['errorMessage'] == "tokenNoEncontrado") {
-			echo "<script languaje=’javascript’>alert('Token No Encontrado.\nPor favor, reintenta copiar y pegar el link que te enviamos nuevamente.')</script>";
-//			$_REQUEST['errorMessage'] = "";
-		}
-	}
-	
-	$timestamp = new DateTime();
-	if ($test) {
-		error_log("\n".$timestamp->format('Y-m-d H:i:s')." inicio:: TEST:sessionUsername: ".$username.", TEST:sessionCorreo: ".$correo, 3, "debug.log");
-	}
 ?>
-
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
 	<head>
 
 		<!-- Basic -->
@@ -95,18 +68,19 @@
 
 	</head>
 	<body>
+	<?php include_once("analyticstracking.php") ?>
 		<div class="body" id="contenido" style="visibility: hidden">
 			<header id="header">
 				<div id="header-logo" class="container">
 					<div class="logo">
 						<a href="inicio">
-							<img alt="Atempus" width="180" height="90" data-sticky-width="90" data-sticky-height="45" src="custom/img_custom/logo-ae-1.png">
+							<img alt="Atempus" width="180" height="90" data-sticky-width="90" data-sticky-height="45" src="custom/img_custom/logosvg.svg">
 						</a>
 					</div>
 					<ul class="social-icons">
-						<li class="facebook"><a href="http://www.facebook.com/" target="_blank" title="Facebook">Facebook</a></li>
-						<li class="twitter"><a href="http://www.twitter.com/" target="_blank" title="Twitter">Twitter</a></li>
-						<li class="linkedin"><a href="http://www.linkedin.com/" target="_blank" title="Linkedin">Linkedin</a></li>
+						<li class="facebook"><a href="http://www.facebook.com/AtempusCL" target="_blank" title="Facebook">Facebook</a></li>
+						<li class="twitter"><a href="http://www.twitter.com/AtempusCL" target="_blank" title="Twitter">Twitter</a></li>
+						<li class="linkedin"><a href="http://www.linkedin.com/company/Atempus" target="_blank" title="Linkedin">Linkedin</a></li>
 					</ul>
 					<button class="btn btn-responsive-nav btn-inverse" data-toggle="collapse" data-target=".nav-main-collapse">
 						<i class="fa fa-bars"></i>
@@ -373,7 +347,7 @@
 								</div>
 								<div class="feature-box-info">
 									<h4 class="shorter">Privacidad de la información</h4>									
-									<p class="tall">Tu información personal no será dibulgada a terceros.</p>
+									<p class="tall">Tu información personal no será divulgada a terceros.</p>
 								</div>
 							</div>
 							<div class="feature-box">
@@ -417,7 +391,25 @@
 						</div>
 					</div>
 				</div>
-				
+
+				<!-- agregando manejo de errores -->
+				<div class="modal fade" id="ModalGenerico" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+								<h4 class="modal-title" id="myModalTitle"></h4>
+							</div>
+							<div id="myModalBody" class="modal-body"></div>
+							<div class="modal-footer">
+								<a href="#" id="myModalFooter" type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-thumbs-up"></i> Entendido</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- fin manejo de errores -->
+
+								
 			</div>
 
 			<footer class="short" id="footer"></footer>
@@ -457,3 +449,15 @@
 		
 	</body>
 </html>
+<?php
+ // Mas manejo de errores
+	if(isset($_REQUEST['errorMessage'])) {
+		if ($_REQUEST['errorMessage'] != "") {
+			echo "<script languaje=’javascript’>"
+				. "$('#myModalTitle').html('Notificación');"
+				. "$('#myModalBody').html('".$_REQUEST['errorMessage']."');"
+				. "$(document).ready(MostrarModal('#ModalGenerico'));"
+				. "</script>";
+        }
+	}
+?>

@@ -29,7 +29,7 @@
 	<meta property="og:site_name" content="Atempus" />
 	<meta property="og:title" content="Atempus - Respuesta" />
 	<meta property="og:url" content="http://www.atempus.cl/" />
-	<meta property="og:image" content="http://www.atempus.c://www.atempus.cl/jpg/atempus_logo_big.jpg" />
+	<meta property="og:image" content="http://www.atempus.cl/custom/img_custom/logosvg.svg" />
 
 	<!-- <link rel="stylesheet" type="text/css" href="atempus.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="atempus-mobile.css" media="only screen and (max-device-width: 480px)" /> -->

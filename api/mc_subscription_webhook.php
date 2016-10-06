@@ -8,8 +8,10 @@ This also assumes you use a key to secure the script and configure a URL like th
 http://www.mydomain.com/webhook.php?key=EnterAKey!
 
 ***********************************************/
+require("../UsuarioDAO.php");
 $my_key  = 'MCSubscriptionKey!';
 
+// error_log("\n".date("Y-m-d H:i:s")." mc_subscription: ", 3, "error.log");
 wh_log('==================[ Incoming Request ]==================');
 
 wh_log("Full _REQUEST dump:\n".print_r($_REQUEST,true)); 

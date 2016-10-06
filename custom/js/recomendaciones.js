@@ -1,6 +1,7 @@
 window.onload = function() {
 	// Carga de texto con json
-	$.getJSON('recomendaciones.txt', function(bdAlertas) {
+	$.getJSON('get-recomendaciones.php', function(bdAlertas) {
+			console.log("lili");
 			for (var i = 0; i <= 5; i++) {
 				// Si hay salto de Año, agregamos el header antes de continuar
 					if (i == 0 || bdAlertas[i].Anio != bdAlertas[i-1].Anio){

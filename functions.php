@@ -1,5 +1,7 @@
 <?php
 
+// error_log("\n".date("Y/m/d H:i:s")." functions:: sesion correo ".$_SESSION['correo'], 3, "debug.log");
+
 function safe($key) {
     require_once("connection.php");
 	$rKey = mysql_real_escape_string($key);
@@ -21,7 +23,7 @@ function encrypt($pass) {
 	return crypt($pass, $salt);
 	}
 
-//echo encrypt("qwe");
+// echo encrypt("qwe");
 
 function iniciarSesion($userdata){
 	if($userdata['nombres']==null || $userdata['nombres']=="")
@@ -58,6 +60,7 @@ function iniciarSesion($userdata){
 
 function enviaCorreo($de, $deNombre, $para, $paraNombre, $asunto, $mensaje){
 	require("PHPMailer/class.phpmailer.php");
+	$para = str_replace("%2B", "+", $para);
 	$mail = new PHPMailer();
 	$mail->SMTPAuth   = true;               // enable SMTP authentication
 	$mail->SMTPSecure = "tls";             	// sets the prefix to the servier
@@ -73,30 +76,33 @@ function enviaCorreo($de, $deNombre, $para, $paraNombre, $asunto, $mensaje){
 	$mail->Subject = $asunto;
 	$mail->MsgHTML($mensaje);
 	$mail->IsHTML(true);
+    $mail->CharSet = 'UTF-8';
 	if(!$mail->Send()) {
-		error_log("\nfunctions:: Correo: ".$asunto." no se pudo enviar a: ".$para.", codigo de error: " .$mail->ErrorInfo, 3, "error.log");
+		error_log("\nfunctions:: Correo con asunto:\"".$asunto."\" no se pudo enviar a: ".$para.", codigo de error: " .$mail->ErrorInfo, 3, "error.log");
 		} else {
-		error_log("\nfunctions:: Correo: ".$asunto." enviado a: ".$para, 3, "transactions.log");
+		error_log("\nfunctions:: Correo con asunto:\"".$asunto."\" enviado a: ".$para, 3, "transactions.log");
 		}
 	}
 
 function enviar_bienvenida_mailchimp($correo, $nombres, $apellidos){
-    require_once('inc/Mailchimp.php');
-    require_once ("inc/config.inc.php");
-    $timestamp = new DateTime();
+    require("connection.php");
+    require("inc/Mailchimp.php");
+    $merge_vars = array('EMAIL'=>$correo, 'FNAME'=>$nombres, 'LNAME'=>$apellidos, 'DESFC'=>'0', 'ACTIVO'=>'SI'); // usuario queda activo pero con desfase hasta que se confirme su pago
     try {
         $MailChimp = new Mailchimp($apikey); // v2.0.6
     } catch (Mailchimp_Error $e) {
-        error_log("\n".$timestamp->format('Y-m-d H:i:s')." confirmatucorreo:: problemas al crear mailchimp wrapper: ".$e, 3, "error.log");
+        error_log("\n".date("Y-m-d H:i:s")." functions:: problemas al crear mailchimp wrapper: ".$e, 3, "error.log");
     }
-    
-    $merge_vars = array('EMAIL'=>$correo, 'FNAME'=>$nombres, 'LNAME'=>$apellidos, 'DESFC'=>'0', 'ACTIVO'=>'SI'); // usuario queda activo pero con desfase hasta que se confirme su pago
-    $returned_value_array = $MailChimp->lists->subscribe($listId, array( 'email' => $correo ), $merge_vars);
+    try {
+		$returned_value_array = $MailChimp->lists->subscribe($listId, array( 'email' => $correo ), $merge_vars);
+    } catch (Mailchimp_Error $e) {
+        error_log("\n".date("Y-m-d H:i:s")." functions:: problemas al suscribir al usuario: ".$e->getMessage()." apikey: ".$apikey, 3, "error.log");
+    }
 
-    if (empty($returned_value_array['leid'])) {
-        error_log("\n".$timestamp->format('Y-m-d H:i:s')." confirmatucorreo:: problemas al dar de alta el correo ".$correo.". Valores retornados: email: ".$returned_value_array['email'].", euid: ".$returned_value_array['euid'].", leid empty", 3, "error.log");
+	if (empty($returned_value_array['leid'])) {
+        error_log("\n".date("Y-m-d H:i:s")." functions:: problemas al dar de alta el correo ".$correo.". Valores retornados: email: ".$returned_value_array['email'].", euid: ".$returned_value_array['euid'].", leid empty", 3, "error.log");
     } else {
-        error_log("\n".$timestamp->format('Y-m-d H:i:s')." confirmatucorreo:: correo dado de alta en MC. Valores retornados: email: ".$returned_value_array['email'].", euid: ".$returned_value_array['euid'].", leid ".$returned_value_array['leid'], 3, "transactions.log");
+        error_log("\n".date("Y-m-d H:i:s")." functions:: correo dado de alta en MC. Valores retornados: email: ".$returned_value_array['email'].", euid: ".$returned_value_array['euid'].", leid ".$returned_value_array['leid'], 3, "transactions.log");
     }
 }
 
@@ -136,7 +142,7 @@ function enviaCorreoValidacion($plan, $correo, $md5){
     $deNombre = "Equipo Atempus";
     $para = $correo;
     $paraNombre = "";
-    $asunto = "Suscripci&oacute;n Atempus";
+    $asunto = "Suscripción Atempus";
 
     $mensaje = "Estimado usuario,<br /><br />Te enviamos este correo pues te est&aacute;s suscribiendo al ";
     if($plan=="Gratis") {
@@ -161,47 +167,13 @@ function actualizarDB($campos, $valores){
         $set .= " ".$campos[$i]." = '".$valores[$i]."', ";
     }
     $sql = "UPDATE $table SET $set where id = ".$_SESSION['id'];
-    echo $sql."<br />";
-	// if(mysql_query($sql)){
-    // $action = "respuesta";
-    // $errorMessage = "P-Update";
-    // if($varPlan=="12000" || $varPlan=="20400") $activaPago = "si";
-    // }
-    // else{
-        // $errorMessage = "Se ha producido un error al actualizar tus datos. Int\u00e9ntalo de nuevo por favor.";
-        // error_log(print_r("form-processor: ".$sql." error al actualizar los datos", TRUE), 0);
-    // }
-    // }
-    // else if($queactualizar=="CP"){
-    // $planes_anteriores = $row['planes_anteriores'] . "/" . $row['tipo_plan'] ."->". $row['fecha_inicio_plan_actual'];
-    // if($varPlan=="12000"){
-        // $contrato = "Contrato1Y12000HCo.pdf/";
-        // $varFechaFin = date('Y-m-d', strtotime($varFecha. ' + 1 year'));
-    // }
-    // if($varPlan=="20400"){
-        // $contrato = "Contrato2Y20400HCo.pdf/";
-        // $varFechaFin = date('Y-m-d', strtotime($varFecha. ' + 2 year'));
-    // }
-    // $contratos_actualizado = $new_contrato."/".$row['contratos'];
-    // if(crypt($varContrasenaAntes, $row['contrasena']) == $row['contrasena']){
-        // $sql = "UPDATE $table SET nombres = '".$varNombres."', apellidos = '".$varApellidos."', rut = '".$varRut."', direccion = '".$varDireccion."', comuna = '".$varComuna."', ciudad = '".$varCiudad."', region = '".$varRegion."', telefono = '".$varTelefono."', contrasena = '".encrypt($varContrasena) ."', fecha_inicio_plan_actual= '".$varFecha."', fecha_fin_plan_actual = '".$varFechaFin."', tipo_plan = '".$varPlan."', planes_anteriores = '".$planes_anteriores."', contratos = '".$contratos_actualizado."',  tipo_usuario = '2' WHERE id = '".$_SESSION['id']."'";
-    // if(mysql_query($sql)){
-        // $action = "respuesta";
-        // $errorMessage = "CP-Update";
-        // if($varPlan=="12000" || $varPlan=="20400") $activaPago = "si";
-    // }
-    // else{
-        // $errorMessage = "Se ha producido un error al actualizar tus datos. Int\u00e9ntalo de nuevo por favor.";
-        // error_log(print_r("form-processor: ".$sql." error al actualizar los datos", TRUE), 0);
-    // }
-
 }
 
-$campos = array('nombres', 'apellidos', 'rut');
-$valores[0] = "ale";
-$valores[1] = "opazo";
-$valores[2] = "14";
-actualizarDB($campos, $valores);
+// $campos = array('nombres', 'apellidos', 'rut');
+// $valores[0] = "ale";
+// $valores[1] = "opazo";
+// $valores[2] = "14";
+// actualizarDB($campos, $valores);
 
 function getDatosUsuario($correo){
 	require("connection.php");

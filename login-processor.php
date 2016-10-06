@@ -1,14 +1,26 @@
 <?php
 
-$test="on";
 $action = "inicio";
 $errorMessage = "";
-$timestamp = new DateTime();
 
 // Inialize session
 session_start();
+error_log("\n".date("Y/m/d H:i:s")." login-processor:: sesion correo ".$_SESSION['correo'], 3, "debug.log");
 
-if (!isset($_POST['action'])){
+if (isset($_GET['action'])){
+	if ($_GET['action'] == 201608302338){
+		require_once("UsuarioDAO.php");
+		error_log("\n".date("Y/m/d H:i:s")." login-processor:: adentro ".$_SESSION['correo'], 3, "debug.log");
+		$_SESSION['REMOTE_ADDR'] = $_SERVER['REMOTE_ADDR'];
+		$_SESSION['HTTP_USER_AGENT'] = $_SERVER['HTTP_USER_AGENT'];
+		$dao = new UsuarioDAO($_SESSION['correo']);
+		$action = "usuario";
+		$message = "sessionStart";
+	}
+}
+
+
+else if (!isset($_POST['action'])){
     header('Location: inicio');
 }
 
@@ -30,7 +42,7 @@ else if ($_POST['action']=="login"){
 	// Retrieve username and password from database according to user's input
 	$varCorreo = safe($_POST['correo']);
 	$varContra = safe($_POST['contra']);
-	if ($test=="on") { error_log("login-processor:: ".$varCorreo." --- ".$varContra." <br />", 3, "debug.log"); }
+	// if ($test=="on") { error_log("login-processor:: ".$varCorreo." --- ".$varContra." <br />", 3, "debug.log"); }
 	$login_query = mysql_query("SELECT * FROM $table WHERE (correo = '" . $varCorreo . "')");
 	$userdata = mysql_fetch_array($login_query);
 
@@ -56,7 +68,7 @@ else if ($_POST['action']=="login"){
 	$caso="correoInexistente";
 	}
 
-if ($test=="on") echo "$varCorreo $varContra $caso ";
+// if ($test=="on") echo "$varCorreo $varContra $caso ";
 
 	switch ($caso) {
 		case "usuarioNoHaValidadoEmail":   // llevar al usuario a mis datos (misdatos.php) y recomendaciones debe estar bloqueado en el header
@@ -84,39 +96,34 @@ if ($test=="on") echo "$varCorreo $varContra $caso ";
 
 else if ($_POST['action']=="recover"){
 	require_once("connection.php");
-	require_once("PHPMailer/class.phpmailer.php");
-	$correo = safe($_POST['correo']);
-	$data_query = mysql_query("SELECT nombres, md52confirm FROM $table WHERE correo = '" . $correo . "'");
+	require("functions.php");
+	$correo = safe($_POST['recoveremail']);
+	
+	$data_query = mysql_query("SELECT nombres FROM $table WHERE correo = '" . $correo . "'");
 	// error_log(print_r("login-processor: data_query:".$data_query, TRUE), 0);
 	if (mysql_num_rows($data_query) == 1) {
 		$userdata = mysql_fetch_array($data_query);
 		// crear nuevo md52confirm y enviarlo por mail
-		$nuevoMd5 = md5(substr(str_shuffle('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789') , 0 , 8));
-		$update_query = mysql_query("UPDATE $table SET md52confirm = '".$nuevoMd5."' WHERE correo = '".$correo."'");
+		$new_contra = substr(str_shuffle('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789') , 0 , 8);
+		$update_query = mysql_query("UPDATE $table SET contrasena = '".encrypt($new_contra)."' WHERE correo = '".$correo."'");
 		if($update_query){
 			$de = "contacto@atempus.cl";
 			$deNombre = "Contacto Atempus";
-			$para = $correo;
+			$para = str_replace("+", "%2B", $correo);
 			$paraNombre = $userdata[nombres];
-			$asunto = "Cambio de contrase&ntilde;a en Atempus";
-			$mensaje = "Estimado usuario,\n\nHemos recibido tu solicitud de cambio de contraseña.\nPara realizar este cambio, ingresa al siguiente enlace http://www.atempus.cl/cambiar_mi_contrasena?token=".$nuevoMd5."\n\nSi crees que este mensaje lo has recibido por error y no deseas cambiar tu contraseña, puedes omitir este correo y ningún dato de tu cuenta será modificado.\n\n Atentamente Equipo Atempus.";
+			$asunto = "Cambio de contraseña en Atempus";
+			$mensaje = "Estimado usuario,<br /><br />Hemos recibido tu solicitud de cambio de contraseña.<br /><br />Tu nueva contraseña es: ".$new_contra."<br /><br />Atentamente,<br />  Equipo Atempus.";
 			enviaCorreo($de, $deNombre, $para, $paraNombre, $asunto, $mensaje);
-
-			if(!$mail->Send()) {
-				error_log("\n".$timestamp->format('Y-m-d H:i:s')." login-processor::recover:: Correo ".$asunto." a ".$para." no se pudo enviar ErrorInfo: ".$mail->ErrorInfo, 3, "error.log");
-			} else {
-				$message="recoveryOK";
-			}
-		}
-		else{
+			$message = "cambioContrasena";
+		} else{
 			$message="Hubo un problema al intentar reestablecer tu contrase&ntilde;a. Por favor, int&eacute;ntalo de nuevo.";
 		}
 	}
 	else{
 		$message="No encontramos este correo en nuestros registros. <br /><br />Por favor, intentalo de nuevo.";
 	}
-	error_log("\n".$timestamp->format('Y-m-d H:i:s')." login-processor::recover:: message: ".$message." from: ".$correo, 3, "transactions.log");
-	$action = "respuesta";
+	error_log("\n".date("Y/m/d H:i:s")." login-processor::recover:: message: ".$message." from: ".$correo, 3, "transactions.log");
+	$action = "ingreso";
 	$errorMessage = $message;
 }
 

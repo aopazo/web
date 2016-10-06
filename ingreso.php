@@ -2,8 +2,9 @@
 
     // Inialize session
     session_start();
+	error_log("\n".date("Y/m/d H:i:s")." ingreso:: sesion correo ".$_SESSION['correo'], 3, "debug.log");
 
-    isset($_SESSION['correo'])? header('Location: mis-datos'): '' ;
+    isset($_SESSION['correo'])? header('Location: usuario'): '' ;
 
 ?>
 
@@ -61,19 +62,20 @@
 
     </head>
     <body>
+	<?php include_once("analyticstracking.php") ?>
 
     <div class="body" id="contenido" style="visibility: hidden">
         <header id="header">
             <div id="header-logo" class="container">
                 <div class="logo">
                     <a href="inicio">
-                        <img alt="Atempus" width="180" height="90" data-sticky-width="90" data-sticky-height="45" src="custom/img_custom/logo-ae-1.png">
+                        <img alt="Atempus" width="180" height="90" data-sticky-width="90" data-sticky-height="45" src="custom/img_custom/logosvg.svg">
                     </a>
                 </div>
                 <ul class="social-icons">
-                    <li class="facebook"><a href="http://www.facebook.com/" target="_blank" title="Facebook">Facebook</a></li>
-                    <li class="twitter"><a href="http://www.twitter.com/" target="_blank" title="Twitter">Twitter</a></li>
-                    <li class="linkedin"><a href="http://www.linkedin.com/" target="_blank" title="Linkedin">Linkedin</a></li>
+                    <li class="facebook"><a href="http://www.facebook.com/AtempusCL" target="_blank" title="Facebook">Facebook</a></li>
+                    <li class="twitter"><a href="http://www.twitter.com/AtempusCL" target="_blank" title="Twitter">Twitter</a></li>
+                    <li class="linkedin"><a href="http://www.linkedin.com/company/Atempus" target="_blank" title="Linkedin">Linkedin</a></li>
                 </ul>
                 <button class="btn btn-responsive-nav btn-inverse" data-toggle="collapse" data-target=".nav-main-collapse">
                     <i class="fa fa-bars"></i>
@@ -117,7 +119,7 @@
                                                 <div class="form-group">
                                                     <div class="col-md-12">
                                                         <label>E-mail</label>
-                                                        <input type="email" value="jose.vives@atempus.cl" data-msg-required="Ingresa tu e-mail." data-msg-email="Ingresa un e-mail valido." maxlength="100" class="form-control valid input-lg" name="correo" id="correo" required="" aria-required="true" aria-invalid="false">
+                                                        <input type="email" value="" data-msg-required="Ingresa tu e-mail." data-msg-email="Ingresa un e-mail valido." maxlength="100" class="form-control valid input-lg" name="correo" id="correo" required="" aria-required="true" aria-invalid="false">
                                                     </div>
                                                 </div>
                                             </div>
@@ -125,17 +127,12 @@
                                                 <div class="form-group">
                                                     <div class="col-md-12">
                                                         <label>Contraseña</label>
-                                                        <input type="password" value="qwe" data-msg-required="Ingresa tu contraseña." maxlength="20" class="form-control valid input-lg" name="contra" id="contra" required="" aria-required="true" aria-invalid="false">
+                                                        <input type="password" value="" data-msg-required="Ingresa tu contraseña." maxlength="20" class="form-control valid input-lg" name="contra" id="contra" required="" aria-required="true" aria-invalid="false">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <span class="remember-box checkbox">
-                                                        <label for="rememberme">
-                                                            <input type="checkbox" id="rememberme" name="rememberme">Recuérdame
-                                                        </label>
-                                                    </span>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <button type="submit" id="buttonIngresar" value="Ingresar" class="btn btn-primary pull-right push-bottom" data-loading-text="Ingresando...">Ingresar <i class="fa fa-sign-in"></i></button>
@@ -144,8 +141,7 @@
                                             <input type="hidden" value="login" name="action" />
                                         </form>
                                         <hr>
-                                        <a class="pull-right" href="#" id="pageLoginheaderRecover">¿Olvidaste tu contraseña?</a>
-
+											<a class="pull-right" href="#" id="pageLoginheaderRecover">¿Olvidaste tu contraseña?</a>
                                         <p class="sign-up-info">¿No estás registrado? <a href="planes">Escoje un plan</a></p>
                                     </div>
                                 </div>
@@ -156,14 +152,14 @@
                                     <div class="box-content">
                                         <div class="recover-form">
                                             <h4>Resetear contraseña</h4>
-                                            <p>Ingresa tu e-mail para recibir un código de autentificación y resetear tu contraseña.</p>
+                                            <p>Ingresa tu e-mail para resetear tu contraseña.</p>
 
-                                            <form action="JavaScript:MostrarModal('#ModalRecuperarClave')" id="formIngresoRecuperarMail" novalidate="novalidate">
+											<form action="login-processor.php" id="formOlvideMicontra" novalidate="novalidate" method="post">
                                                 <div class="row">
                                                     <div class="form-group">
                                                         <div class="col-md-12">
                                                             <label>E-mail</label>
-                                                            <input type="email" value="" data-msg-required="Ingresa tu e-mail." data-msg-email="Ingresa un e-mail valido." maxlength="100" class="form-control valid input-lg" name="email" id="email" required="" aria-required="true" aria-invalid="false">
+                                                            <input type="email" value="" data-msg-required="Ingresa tu e-mail." data-msg-email="Ingresa un e-mail valido." maxlength="100" class="form-control valid input-lg" name="recoveremail" id="recoveremail" required="" aria-required="true" aria-invalid="false">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -172,7 +168,8 @@
                                                         <button type="submit" value="Enviar" class="btn btn-primary pull-right push-bottom" data-loading-text="Enviando...">Enviar <i class="fa fa-send"></i></button>
                                                     </div>
                                                 </div>
-                                            </form>
+												<input type="hidden" value="recover" name="action" />
+											</form>
                                             <hr>
                                             <p class="log-in-info">¿Ya tienes una cuenta? <a href="#" id="pageRecoverHeaderLogin">Ingresar</a></p>
                                         </div>
@@ -272,27 +269,49 @@
             . "$('#myModalTitle').html('Ingreso');"
             . "$('#myModalBody').html('Nombre de usuario inv&aacute;lido. Int&eacute;ntalo de nuevo.');"
             . "$(document).ready(MostrarModal('#ModalGenerico'));"
-       . "</script>";
-            echo "<script languaje=’javascript’>alert('Nombre de usuario inv\u00e1lido')</script>";
+			. "</script>";
         }
-        if($_REQUEST['errorMessage'] == "contraError") {
+        else if($_REQUEST['errorMessage'] == "contraError") {
             echo "<script languaje=’javascript’>"
             . "$('#myModalTitle').html('Ingreso');"
             . "$('#myModalBody').html('Contrase&ntilde;a incorrecta. Int&eacute;ntalo de nuevo.');"
             . "$(document).ready(MostrarModal('#ModalGenerico'));"
-       . "</script>";
+			. "</script>";
         }
-        if($_REQUEST['errorMessage'] == "sessionStart") {
-            echo "<script languaje=’javascript’>alert('Bienvenido ".$_SESSION['username'].". Su sesi\u00f3n ha sido iniciada.')</script>";
-//			$_REQUEST['errorMessage'] = "";
+        else if($_REQUEST['errorMessage'] == "sessionStart") {
+            echo "<script languaje=’javascript’>"
+            . "$('#myModalTitle').html('Ingreso');"
+            . "$('#myModalBody').html('Bienvenido ".$_SESSION['username'].". Su sesi&oacute;n ha sido iniciada.');"
+            . "$(document).ready(MostrarModal('#ModalGenerico'));"
+			. "</script>";
         }
-        if($_REQUEST['errorMessage'] == "tokenInvalido") {
-            echo "<script languaje=’javascript’>alert('Token Inv&aacute;lido.\nPor favor, reintenta copiar y pegar el link que te enviamos nuevamente.\nSi el problema persiste, env&iacute;anos un correo ;)')</script>";
-//			$_REQUEST['errorMessage'] = "";
+        else if($_REQUEST['errorMessage'] == "tokenInvalido") {
+            echo "<script languaje=’javascript’>"
+            . "$('#myModalTitle').html('Ingreso');"
+            . "$('#myModalBody').html('Token Inv&aacute;lido.<br />Por favor, reintenta copiar y pegar el link que te enviamos nuevamente.<br />Si el problema persiste, env&iacute;anos un correo.');"
+            . "$(document).ready(MostrarModal('#ModalGenerico'));"
+			. "</script>";
         }
-        if($_REQUEST['errorMessage'] == "tokenNoEncontrado") {
-            echo "<script languaje=’javascript’>alert('Token No Encontrado.\nPor favor, reintenta copiar y pegar el link que te enviamos nuevamente.')</script>";
-//			$_REQUEST['errorMessage'] = "";
+        else if($_REQUEST['errorMessage'] == "tokenNoEncontrado") {
+            echo "<script languaje=’javascript’>"
+            . "$('#myModalTitle').html('Ingreso');"
+            . "$('#myModalBody').html('Token No Encontrado.\nPor favor, reintenta copiar y pegar el link que te enviamos nuevamente.');"
+            . "$(document).ready(MostrarModal('#ModalGenerico'));"
+			. "</script>";
+        }
+		else if($_REQUEST['errorMessage'] == "cambioContrasena") {
+            echo "<script languaje=’javascript’>"
+            . "$('#myModalTitle').html('Ingreso');"
+            . "$('#myModalBody').html('Te hemos enviado un correo con tu nueva contrase&ntilde;a.');"
+            . "$(document).ready(MostrarModal('#ModalGenerico'));"
+			. "</script>";
+        }
+		else{
+            echo "<script languaje=’javascript’>"
+            . "$('#myModalTitle').html('Ingreso');"
+            . "$('#myModalBody').html('".$_REQUEST['errorMessage']."');"
+            . "$(document).ready(MostrarModal('#ModalGenerico'));"
+			. "</script>";
         }
     }
 

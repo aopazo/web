@@ -3251,3 +3251,10 @@ ul.history li .featured-box .box-content {
 .parallax + .google-map {
 	margin-top: -70px;
 }
+
+.acorreo{
+	background-color: #ffef62;
+}
+.acorreo:hover{
+	color: #ffef62 !important;
+}

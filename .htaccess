@@ -7,14 +7,25 @@ ErrorDocument 404 /respuesta.php?message=404
 ErrorDocument 500 /respuesta.php?message=500
 
 <Files .htaccess>
-order allow,deny
-deny from all
+	order allow,deny
+	deny from all
+</Files>
+<Files "recomendacionesSD.txt">
+	order deny,allow
+	deny from all
+	allow from 127.0.0.1
+</Files>
+<Files "recomendacionesCD.txt">
+	order deny,allow
+	deny from all
+	allow from 127.0.0.1
 </Files>
 
 <FilesMatch "\.log$">
-order allow,deny
-deny from all
+	order allow,deny
+	deny from all
 </FilesMatch>
+
 
 RewriteEngine On    # Turn on the rewriting engine
 RewriteCond %{HTTP_HOST} !^www\.

@@ -198,3 +198,9 @@ destacarAFP {
   top: 50%;
   transform: translateY(30%); /* or try 50% */
 }
+
+.alert{
+	float: right; display: block; width:100%; text-align:center; background-color:#FFFF66;
+	position: relative;
+	z-index: 3;
+}

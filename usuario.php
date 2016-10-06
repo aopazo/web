@@ -1,23 +1,26 @@
 <?php 
 	// Inialize session
 	session_start();
+	error_log("\n".date("Y/m/d H:i:s")." usuario:: sesion correo ".$_SESSION['correo'], 3, "debug.log");
 	require_once("connection.php");
 	require_once("functions.php");
+	error_log("\n".date("Y/m/d H:i:s")." usuario:: sesion correo ".$_SESSION['correo'], 3, "debug.log");
 
-        $correo = $_SESSION['correo'];
+    $correo = $_SESSION['correo'];
+    $userdata = getDatosUsuario($_SESSION['correo']);
 	$result = mysql_query("SELECT * FROM $table WHERE correo = '".$correo."'");
 	// if sale mal la consulta :(
-	$userdata = mysql_fetch_array($result);
-	echo "cv:".$_SESSION['correo_validado']."ms:".$_SESSION['mailchimp_suscrito'];
-	$_SESSION['correo_validado'] = $userdata['correo_validado'];
-	$_SESSION['mailchimp_suscrito'] = $userdata['mailchimp_suscrito'];
-	echo "<br />update -> cv:".$_SESSION['correo_validado']."ms:".$_SESSION['mailchimp_suscrito'];
-//	echo "<br /> -> c:".$_SESSION['correo'];
-//	echo "<br /> -> c:".$_SESSION['username'];
+	if(mysql_num_rows($result) == 0 || $correo == "") {
+		header("Location: $URL");
+	} else {
+		$userdata = mysql_fetch_array($result);
+		$_SESSION['correo_validado'] = $userdata['correo_validado'];
+		$_SESSION['mailchimp_suscrito'] = $userdata['mailchimp_suscrito'];
+	}
 
     $message = filter_input(INPUT_POST, 'message', FILTER_SANITIZE_STRING);
     if($message == "correoValidadoAnteriormente") {
-        echo "<script languaje=’javascript’>alert('Tu correo ya ha sido validado, no es necesario validarlo nuevamente.')</script>"; 
+		echo "<script languaje=’javascript’>alert('Tu correo ya ha sido validado, no es necesario validarlo nuevamente.')</script>"; 
         $message = "";
     }
     if($message == "correoValidado") {
@@ -28,7 +31,6 @@
 	// $popup = "";
 	// if (isset($_GET['popup'])) $popup = $_GET['popup'];
 ?>
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -83,19 +85,20 @@
 
 	</head>
 	<body>
+	<?php include_once("analyticstracking.php") ?>
 
 		<div class="body" id="contenido" style="visibility: hidden">
 			<header id="header">
 				<div id="header-logo" class="container">
 					<div class="logo">
 						<a href="inicio">
-							<img alt="Atempus" width="180" height="90" data-sticky-width="90" data-sticky-height="45" src="custom/img_custom/logo-ae-1.png">
+							<img alt="Atempus" width="180" height="90" data-sticky-width="90" data-sticky-height="45" src="custom/img_custom/logosvg.svg">
 						</a>
 					</div>
 					<ul class="social-icons">
-						<li class="facebook"><a href="http://www.facebook.com/" target="_blank" title="Facebook">Facebook</a></li>
-						<li class="twitter"><a href="http://www.twitter.com/" target="_blank" title="Twitter">Twitter</a></li>
-						<li class="linkedin"><a href="http://www.linkedin.com/" target="_blank" title="Linkedin">Linkedin</a></li>
+						<li class="facebook"><a href="http://www.facebook.com/AtempusCL" target="_blank" title="Facebook">Facebook</a></li>
+						<li class="twitter"><a href="http://www.twitter.com/AtempusCL" target="_blank" title="Twitter">Twitter</a></li>
+						<li class="linkedin"><a href="http://www.linkedin.com/company/Atempus" target="_blank" title="Linkedin">Linkedin</a></li>
 					</ul>
 					<button class="btn btn-responsive-nav btn-inverse" data-toggle="collapse" data-target=".nav-main-collapse">
 						<i class="fa fa-bars"></i>
@@ -141,33 +144,27 @@
 									<div id="usuario" class="tab-pane active">
 										<h4 class="mb-none">Datos de usuario</h4>
 										<br>
-										<p><b>E-mail:</b><span id="mail"> <?php echo $_SESSION['correo']; ?></span></p>
-										<p id="validacion"><b>Validaci&oacute;n e-mail:</b>
-											<?php if ($_SESSION['correo_validado']) : ?>
-												<span class="label label-success">E-mail validado </span>
-											<?php else : ?>
-												<span class="label label-danger">E-mail no validado </span><button type="button" id="buttonReenviarValidacion" class="btn btn-borders btn-default btn-xs" data-toggle="modal" data-target="#ModalEnvioMailValidacion"><i class="fa fa-send"></i> reenviar e-mail de validaci&oacute;n</button>
-											<?php endif ; ?>
-										</p>
-										<p id="suscripcion"><b>Suscripci&oacute;n e-mail:</b>
-											<?php if ($_SESSION['mailchimp_suscrito']) : ?>
-												<span class="label label-success">E-mail suscrito </span>
-											<?php else : ?>
-												<span class="label label-danger">E-mail no suscrito </span> <button type="button" id="buttonReenviarSuscripcion" class="btn btn-borders btn-default btn-xs" data-toggle="modal" data-target="#ModalEnvioMailSuscripcion"><i class="fa fa-send"></i> reenviar e-mail de suscripci&oacute;n</button>
-											<?php endif ; ?>
-										</p>
-										<p><b>Contrase&ntilde;a:</b> ******** <button id="editarclave" type="button" class="btn btn-borders btn-default btn-xs"><i class="fa fa-pencil"></i> editar</button></p>
+										<span id="mail"><b>E-mail:</b> <?php echo $_SESSION['correo']; ?></span><br /><br />
+										<span class="width:30%"id="suscripcion"><b>Suscripci&oacute;n e-mail:</b></span>
+												<?php if ($_SESSION['mailchimp_suscrito'] == 1) : ?>
+													<span class="label label-success">E-mail suscrito </span><br /><br />
+												<?php else : ?>
+													<span class="label label-danger">E-mail no suscrito </span>&nbsp;
+													<button type="button" id="buttonReenviarSuscripcion" class="btn btn-borders btn-default btn-xs"><i class="fa fa-send"></i> reenviar e-mail de suscripci&oacute;n</button><br />
+													<span class="width:30%">&nbsp;&nbsp;</span><span><small><i>&nbsp;&nbsp; tu suscripci&oacute;n podr&iacute;a tardar hasta 4 horas en verse reflejada </i></small></span><br /><br />
+												<?php endif ; ?>
+										<span id="contrasena"><b>Contrase&ntilde;a:</b> ******** <button id="editarclave" type="button" class="btn btn-borders btn-default btn-xs"><i class="fa fa-pencil"></i> editar</button></span>
 										<form style="display:none" id="formcambioclave" action="JavaScript:OcultarFormClaveyQuizasMostrarModal('#formcambioclave', '#ModalCambioClave', 0);" novalidate="novalidate">
 											<div class="row">
 												<div class="form-group">
 													<div class="col-md-3">
-														<input type="password" value="" placeholder="Actual contrase&ntilde;a (*)" data-msg-required="Ingresa tu actual contrase&ntilde;a." maxlength="100" class="form-control valid input-sm" name="passwordactual" id="passwordactual" required="" aria-required="true" aria-invalid="false">
+														<input type="password" value="" placeholder="Actual contrase&ntilde;a (*)" data-msg-required="Ingresa tu actual contrase&ntilde;a." maxlength="20" class="form-control valid input-sm" name="passwordactual" id="passwordactual" required="" aria-required="true" aria-invalid="false">
 													</div>
 													<div class="col-md-3">
-														<input type="password" value="" placeholder="Nueva contrase&ntilde;a (*)" data-msg-required="Ingresa tu nueva contrase&ntilde;a." maxlength="100" class="form-control valid input-sm" name="password" id="password" required="" aria-required="true" aria-invalid="false">
+														<input type="password" value="" placeholder="Nueva contrase&ntilde;a (*)" data-msg-required="Ingresa tu nueva contrase&ntilde;a." maxlength="20" class="form-control valid input-sm" name="password" id="password" required="" aria-required="true" aria-invalid="false">
 													</div>
 													<div class="col-md-3">
-														<input type="password" value="" placeholder="Repetir nueva contrase&ntilde;a (*)" data-msg-required="Repite tu nueva contrase&ntilde;a." data-msg-equalTo="No ingresaste la misma contrase&ntilde;a." maxlength="100" class="form-control valid input-sm" name="password_repetir" id="password_repetir" required="" aria-required="true" aria-invalid="false">
+														<input type="password" value="" placeholder="Repetir nueva contrase&ntilde;a (*)" data-msg-required="Repite tu nueva contrase&ntilde;a." data-msg-equalTo="No ingresaste la misma contrase&ntilde;a." maxlength="20" class="form-control valid input-sm" name="password_repetir" id="password_repetir" required="" aria-required="true" aria-invalid="false">
 													</div>
 													<div class="col-md-3">
 														<button id="buttonGuardarCambioClave" value="Guardar" class="btn btn-primary btn-sm" data-loading-text="Guardando...">Guardar</button>
@@ -193,56 +190,7 @@
 											</div>
 										</div>
 
-										<div class="modal fade" id="ModalEnvioMail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-											<div class="modal-dialog">
-												<div class="modal-content">
-													<div class="modal-header">
-														<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-														<h4 class="modal-title" id="myModalLabel">Actualizaci&oacute;n de e-mail</h4>
-													</div>
-													<div class="modal-body">
-														Se te ha enviado un e-mail para validar tu nueva direcci&oacute;n de correo electr&oacute;nico. Una vez validado se te enviar&aacute; un e-mail para que te vuelvas a suscribir a la lista de distribuci&oacute;n de las recomentaciones. Revisalo y acepta la invitaci&oacute;n para completar la actualizaci&oacute;n de correo electr&oacute;nico.
-													</div>
-													<div class="modal-footer">
-														<button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-thumbs-up"></i> Entendido</button>
-													</div>
-												</div>
-											</div>
-										</div>
-										
-										<div class="modal fade" id="ModalEnvioMailValidacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-											<div class="modal-dialog">
-												<div class="modal-content">
-													<div class="modal-header">
-														<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-														<h4 class="modal-title" id="myModalLabel">E-mail de validaci&oacute;n</h4>
-													</div>
-													<div class="modal-body">
-														Se te ha enviado un e-mail para validar tu nueva direcci&oacute;n de correo electr&oacute;nico.
-													</div>
-													<div class="modal-footer">
-														<button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-thumbs-up"></i> Entendido</button>
-													</div>
-												</div>
-											</div>
-										</div>
-										
-										<div class="modal fade" id="ModalEnvioMailSuscripcion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-											<div class="modal-dialog">
-												<div class="modal-content">
-													<div class="modal-header">
-														<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-														<h4 class="modal-title" id="myModalLabel">E-mail de suscripci&oacute;n</h4>
-													</div>
-													<div class="modal-body">
-														Se te ha enviado un e-mail para que te vuelvas a suscribir a la lista de distribuci&oacute;n de las recomentaciones. Revisalo y acepta la invitaci&oacute;n.
-													</div>
-													<div class="modal-footer">
-														<button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-thumbs-up"></i> Entendido</button>
-													</div>
-												</div>
-											</div>
-										</div>
+									
 									</div>
 									<div id="facturacion" class="tab-pane">
 										<h4 class="mb-none">Datos de facturaci&oacute;n</h4>
@@ -285,20 +233,20 @@
 											<div class="row">
 												<div class="form-group">
 													<div class="col-md-4">
-														<input type="text" value="" placeholder="Direcci&oacute;n" data-msg-required="Ingresa tu direcci&oacute;n." maxlength="20" class="form-control valid input-sm" name="direccion" id="direccion" required="" aria-required="true" aria-invalid="false">
+														<input type="text" value="" placeholder="Direcci&oacute;n" data-msg-required="Ingresa tu direcci&oacute;n." maxlength="100" class="form-control valid input-sm" name="direccion" id="direccion" required="" aria-required="true" aria-invalid="false">
 													</div>
 													<div class="col-md-4">
-														<input type="text" value="" placeholder="Comuna" data-msg-required="Ingresa tu comuna." maxlength="20" class="form-control valid input-sm" name="comuna" id="comuna" required="" aria-required="true" aria-invalid="false">
+														<input type="text" value="" placeholder="Comuna" data-msg-required="Ingresa tu comuna." maxlength="100" class="form-control valid input-sm" name="comuna" id="comuna" required="" aria-required="true" aria-invalid="false">
 													</div>
 												</div>
 											</div>
 											<div class="row">
 												<div class="form-group">
 													<div class="col-md-4">
-														<input type="text" value="" placeholder="Ciudad" data-msg-required="Ingresa tu ciudad." maxlength="20" class="form-control valid input-sm" name="ciudad" id="ciudad" required="" aria-required="true" aria-invalid="false">
+														<input type="text" value="" placeholder="Ciudad" data-msg-required="Ingresa tu ciudad." maxlength="100" class="form-control valid input-sm" name="ciudad" id="ciudad" required="" aria-required="true" aria-invalid="false">
 													</div>
 													<div class="col-md-4">
-														<input type="text" value="" placeholder="Regi&oacute;n" data-msg-required="Ingresa tu regi&oacute;n." maxlength="20" class="form-control valid input-sm" name="region" id="region" required="" aria-required="true" aria-invalid="false">
+														<input type="text" value="" placeholder="Regi&oacute;n" data-msg-required="Ingresa tu regi&oacute;n." maxlength="100" class="form-control valid input-sm" name="region" id="region" required="" aria-required="true" aria-invalid="false">
 													</div>
 													<div class="col-md-3 col-md-offset-1">
 														<button id="buttonGuardarCambioDireccion" value="Guardar" class="btn btn-primary btn-sm" data-loading-text="Guardando...">Guardar</button>
@@ -308,20 +256,20 @@
 											</div>
 										</form>
 
-   								<div class="modal fade" id="ModalGenerico" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-									<div class="modal-dialog">
-										<div class="modal-content">
-											<div class="modal-header">
-												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-												<h4 class="modal-title" id="myModalTitle"></h4>
-											</div>
-											<div id="myModalBody" class="modal-body"></div>
-											<div class="modal-footer">
-												<a href="#" id="myModalFooter" type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-thumbs-up"></i> Entendido</a>
+										<div class="modal fade" id="ModalGenerico" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<div class="modal-header">
+														<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+														<h4 class="modal-title" id="myModalTitle"></h4>
+													</div>
+													<div id="myModalBody" class="modal-body"></div>
+													<div class="modal-footer">
+														<a href="#" id="myModalFooter" type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-thumbs-up"></i> Entendido</a>
+													</div>
+												</div>
 											</div>
 										</div>
-									</div>
-								</div>
 
 									</div>
 								</div>
@@ -365,7 +313,7 @@
 		<!-- Theme Custom -->
 		<script src="custom/js/custom.js"></script>
 		
-                <!-- Boton para guardar cambios de CLAVE -->
+        <!-- Boton para guardar cambios de CLAVE -->
 		<script>
 			$('#buttonGuardarCambioClave').click(function(e){
 				$.ajax({
@@ -374,29 +322,41 @@
 					data: {
 						section: "actualizarContrasena",
 						contrasena_antes: $("#passwordactual").val(),
-						contrasena: $("#password").val()
+						contrasena: $("#password").val(),
+						contrasena_repetir: $("#password_repetir").val()
 					},
 					success: function(result) {
-						if(result=="contrasenaActualNOK"){
-							$('#ModalCambioClaveMensaje').html('La contrase&ntilde;a actual que ingresaste no coincide con nuestros registros. 	Int&eacute;ntalo de nuevo.');
-							$('#ModalCambioClave').modal({show: 'true'});
+						switch (result){
+							case ("contrasenaActualVacia"):
+								var mensaje = "Debes ingresar tu contrase&ntilde;a"; break;
+							case ("contrasenaNuevaVacia"):
+								var mensaje = "Tu nueva contrase&ntilde;a no puede ser vac&iacute;a"; break;
+							case ("contrasenaRepetirVacia"):
+								var mensaje = "Debes repetir tu contrase&ntilde;a"; break;
+							case ("contrasenasNoCoinciden"):
+								var mensaje = "Tus contrase&ntilde;as no coinciden"; break;
+							case ("contrasenaMuyCorta"):
+								var mensaje = "Tu contrase&ntilde;a debe tener al menos 6 caracteres"; break;
+							case ("contrasenaActualNOK"):
+								var mensaje = "La contrase&ntilde;a actual que ingresaste no coincide con nuestros registros. Int&eacute;ntalo de nuevo"; break;
+							case ("contrasenaActualizadaOK"):
+								var mensaje = "Se ha actualizado tu contrase&ntilde;a"; break;
+							case ("contrasenaActualizadaNOK"):
+								var mensaje = "No hemos podido actualizar tu contrase&ntildea<br />Int&eacute;ntalo m&aacute;s tarde"; break;
+							default: 
+								var mensaje = "No hemos podido actualizar tu contrase&ntildea<br />Int&eacute;ntalo m&aacute;s tarde"; break;
 						}
-						else if(result=="contrasenaActualizadaOK"){
-							$('#ModalCambioClaveMensaje').html('Se ha actualizado tu contrase&ntilde;a.');
-							$('#ModalCambioClave').modal({show: 'true'});
-						}
-						else if(result=="contrasenaActualizadaNOK"){
-							$('#ModalCambioClaveMensaje').html('No hemos podido actualizar tu contrase&ntildea. Int&eacute;ntalo m&aacute;s tarde.');
-							$('#ModalCambioClave').modal({show: 'true'});
-						}
+						$('#ModalCambioClaveMensaje').html(mensaje);
+						$('#ModalCambioClave').modal({show: 'true'});
 					}
 				});
 			});
 		</script>
 
-                <!-- Boton para guardar cambios de DIRECCION -->
+        <!-- Boton para guardar cambios de DIRECCION -->
 		<script>
 			$('#buttonGuardarCambioDireccion').click(function(e){
+				var direccion_completa = $("#direccion").val()+', '+$("#comuna").val()+', '+$("#ciudad").val()+', '+$("#region").val();
 				$.ajax({
 					url: 'form-processor.php',
 					type: 'post',
@@ -408,7 +368,7 @@
 						region: $("#region").val()
 					},
 					success: function(result) {
-						alert(result);
+						//alert(result);
 						if(result=="datosVacios"){
                             $('#myModalTitle').html('Cambio de Dirección');
                             $('#myModalBody').html('Tu dirección no parece completa. Por favor, llena todos los campos.');
@@ -418,6 +378,7 @@
                             $('#myModalTitle').html('Cambio de Dirección');
                             $('#myModalBody').html('Tu direcci&oacute;n ha sido actualizada correctamente');
 							$('#ModalGenerico').modal({show: 'true'});
+							$('#direccion_completa').html(direccion_completa);
 						}
 						else if(result=="direccionActualizadaNOK"){
                             $('#myModalTitle').html('Cambio de Dirección');
@@ -429,30 +390,46 @@
 			});
 		</script>
 		
-                <!-- Boton para REENVIAR MAILCHIMP -->
-                <script>
+        <!-- Boton para REENVIAR MAILCHIMP -->
+		<script>
 			$('#buttonReenviarSuscripcion').click(function(e){
                             var ajaxurl = 'api/envio_correo.php';
                             data = {'correo': '<?php echo $correo ?>',
                                     'action': 'suscripcion'};
                             $.post(ajaxurl, data, function (response) {
                                 //TODO: Seria bueno tomar el response y mostrarlo en el modal de alguna manera
-                                //alert(response);
+									$('#myModalLabel').html('Reenvío de Correo');
+									$('#ModalCambioClaveMensaje').html('Te hemos reenviado el correo a: <?php echo $correo ?>');
+									$('#ModalCambioClave').modal({show: 'true'});
                             });
                         });
 		</script>
                 
-                <!-- Boton para REENVIAR VERIFICACION -->
-                <script>
+        <!-- Boton para REENVIAR VERIFICACION -->
+        <script>
 			$('#buttonReenviarValidacion').click(function(e){
                             var ajaxurl = 'api/envio_correo.php';
                             data = {'correo': '<?php echo $correo ?>',
                                     'action': 'validacion'};
                             $.post(ajaxurl, data, function (response) {
                                 //TODO: Seria bueno tomar el response y mostrarlo en el modal de alguna manera
-                                //alert(response);
                             });
                         });
 		</script>
 	</body>
 </html>
+<?php
+ // Mas manejo de errores
+ 
+ // ARREGLAR
+	// if(isset($_REQUEST['errorMessage'])) {
+		// if ($_REQUEST['errorMessage'] != "") {
+			// echo "<script languaje=’javascript’>"
+				// . "$('#myModalTitle').html('Notificación');"
+				// . "$('#myModalBody').html('".$_REQUEST['errorMessage']."');"
+				// . "$(document).ready(MostrarModal('#ModalGenerico'));"
+				// . "</script>";
+        // }
+	// }
+
+?>

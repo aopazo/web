@@ -1,0 +1,65 @@
+[23-Feb-2016 20:21:21 America/Santiago] PHP Warning:  json_encode(): type is unsupported, encoded as null in /home/atempus/public_html/sitionuevo/app/funciones_bd.php on line 49
+[23-Feb-2016 20:21:44 America/Santiago] PHP Warning:  json_encode(): type is unsupported, encoded as null in /home/atempus/public_html/sitionuevo/app/funciones_bd.php on line 49
+[23-Feb-2016 20:21:47 America/Santiago] PHP Warning:  json_encode(): type is unsupported, encoded as null in /home/atempus/public_html/sitionuevo/app/funciones_bd.php on line 49
+[23-Feb-2016 20:22:07 America/Santiago] PHP Warning:  json_encode(): type is unsupported, encoded as null in /home/atempus/public_html/sitionuevo/app/funciones_bd.php on line 50
+[23-Feb-2016 20:23:10 America/Santiago] PHP Warning:  json_encode(): type is unsupported, encoded as null in /home/atempus/public_html/sitionuevo/app/funciones_bd.php on line 50
+[23-Feb-2016 20:23:14 America/Santiago] PHP Warning:  json_encode(): type is unsupported, encoded as null in /home/atempus/public_html/sitionuevo/app/funciones_bd.php on line 50
+[23-Feb-2016 21:29:52 America/Santiago] PHP Parse error:  syntax error, unexpected '<' in /home/atempus/public_html/sitionuevo/app/funciones_bd.php on line 62
+[23-Feb-2016 21:29:55 America/Santiago] PHP Parse error:  syntax error, unexpected '<' in /home/atempus/public_html/sitionuevo/app/funciones_bd.php on line 62
+[23-Feb-2016 21:29:58 America/Santiago] PHP Parse error:  syntax error, unexpected '<' in /home/atempus/public_html/sitionuevo/app/funciones_bd.php on line 62
+[23-Feb-2016 21:30:18 America/Santiago] PHP Parse error:  syntax error, unexpected '<' in /home/atempus/public_html/sitionuevo/app/funciones_bd.php on line 62
+[23-Feb-2016 21:30:20 America/Santiago] PHP Parse error:  syntax error, unexpected '<' in /home/atempus/public_html/sitionuevo/app/funciones_bd.php on line 62
+[23-Feb-2016 21:31:07 America/Santiago] PHP Parse error:  syntax error, unexpected ')', expecting ',' or ';' in /home/atempus/public_html/sitionuevo/app/funciones_bd.php on line 63
+[23-Feb-2016 21:31:10 America/Santiago] PHP Parse error:  syntax error, unexpected ')', expecting ',' or ';' in /home/atempus/public_html/sitionuevo/app/funciones_bd.php on line 63
+[23-Feb-2016 21:31:30 America/Santiago] PHP Parse error:  syntax error, unexpected ')', expecting ',' or ';' in /home/atempus/public_html/sitionuevo/app/funciones_bd.php on line 63
+[23-Feb-2016 21:31:32 America/Santiago] PHP Parse error:  syntax error, unexpected ')', expecting ',' or ';' in /home/atempus/public_html/sitionuevo/app/funciones_bd.php on line 63
+[23-Feb-2016 21:35:21 America/Santiago] PHP Warning:  json_encode(): type is unsupported, encoded as null in /home/atempus/public_html/sitionuevo/app/funciones_bd.php on line 63
+[23-Feb-2016 21:53:11 America/Santiago] PHP Warning:  json_encode(): type is unsupported, encoded as null in /home/atempus/public_html/sitionuevo/app/funciones_bd.php on line 64
+[23-Feb-2016 21:56:11 America/Santiago] PHP Parse error:  syntax error, unexpected '<' in /home/atempus/public_html/sitionuevo/app/funciones_bd.php on line 66
+[24-Feb-2016 08:49:12 America/Santiago] PHP Fatal error:  Call to undefined function infousuario() in /home/atempus/public_html/sitionuevo/app/acces.php on line 14
+[24-Feb-2016 08:50:08 America/Santiago] PHP Fatal error:  Call to undefined function infousuario() in /home/atempus/public_html/sitionuevo/app/acces.php on line 14
+[24-Feb-2016 08:50:30 America/Santiago] PHP Fatal error:  Call to undefined function infousuario() in /home/atempus/public_html/sitionuevo/app/acces.php on line 14
+[24-Feb-2016 09:06:52 America/Santiago] PHP Warning:  json_encode(): type is unsupported, encoded as null in /home/atempus/public_html/sitionuevo/app/acces.php on line 17
+[24-Feb-2016 09:15:36 America/Santiago] PHP Fatal error:  Class 'funciones_BD' not found in /home/atempus/public_html/sitionuevo/app/acces.php on line 13
+[24-Feb-2016 09:15:59 America/Santiago] PHP Warning:  json_encode(): type is unsupported, encoded as null in /home/atempus/public_html/sitionuevo/app/funciones_bd.php on line 59
+[10-Mar-2016 23:12:11 America/Santiago] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/atempus/public_html/sitionuevo/app/funciones_bd.php on line 45
+[10-Mar-2016 23:13:16 America/Santiago] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/atempus/public_html/sitionuevo/app/funciones_bd.php on line 45
+[10-Mar-2016 23:13:46 America/Santiago] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/atempus/public_html/sitionuevo/app/funciones_bd.php on line 45
+[10-Mar-2016 23:14:28 America/Santiago] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/atempus/public_html/sitionuevo/app/funciones_bd.php on line 45
+[10-Mar-2016 23:14:45 America/Santiago] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/atempus/public_html/sitionuevo/app/funciones_bd.php on line 45
+[10-Mar-2016 23:15:29 America/Santiago] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/atempus/public_html/sitionuevo/app/funciones_bd.php on line 45
+[10-Mar-2016 23:15:44 America/Santiago] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/atempus/public_html/sitionuevo/app/funciones_bd.php on line 45
+[10-Mar-2016 23:16:11 America/Santiago] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/atempus/public_html/sitionuevo/app/funciones_bd.php on line 45
+[10-Mar-2016 23:16:14 America/Santiago] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/atempus/public_html/sitionuevo/app/funciones_bd.php on line 45
+[10-Mar-2016 23:17:02 America/Santiago] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/atempus/public_html/sitionuevo/app/funciones_bd.php on line 45
+[10-Mar-2016 23:19:12 America/Santiago] PHP Fatal error:  Call to undefined function login() in /home/atempus/public_html/sitionuevo/app/backend.php on line 12
+[10-Mar-2016 23:20:31 America/Santiago] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/atempus/public_html/sitionuevo/app/funciones_bd.php on line 45
+[10-Mar-2016 23:23:52 America/Santiago] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/atempus/public_html/sitionuevo/app/funciones_bd.php on line 45
+[10-Mar-2016 23:24:55 America/Santiago] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/atempus/public_html/sitionuevo/app/funciones_bd.php on line 46
+[10-Mar-2016 23:25:38 America/Santiago] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/atempus/public_html/sitionuevo/app/funciones_bd.php on line 46
+[10-Mar-2016 23:26:03 America/Santiago] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/atempus/public_html/sitionuevo/app/funciones_bd.php on line 47
+[10-Mar-2016 23:26:05 America/Santiago] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/atempus/public_html/sitionuevo/app/funciones_bd.php on line 47
+[10-Mar-2016 23:26:18 America/Santiago] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/atempus/public_html/sitionuevo/app/funciones_bd.php on line 47
+[10-Mar-2016 23:28:09 America/Santiago] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/atempus/public_html/sitionuevo/app/funciones_bd.php on line 46
+[10-Mar-2016 23:55:52 America/Santiago] PHP Parse error:  syntax error, unexpected ':', expecting ',' or ';' in /home/atempus/public_html/sitionuevo/app/funciones_bd.php on line 24
+[10-Mar-2016 23:56:11 America/Santiago] PHP Parse error:  syntax error, unexpected '<' in /home/atempus/public_html/sitionuevo/app/funciones_bd.php on line 24
+[10-Mar-2016 23:56:55 America/Santiago] PHP Parse error:  syntax error, unexpected '<' in /home/atempus/public_html/sitionuevo/app/funciones_bd.php on line 24
+[10-Mar-2016 23:56:59 America/Santiago] PHP Parse error:  syntax error, unexpected ':', expecting ',' or ';' in /home/atempus/public_html/sitionuevo/app/funciones_bd.php on line 24
+[11-Mar-2016 00:28:52 America/Santiago] PHP Fatal error:  Call to undefined function getusuario() in /home/atempus/public_html/sitionuevo/app/backend.php on line 14
+[11-Mar-2016 00:29:17 America/Santiago] PHP Fatal error:  Call to undefined function getusuario() in /home/atempus/public_html/sitionuevo/app/backend.php on line 14
+[11-Mar-2016 00:30:44 America/Santiago] PHP Fatal error:  Call to undefined function getusuario() in /home/atempus/public_html/sitionuevo/app/backend.php on line 14
+[11-Mar-2016 00:30:48 America/Santiago] PHP Fatal error:  Call to undefined function getusuario() in /home/atempus/public_html/sitionuevo/app/backend.php on line 14
+[11-Mar-2016 00:31:24 America/Santiago] PHP Fatal error:  Call to undefined function getusuario() in /home/atempus/public_html/sitionuevo/app/backend.php on line 14
+[11-Mar-2016 00:59:10 America/Santiago] PHP Fatal error:  Call to undefined function saveData() in /home/atempus/public_html/sitionuevo/app/backend.php on line 33
+[11-Mar-2016 00:59:38 America/Santiago] PHP Fatal error:  Call to undefined function saveData() in /home/atempus/public_html/sitionuevo/app/backend.php on line 33
+[11-Mar-2016 01:00:28 America/Santiago] PHP Fatal error:  Call to undefined function saveData() in /home/atempus/public_html/sitionuevo/app/backend.php on line 33
+[11-Mar-2016 01:00:42 America/Santiago] PHP Fatal error:  Call to undefined function saveData() in /home/atempus/public_html/sitionuevo/app/backend.php on line 33
+[11-Mar-2016 01:01:07 America/Santiago] PHP Fatal error:  Call to undefined function saveData() in /home/atempus/public_html/sitionuevo/app/backend.php on line 34
+[11-Mar-2016 01:01:40 America/Santiago] PHP Fatal error:  Call to undefined function saveData() in /home/atempus/public_html/sitionuevo/app/backend.php on line 33
+[11-Mar-2016 01:01:49 America/Santiago] PHP Fatal error:  Call to undefined function saveData() in /home/atempus/public_html/sitionuevo/app/backend.php on line 33
+[11-Mar-2016 01:02:20 America/Santiago] PHP Fatal error:  Call to a member function saveData() on a non-object in /home/atempus/public_html/sitionuevo/app/backend.php on line 33
+[11-Mar-2016 01:03:06 America/Santiago] PHP Fatal error:  Call to a member function saveData() on a non-object in /home/atempus/public_html/sitionuevo/app/backend.php on line 33
+[11-Mar-2016 01:03:37 America/Santiago] PHP Parse error:  syntax error, unexpected '$atributo' (T_VARIABLE) in /home/atempus/public_html/sitionuevo/app/backend.php on line 34
+[11-Mar-2016 01:03:40 America/Santiago] PHP Fatal error:  Call to a member function saveData() on a non-object in /home/atempus/public_html/sitionuevo/app/backend.php on line 36
+[14-Mar-2016 20:10:58 America/Santiago] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/atempus/public_html/sitionuevo/app/funciones_bd.php on line 127
+[14-Mar-2016 20:11:00 America/Santiago] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in /home/atempus/public_html/sitionuevo/app/funciones_bd.php on line 127

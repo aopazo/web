@@ -1,8 +1,8 @@
 <?php
 
 session_start();
-require_once("functions.php");
-require_once("connection.php");
+require("functions.php");
+require("connection.php");
 $timestamp = new DateTime();
 $action = "inicio";
 $correo = "";

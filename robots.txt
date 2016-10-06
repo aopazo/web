@@ -1,0 +1,16 @@
+Sitemap: http://www.atempus.cl/sitemap.xml
+User-Agent: *
+Disallow: /elale.cl
+Disallow: /boletas
+Disallow: /sitionuevo
+Disallow: /api
+Disallow: /tmp
+Disallow: /test
+Disallow: /custom
+Disallow: /img
+Disallow: /php
+Disallow: /master
+Disallow: /PHPMailer
+Disallow: /vendor
+Disallow: /templates
+Disallow: /inc

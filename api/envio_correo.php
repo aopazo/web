@@ -1,7 +1,11 @@
 <?php
-require_once ("../functions.php");
-require_once ("../DAOs/UsuarioDAO.php");
+
+require_once ("../connection.php");
+require ("../functions.php");
+require ("../UsuarioDAO.php");
+
 session_start();
+
 $usuario_session = $_SESSION['correo'];
 if (isset($_POST['correo'])) {
     $usuario_post = $_POST['correo'];
@@ -16,12 +20,15 @@ if (isset($_POST['correo'])) {
                     break;
             }
         }
-    }
-    // O ya se sirvió la petición, o los usuarios son distintos. En ambos casos, terminamos.
-    exit;
+    } else {
+		// O ya se sirvió la petición, o los usuarios son distintos. En ambos casos, terminamos.
+		error_log("\nEnvia correo:: session ".$usuario_session." distinto de post: ".$usuario_post, 3, "error.log");
+		exit;
+	}
 }
 else { // No hay username en el post, algo anda mal
-    exit;
+	error_log("\nEnvia correo:: session ".$usuario_session." post vacio :/", 3, "error.log");
+	exit;
 }
 
 function reenviaValidacion($correo) {
@@ -32,11 +39,13 @@ function reenviaValidacion($correo) {
 }
 
 function reenviaSuscripcion($correo) {
-    echo "Reenviando Suscripcion a ".$correo;
+	error_log("\nEnvia correo:: Reenviando suscripcion a: " .$correo, 3, "transactions.log");
     $dao = new UsuarioDAO($correo);
     $nombres = $dao->getNombres();
     $apellidos = $dao->getApellidos();
-    enviar_bienvenida_mailchimp($correo, $nombres, $apellidos);
+	enviar_bienvenida_mailchimp($correo, $nombres, $apellidos);
+	error_log("\nEnvia correo:: correo enviado a: " .$correo, 3, "transactions.log");
 }
+
 ?>
 
