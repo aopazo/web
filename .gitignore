@@ -4,6 +4,7 @@ connection.php
 script-alerta.php
 script-boletas.php
 script-expira.php
+functions.php
 script-*
 *.log
 mc.php
